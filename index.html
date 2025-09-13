@@ -348,10 +348,36 @@
                 </div>
             </div>
             
-            <!-- SLA Trend Chart -->
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-6">Monthly SLA Compliance Trend</h3>
-                <canvas id="slaTrendChart" height="100"></canvas>
+            <!-- Simplified SLA Trend -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20" data-aos="fade-up">
+                <h3 class="text-xl font-bold mb-4">Monthly SLA Trend</h3>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-400">99.8%</div>
+                        <div class="text-sm opacity-80">Critical</div>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 99.8%"></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-yellow-400">98.5%</div>
+                        <div class="text-sm opacity-80">High Priority</div>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-yellow-500 h-2 rounded-full" style="width: 98.5%"></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-400">96.2%</div>
+                        <div class="text-sm opacity-80">Normal</div>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 96.2%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center text-sm opacity-80">
+                    <i class="fas fa-arrow-up text-green-400 mr-1"></i>
+                    <span>+2.3% improvement this month</span>
+                </div>
             </div>
         </div>
     </section>
@@ -706,66 +732,17 @@
             });
         });
 
-        // SLA Trend Chart
-        const ctx1 = document.getElementById('slaTrendChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Critical',
-                    data: [99.5, 99.6, 99.8, 99.7, 99.9, 99.8, 99.9, 99.8, 99.7, 99.8, 99.9, 99.8],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    tension: 0.4
-                }, {
-                    label: 'High',
-                    data: [98.2, 98.5, 98.3, 98.6, 98.4, 98.7, 98.5, 98.8, 98.6, 98.5, 98.7, 98.5],
-                    borderColor: '#f59e0b',
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    tension: 0.4
-                }, {
-                    label: 'Normal',
-                    data: [95.5, 96.0, 95.8, 96.2, 96.1, 96.3, 96.0, 96.4, 96.2, 96.1, 96.3, 96.2],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white'
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        min: 94,
-                        max: 100,
-                        ticks: {
-                            color: 'white',
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: 'white'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                }
-            }
+        // SLA Progress Bar Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const slaBars = document.querySelectorAll('#sla .bg-green-500, #sla .bg-yellow-500, #sla .bg-blue-500');
+            slaBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 2s ease-in-out';
+                    bar.style.width = width;
+                }, 1000);
+            });
         });
 
         // Simple progress bar animations
