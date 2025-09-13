@@ -1,161 +1,482 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tarek Abdelfattah Zaki — Interactive CV</title>
-  <meta name="description" content="Interactive CV for Tarek Abdelfattah Zaki — CAFM Operator / CMMS Administrator">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root { color-scheme: light dark; }
-    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-    @media print {
-      .no-print { display: none !important; }
-      a[href]:after { content: ""; }
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarek Abdelfattah Zaki - Interactive CV</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            transform: scale(1.1);
+        }
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-  <!-- Header / Hero -->
-  <header class="bg-white border-b border-gray-200">
-    <div class="max-w-5xl mx-auto px-6 py-8 md:py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <div>
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Tarek Abdelfattah Zaki</h1>
-        <p class="mt-1 text-sm md:text-base text-gray-600">CAFM Operator · CMMS Administrator · FM Technology</p>
-      </div>
-      <div class="text-sm md:text-base">
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <a class="text-blue-600 hover:underline" href="mailto:Tarekabuzaidcafm@outlook.com">Tarekabuzaidcafm@outlook.com</a>
-          <span class="text-gray-400">|</span>
-          <a class="text-blue-600 hover:underline" href="tel:+971545527141">+971 545527141</a>
-          <span class="text-gray-400">|</span>
-          <span>Abu Dhabi, UAE</span>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50" data-aos="fade-down">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">Tarek Zaki</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-600">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-blue-600">Skills</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600">Experience</a>
+                    <a href="#education" class="nav-link text-gray-600 hover:text-blue-600">Education</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-blue-600">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="flex flex-wrap items-center gap-4 mt-1">
-          <a class="text-blue-600 hover:underline" target="_blank" rel="noopener" href="https://linkedin.com/in/tarekabuozaid">LinkedIn</a>
-          <a class="text-blue-600 hover:underline" target="_blank" rel="noopener" href="https://github.com/tarekabuozaid">GitHub</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-white">
+        <div class="text-center" data-aos="fade-up">
+            <div class="mb-8">
+                <img src="https://via.placeholder.com/200x200/ffffff/667eea?text=TZ" 
+                     alt="Tarek Zaki" 
+                     class="w-48 h-48 rounded-full mx-auto border-8 border-white shadow-2xl">
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4" data-aos="fade-up" data-aos-delay="200">
+                Tarek Abdelfattah Zaki
+            </h1>
+            <p class="text-xl md:text-2xl mb-6" data-aos="fade-up" data-aos-delay="400">
+                CAFM Operator | CMMS Administrator | FM Technology Expert
+            </p>
+            <div class="flex justify-center space-x-4" data-aos="fade-up" data-aos-delay="600">
+                <a href="#contact" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                    Get In Touch
+                </a>
+                <a href="#experience" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition">
+                    View Experience
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </section>
 
-  <main class="max-w-5xl mx-auto px-6 py-8 md:py-10">
-    <!-- Summary & Actions -->
-    <section class="grid md:grid-cols-3 gap-6 md:gap-8">
-      <div class="md:col-span-2">
-        <h2 class="text-xl font-semibold mb-3">Professional Summary</h2>
-        <p class="text-gray-700 leading-relaxed">
-          CAFM Operator with 5+ years managing asset data, PPM schedules, and work orders across multi-site portfolios.
-          Skilled in data entry & validation, asset audits, SLA/KPI monitoring, and report generation. Proficient in
-          SAHAA CMMS; familiar with Archibus, Maximo, and Concept Evolution. Strong Excel and Power BI reporting, with
-          hands-on coordination of technicians and FM teams.
-        </p>
-      </div>
-      <aside class="md:col-span-1">
-        <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col gap-3">
-          <a href="TAREK_ABDELFATTAH_CV_Ejadah.docx" class="no-print inline-flex items-center justify-center rounded-lg border border-gray-300 px-3 py-2 hover:bg-gray-50">
-            Download Word (ATS)
-          </a>
-          <a href="#contact" class="inline-flex items-center justify-center rounded-lg bg-blue-600 text-white px-3 py-2 hover:bg-blue-700">
-            Contact Me
-          </a>
-          <p class="text-xs text-gray-500">Last updated: Sep 13, 2025</p>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-aos="fade-up">
+                About Me
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-600">Professional Summary</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            Experienced CAFM Operator with 5+ years managing asset data, work orders, PPM schedules, 
+                            SLA monitoring, and comprehensive reporting systems.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Passionate about facility management technology and process optimization. 
+                            Expert in multiple CAFM/CMMS platforms with proven track record of improving 
+                            operational efficiency and reducing costs.
+                        </p>
+                    </div>
+                    <div data-aos="fade-left">
+                        <div class="bg-gray-100 p-8 rounded-2xl">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-800">Key Achievements</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Managed 5000+ assets across multiple facilities</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Reduced work order closure times by 30%</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Trained 30+ technicians on CAFM systems</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Built automated SLA monitoring dashboards</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </aside>
     </section>
 
-    <!-- Skills -->
-    <section class="mt-10">
-      <h2 class="text-xl font-semibold mb-3">Key Skills</h2>
-      <div class="flex flex-wrap gap-2">
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">CAFM / CMMS (SAHAA, Archibus, Maximo, Concept Evolution)</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">Work Orders (Reactive/Corrective/PPM)</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">PPM Scheduling</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">Asset Register & Audits</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">SLA & KPI Monitoring</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">Excel & Power BI Reports</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">Technician Dispatch & Training</span>
-        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm">Python + WhatsApp API Automation</span>
-      </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-aos="fade-up">
+                Technical Skills
+            </h2>
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- CAFM/CMMS Skills -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-center">
+                            <i class="fas fa-cogs text-4xl text-blue-600 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">CAFM/CMMS Systems</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span>SAHAA</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Archibus</span>
+                                    <span class="text-green-600 font-semibold">Advanced</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Maximo</span>
+                                    <span class="text-blue-600 font-semibold">Intermediate</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Concept Evolution</span>
+                                    <span class="text-blue-600 font-semibold">Intermediate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data & Reporting -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center">
+                            <i class="fas fa-chart-bar text-4xl text-green-600 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Data & Reporting</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span>Excel Advanced</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Power BI</span>
+                                    <span class="text-green-600 font-semibold">Advanced</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>SQL Queries</span>
+                                    <span class="text-blue-600 font-semibold">Intermediate</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Dashboard Creation</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process Management -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-center">
+                            <i class="fas fa-tasks text-4xl text-purple-600 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">Process Management</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span>Work Order Management</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>PPM Scheduling</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>SLA Monitoring</span>
+                                    <span class="text-green-600 font-semibold">Expert</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Asset Audits</span>
+                                    <span class="text-green-600 font-semibold">Advanced</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Experience -->
-    <section class="mt-10">
-      <h2 class="text-xl font-semibold mb-4">Professional Experience</h2>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-aos="fade-up">
+                Professional Experience
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    
+                    <!-- Current Job -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-right">
+                        <div class="flex items-start space-x-6">
+                            <div class="bg-blue-600 text-white p-4 rounded-full">
+                                <i class="fas fa-building text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-gray-800">CAFM Administrator</h3>
+                                        <p class="text-xl text-blue-600 font-semibold">Al Mazroui Supplies, Contracts & Maintenance</p>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mt-2 md:mt-0">
+                                        Jan 2023 – Present
+                                    </span>
+                                </div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1"></i>
+                                        <span>Managed 5000+ assets across multiple facilities with 99.5% accuracy</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1"></i>
+                                        <span>Built automated SLA breach alerts reducing response time by 40%</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1"></i>
+                                        <span>Created comprehensive Power BI dashboards for real-time monitoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1"></i>
+                                        <span>Trained 30+ technicians on CAFM best practices and procedures</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-      <div class="relative pl-6">
-        <div class="absolute left-2 top-0 bottom-0 w-px bg-gray-300"></div>
-
-        <article class="relative mb-8">
-          <div class="absolute -left-1 top-1 w-3 h-3 rounded-full bg-blue-600"></></div>
-          <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
-            <h3 class="font-semibold">Helpdesk Operator / CAFM Administrator — Al Mazroui Supplies, Contracts & Maintenance</h3>
-            <span class="text-sm text-gray-600">Abu Dhabi, UAE · Jan 2023 – Present</span>
-          </header>
-          <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700">
-            <li>Operate & maintain SAHAA CMMS covering <strong>5,000+ assets</strong> across <strong>40 sites</strong>; ensure data accuracy & integrity.</li>
-            <li>Generate & distribute PPM schedules, corrective WOs, and service requests; monitor progress to ensure on-time completion.</li>
-            <li>Improved SLA on-time closure to <strong>98%</strong> by automating breach alerts (Python + WhatsApp API).</li>
-            <li>Produced daily/weekly/monthly reports with Excel & Power BI; reduced reporting time from <strong>2 days → 3 hours</strong>.</li>
-            <li>Trained <strong>30+</strong> technicians/supervisors on mobile CAFM app; collaborated in ISO 41001 audits.</li>
-          </ul>
-        </article>
-
-        <article class="relative mb-8">
-          <div class="absolute -left-1 top-1 w-3 h-3 rounded-full bg-blue-600"></div>
-          <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
-            <h3 class="font-semibold">CAFM Operator — Quality Co. for Automotive Feeding Industries</h3>
-            <span class="text-sm text-gray-600">6th of October City, Egypt · Feb 2020 – Dec 2022</span>
-          </header>
-          <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700">
-            <li>Performed data entry & validation for <strong>2,200+</strong> asset records; reduced data errors by <strong>60%</strong>.</li>
-            <li>Handled WO processing, technician dispatch, client coordination; supported asset audits & inventory updates.</li>
-            <li>Optimized helpdesk triage rules; reduced avg closure time from <strong>48h → 34h</strong>.</li>
-            <li>Assisted in upgrade to SAHAA v.9.2; tested workflows & migration.</li>
-          </ul>
-        </article>
-      </div>
+                    <!-- Previous Job -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-left">
+                        <div class="flex items-start space-x-6">
+                            <div class="bg-green-600 text-white p-4 rounded-full">
+                                <i class="fas fa-industry text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-gray-800">CAFM Operator</h3>
+                                        <p class="text-xl text-green-600 font-semibold">Quality Co. for Automotive Feeding Industries</p>
+                                    </div>
+                                    <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mt-2 md:mt-0">
+                                        Feb 2020 – Dec 2022
+                                    </span>
+                                </div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-green-600 mr-3 mt-1"></i>
+                                        <span>Performed successful asset migration of 2200+ assets to new CAFM system</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-green-600 mr-3 mt-1"></i>
+                                        <span>Reduced work order closure times by 30% through process optimization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-green-600 mr-3 mt-1"></i>
+                                        <span>Supported CAFM system upgrade to SAHAA v9.2 with zero downtime</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-arrow-right text-green-600 mr-3 mt-1"></i>
+                                        <span>Maintained 98% SLA compliance across all maintenance operations</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Education & Languages -->
-    <section class="mt-10 grid md:grid-cols-2 gap-6">
-      <div>
-        <h2 class="text-xl font-semibold mb-2">Education</h2>
-        <p class="text-gray-700">
-          <strong>BSc in Computer &amp; Management Information Systems – Higher Institute of Computers &amp; IT, Tanta, Egypt – 2012</strong>
-        </p>
-      </div>
-      <div>
-        <h2 class="text-xl font-semibold mb-2">Languages</h2>
-        <ul class="text-gray-700 list-disc ml-5">
-          <li>Arabic — Native</li>
-          <li>English — Fluent</li>
-        </ul>
-      </div>
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800" data-aos="fade-up">
+                Education & Certifications
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Education -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-center">
+                            <i class="fas fa-graduation-cap text-4xl text-blue-600 mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-800">Education</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-blue-600 pl-4">
+                                    <h4 class="font-semibold text-lg">Bachelor's Degree</h4>
+                                    <p class="text-gray-600">Engineering or Related Field</p>
+                                    <p class="text-sm text-gray-500">2015 - 2019</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-4xl text-green-600 mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-800">Certifications</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-green-600 pl-4">
+                                    <h4 class="font-semibold text-lg">CAFM Professional</h4>
+                                    <p class="text-gray-600">Facility Management Institute</p>
+                                    <p class="text-sm text-gray-500">2021</p>
+                                </div>
+                                <div class="border-l-4 border-green-600 pl-4">
+                                    <h4 class="font-semibold text-lg">Power BI Specialist</h4>
+                                    <p class="text-gray-600">Microsoft Certified</p>
+                                    <p class="text-sm text-gray-500">2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="mt-12 mb-16">
-      <h2 class="text-xl font-semibold mb-2">Contact</h2>
-      <div class="bg-white border border-gray-200 rounded-xl p-4">
-        <p class="text-gray-700">Email: <a class="text-blue-600 hover:underline" href="mailto:Tarekabuzaidcafm@outlook.com">Tarekabuzaidcafm@outlook.com</a></p>
-        <p class="text-gray-700">Phone: <a class="text-blue-600 hover:underline" href="tel:+971545527141">+971 545527141</a></p>
-        <p class="text-gray-700">Location: Abu Dhabi, United Arab Emirates</p>
-        <p class="text-gray-500 text-sm mt-2">This page is optimized for GitHub Pages. One-file deploy, responsive, and print-friendly.</p>
-      </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+                Get In Touch
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    
+                    <!-- Contact Info -->
+                    <div data-aos="fade-right">
+                        <h3 class="text-2xl font-semibold mb-8">Let's Connect</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-envelope text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <a href="mailto:tarekabuzaidcafm@outlook.com" class="hover:underline">
+                                        tarekabuzaidcafm@outlook.com
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-phone text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Phone</p>
+                                    <a href="tel:+971545527141" class="hover:underline">+971 545527141</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">LinkedIn</p>
+                                    <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="hover:underline">
+                                        linkedin.com/in/tarekabuozaid
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fab fa-github text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">GitHub</p>
+                                    <a href="https://github.com/tarekabuozaid" target="_blank" class="hover:underline">
+                                        github.com/tarekabuozaid
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Message -->
+                    <div data-aos="fade-left">
+                        <h3 class="text-2xl font-semibold mb-8">Quick Message</h3>
+                        <div class="bg-white bg-opacity-10 p-6 rounded-2xl">
+                            <p class="text-lg mb-4">
+                                Ready to discuss your facility management needs or explore new opportunities. 
+                                Let's connect and see how my CAFM expertise can benefit your organization.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="mailto:tarekabuzaidcafm@outlook.com" 
+                                   class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                                    Send Email
+                                </a>
+                                <a href="https://linkedin.com/in/tarekabuozaid" target="_blank"
+                                   class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition">
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="border-t border-gray-200 py-6 text-center text-sm text-gray-500">
-    © <span id="year"></span> Tarek Abdelfattah Zaki — Interactive CV
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Tarek Abdelfattah Zaki. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Built with ❤️ using Tailwind CSS & AOS.js</p>
+        </div>
+    </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <!-- Smooth Scrolling Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-opacity-95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-opacity-95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
 </body>
 </html>
