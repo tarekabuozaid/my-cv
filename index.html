@@ -435,20 +435,46 @@
                 </div>
             </div>
             
-            <!-- Sample Dashboard Preview -->
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 shadow-xl" data-aos="fade-up">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">
-                    <i class="fas fa-desktop mr-2"></i>Live Dashboard Preview
+            <!-- Compact Dashboard Preview -->
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-lg" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-desktop mr-2"></i>Dashboard Preview
                 </h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl p-6 shadow">
-                        <canvas id="workOrderPie" height="200"></canvas>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Work Orders -->
+                    <div class="bg-white rounded-lg p-4 shadow text-center">
+                        <div class="text-2xl font-bold text-blue-600">75%</div>
+                        <div class="text-xs text-gray-600">Completed</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow">
-                        <canvas id="costBar" height="200"></canvas>
+                    
+                    <!-- Budget -->
+                    <div class="bg-white rounded-lg p-4 shadow text-center">
+                        <div class="text-2xl font-bold text-green-600">98%</div>
+                        <div class="text-xs text-gray-600">On Budget</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 98%"></div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow">
-                        <canvas id="assetStatus" height="200"></canvas>
+                    
+                    <!-- Assets -->
+                    <div class="bg-white rounded-lg p-4 shadow text-center">
+                        <div class="text-2xl font-bold text-orange-600">84%</div>
+                        <div class="text-xs text-gray-600">Operational</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-orange-600 h-2 rounded-full" style="width: 84%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance -->
+                    <div class="bg-white rounded-lg p-4 shadow text-center">
+                        <div class="text-2xl font-bold text-purple-600">96%</div>
+                        <div class="text-xs text-gray-600">Efficiency</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 96%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -742,78 +768,17 @@
             }
         });
 
-        // Work Order Pie Chart
-        const ctx2 = document.getElementById('workOrderPie').getContext('2d');
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Completed', 'In Progress', 'Pending', 'On Hold'],
-                datasets: [{
-                    data: [75, 15, 8, 2],
-                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Work Order Status'
-                    }
-                }
-            }
-        });
-
-        // Cost Bar Chart
-        const ctx3 = document.getElementById('costBar').getContext('2d');
-        new Chart(ctx3, {
-            type: 'bar',
-            data: {
-                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-                datasets: [{
-                    label: 'Budget',
-                    data: [250000, 250000, 250000, 250000],
-                    backgroundColor: 'rgba(59, 130, 246, 0.5)'
-                }, {
-                    label: 'Actual',
-                    data: [235000, 242000, 238000, 245000],
-                    backgroundColor: 'rgba(16, 185, 129, 0.8)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Budget vs Actual (AED)'
-                    }
-                }
-            }
-        });
-
-        // Asset Status Chart
-        const ctx4 = document.getElementById('assetStatus').getContext('2d');
-        new Chart(ctx4, {
-            type: 'pie',
-            data: {
-                labels: ['Operational', 'Under Maintenance', 'Critical', 'Decommissioned'],
-                datasets: [{
-                    data: [4200, 650, 120, 30],
-                    backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#6b7280']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Asset Status Distribution'
-                    }
-                }
-            }
+        // Simple progress bar animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.bg-blue-600, .bg-green-600, .bg-orange-600, .bg-purple-600');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 2s ease-in-out';
+                    bar.style.width = width;
+                }, 500);
+            });
         });
     </script>
 </body>
