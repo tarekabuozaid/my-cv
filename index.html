@@ -247,12 +247,15 @@
             .glass { background: white !important; border: 1px solid #ccc !important; }
         }
         
-        /* Flip Card Styles */
+        /* Flip Card Styles - Fixed */
         .flip {
             perspective: 1000px;
         }
         
         .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
@@ -262,7 +265,11 @@
         }
         
         .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
         
         .back {
@@ -711,8 +718,8 @@
             <div class="max-w-4xl mx-auto">
                 <!-- Current Position - Flip Card -->
                 <div class="flip w-full max-w-4xl mx-auto mb-12" data-aos="flip-left">
-                    <div class="flip-inner bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-                        <div class="face p-8">
+                    <div class="flip-inner relative">
+                        <div class="face bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
                             <div class="flex items-start justify-between mb-6">
                                 <div class="flex items-start space-x-4">
                                     <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-full p-4">
@@ -754,7 +761,7 @@
                                 <i class="fas fa-mouse-pointer mr-2"></i>Hover to see details
                             </div>
                         </div>
-                        <div class="face back p-8 bg-gradient-to-br from-blue-50 to-gray-50 dark:from-gray-700 dark:to-gray-800">
+                        <div class="face back bg-gradient-to-br from-blue-50 to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-xl p-8">
                             <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
                                 <i class="fas fa-tasks text-blue-600 mr-2"></i>Key Achievements
                             </h4>
