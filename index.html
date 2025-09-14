@@ -27,6 +27,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
     
+    <!-- Last Updated -->
+    <meta name="last-updated" content="2025-01-13T21:10:00+04:00">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -310,6 +313,34 @@
         
         .tab-btn:hover, .system-tab-btn:hover {
             transform: translateY(-2px);
+        }
+        
+        /* Contact Overlap Fade - Soft gradient transition */
+        #experience { 
+            position: relative; 
+            z-index: 10; 
+        }
+        
+        #contact { 
+            position: relative; 
+            margin-top: 0; 
+            padding-top: 8rem; 
+            isolation: isolate; 
+        }
+        
+        #contact::before {
+            content: "";
+            position: absolute; 
+            inset: 0;
+            /* fade from previous section bg (light) to transparent over ~120px */
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 120px);
+            z-index: -1; 
+            pointer-events: none;
+        }
+        
+        /* Dark mode fade (slate-900) */
+        .dark #contact::before {
+            background: linear-gradient(to bottom, rgba(15,23,42,1) 0%, rgba(15,23,42,0) 120px);
         }
     </style>
 </head>
@@ -1037,6 +1068,7 @@
             </div>
             <p>&copy; 2025 Tarek Abdelfattah Zaki - CAFM Administrator</p>
             <p class="mt-2 text-gray-400">Driving Excellence in Facility Management</p>
+            <div class="mt-2 opacity-70 text-xs">Last updated: <span id="lastUpdated">13 Jan 2025, 21:10 GST</span></div>
         </div>
     </footer>
 
@@ -1045,6 +1077,7 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
+        "dateModified": "2025-01-13T21:10:00+04:00",
         "name": "Tarek Abdelfattah Zaki",
         "email": "tarekabuzaidcafm@outlook.com",
         "telephone": "+971545527141",
@@ -1081,7 +1114,7 @@
         AOS.init({
             duration: 600,
             once: true,
-            offset: 60
+            offset: 120
         });
         
         // Dark Mode Toggle
@@ -1206,5 +1239,7 @@
             });
         });
     </script>
+    
+    <!-- LAST-UPDATE-STAMP: 13 Jan 2025, 21:10 GST (Asia/Dubai) -->
 </body>
 </html>
