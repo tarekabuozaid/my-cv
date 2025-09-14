@@ -170,17 +170,6 @@
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
         }
         
-        /* Fix Section Overlap */
-        #experience {
-            margin-bottom: 0 !important;
-            padding-bottom: 15rem !important;
-        }
-        
-        #contact {
-            margin-top: -10rem !important;
-            padding-top: 15rem !important;
-        }
-        
         /* SLA Status Indicator */
         .sla-indicator {
             position: relative;
@@ -258,15 +247,12 @@
             .glass { background: white !important; border: 1px solid #ccc !important; }
         }
         
-        /* Flip Card Styles - Fixed */
+        /* Flip Card Styles */
         .flip {
             perspective: 1000px;
         }
         
         .flip-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
@@ -276,40 +262,11 @@
         }
         
         .face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
         
         .back {
             transform: rotateY(180deg);
-        }
-        
-        /* Tabs Styles */
-        .tab-panel {
-            display: none;
-        }
-        
-        .tab-panel.active {
-            display: block;
-        }
-        
-        .system-panel {
-            display: none;
-        }
-        
-        .system-panel.active {
-            display: block;
-        }
-        
-        .tab-btn, .system-tab-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .tab-btn:hover, .system-tab-btn:hover {
-            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -562,157 +519,69 @@
                 </p>
             </div>
             
-            <!-- Tabs Navigation -->
-            <div class="flex flex-wrap justify-center mb-8" data-aos="fade-up">
-                <button class="tab-btn active bg-white text-slate-700 font-semibold px-6 py-3 rounded-t-lg border-b-2 border-orange-600 transition-all" data-tab="daily">
-                    <i class="fas fa-calendar-day mr-2"></i>Daily
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="weekly">
-                    <i class="fas fa-calendar-week mr-2"></i>Weekly
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="monthly">
-                    <i class="fas fa-calendar-alt mr-2"></i>Monthly
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="custom">
-                    <i class="fas fa-chart-bar mr-2"></i>Custom
-                </button>
-            </div>
-            
-            <!-- Tab Panels -->
-            <div class="tab-content">
-                <!-- Daily Reports Panel -->
-                <div id="daily-panel" class="tab-panel active">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-tasks text-2xl text-blue-900"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Work Order Summary</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• 45 New Orders Today</li>
-                                    <li>• 38 Completed (84%)</li>
-                                    <li>• 7 Pending</li>
-                                    <li>• Avg Response: 2.3h</li>
-                                </ul>
-                            </div>
+            <!-- Report Types Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Daily Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-day text-2xl text-blue-900"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-shield-check text-2xl text-green-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">SLA Compliance</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Critical: 100% (12/12)</li>
-                                    <li>• High Priority: 95% (19/20)</li>
-                                    <li>• Normal: 88% (7/8)</li>
-                                    <li>• Overall: 95%</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Daily Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• Work Order Summary</li>
+                            <li>• SLA Compliance</li>
+                            <li>• Technician Performance</li>
+                            <li>• Asset Status Updates</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Weekly Reports Panel -->
-                <div id="weekly-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-wrench text-2xl text-orange-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">PPM Completion</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Scheduled: 156 Tasks</li>
-                                    <li>• Completed: 142 (91%)</li>
-                                    <li>• Overdue: 8 (5%)</li>
-                                    <li>• Rescheduled: 6 (4%)</li>
-                                </ul>
-                            </div>
+                <!-- Weekly Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-week text-2xl text-green-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-dollar-sign text-2xl text-purple-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Cost Analysis</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Labor: $12,450</li>
-                                    <li>• Materials: $3,200</li>
-                                    <li>• Vendors: $8,900</li>
-                                    <li>• Total: $24,550</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Weekly Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• PPM Completion Rate</li>
+                            <li>• Cost Analysis</li>
+                            <li>• Vendor Performance</li>
+                            <li>• Inventory Status</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Monthly Reports Panel -->
-                <div id="monthly-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-chart-line text-2xl text-blue-900"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">KPI Dashboard</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• SLA Compliance: 99.5%</li>
-                                    <li>• Asset Uptime: 98.2%</li>
-                                    <li>• Cost per Asset: $45</li>
-                                    <li>• Customer Satisfaction: 4.8/5</li>
-                                </ul>
-                            </div>
+                <!-- Monthly Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-alt text-2xl text-orange-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-chart-pie text-2xl text-green-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Budget vs Actual</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Budget: $125,000</li>
-                                    <li>• Actual: $118,750</li>
-                                    <li>• Variance: -5% (Under)</li>
-                                    <li>• Savings: $6,250</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Monthly Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• KPI Dashboard</li>
+                            <li>• Budget vs Actual</li>
+                            <li>• Asset Lifecycle</li>
+                            <li>• Trend Analysis</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Custom Reports Panel -->
-                <div id="custom-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-user-tie text-2xl text-red-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Executive Dashboard</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• ROI Analysis</li>
-                                    <li>• Strategic KPIs</li>
-                                    <li>• Risk Assessment</li>
-                                    <li>• Future Planning</li>
-                                </ul>
-                            </div>
+                <!-- Custom Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-bar text-2xl text-purple-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-clipboard-check text-2xl text-yellow-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Compliance Reports</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Safety Compliance: 100%</li>
-                                    <li>• Regulatory: 98%</li>
-                                    <li>• Environmental: 95%</li>
-                                    <li>• Quality: 99%</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Custom Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• Executive Dashboards</li>
+                            <li>• Audit Reports</li>
+                            <li>• Compliance Reports</li>
+                            <li>• Ad-hoc Analysis</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -775,27 +644,7 @@
                 </p>
             </div>
             
-            <!-- Systems Tabs Navigation -->
-            <div class="flex flex-wrap justify-center mb-8" data-aos="fade-up">
-                <button class="system-tab-btn active bg-white text-slate-700 font-semibold px-6 py-3 rounded-t-lg border-b-2 border-blue-900 transition-all" data-system="sahaa">
-                    <i class="fas fa-building mr-2"></i>SAHAA
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="maximo">
-                    <i class="fas fa-cogs mr-2"></i>Maximo
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="archibus">
-                    <i class="fas fa-database mr-2"></i>Archibus
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="concept">
-                    <i class="fas fa-chart-network mr-2"></i>Concept Evolution
-                </button>
-            </div>
-            
-            <!-- Systems Tab Panels -->
-            <div class="systems-content">
-                <!-- SAHAA Panel -->
-                <div id="sahaa-panel" class="system-panel active">
-                    <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- SAHAA System -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all" data-aos="zoom-in">
                     <div class="h-2 bg-gradient-to-r from-blue-600 to-blue-800"></div>
@@ -847,7 +696,7 @@
     </section>
 
     <!-- Professional Experience -->
-    <section id="experience" class="py-20 pb-48 bg-white relative z-10">
+    <section id="experience" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">
@@ -861,9 +710,9 @@
             <!-- Experience Timeline -->
             <div class="max-w-4xl mx-auto">
                 <!-- Current Position - Flip Card -->
-                <div class="flip w-full max-w-4xl mx-auto mb-20" data-aos="flip-left">
-                    <div class="flip-inner relative">
-                        <div class="face bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
+                <div class="flip w-full max-w-4xl mx-auto mb-12" data-aos="flip-left">
+                    <div class="flip-inner bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+                        <div class="face p-8">
                             <div class="flex items-start justify-between mb-6">
                                 <div class="flex items-start space-x-4">
                                     <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-full p-4">
@@ -905,7 +754,7 @@
                                 <i class="fas fa-mouse-pointer mr-2"></i>Hover to see details
                             </div>
                         </div>
-                        <div class="face back bg-gradient-to-br from-blue-50 to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-xl p-8">
+                        <div class="face back p-8 bg-gradient-to-br from-blue-50 to-gray-50 dark:from-gray-700 dark:to-gray-800">
                             <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
                                 <i class="fas fa-tasks text-blue-600 mr-2"></i>Key Achievements
                             </h4>
@@ -939,7 +788,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="pt-48 pb-20 bg-gradient-to-br from-blue-900 to-orange-600 text-white relative z-20">
+    <section id="contact" class="py-20 bg-gradient-to-br from-blue-900 to-orange-600 text-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4" data-aos="fade-up">
@@ -1105,72 +954,6 @@
                     bar.style.transition = 'width 2s ease-in-out';
                     bar.style.width = width;
                 }, 500);
-            });
-        });
-
-        // Tabs Controller for Reports Section
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanels = document.querySelectorAll('.tab-panel');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetTab = button.getAttribute('data-tab');
-                    
-                    // Remove active class from all buttons and panels
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-orange-600');
-                        btn.classList.add('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    });
-                    
-                    tabPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                        panel.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button and corresponding panel
-                    button.classList.add('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-orange-600');
-                    button.classList.remove('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    
-                    const targetPanel = document.getElementById(targetTab + '-panel');
-                    if (targetPanel) {
-                        targetPanel.classList.remove('hidden');
-                        targetPanel.classList.add('active');
-                    }
-                });
-            });
-        });
-
-        // Systems Tabs Controller
-        document.addEventListener('DOMContentLoaded', function() {
-            const systemTabButtons = document.querySelectorAll('.system-tab-btn');
-            const systemPanels = document.querySelectorAll('.system-panel');
-            
-            systemTabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetSystem = button.getAttribute('data-system');
-                    
-                    // Remove active class from all buttons and panels
-                    systemTabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-blue-900');
-                        btn.classList.add('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    });
-                    
-                    systemPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                        panel.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button and corresponding panel
-                    button.classList.add('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-blue-900');
-                    button.classList.remove('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    
-                    const targetPanel = document.getElementById(targetSystem + '-panel');
-                    if (targetPanel) {
-                        targetPanel.classList.remove('hidden');
-                        targetPanel.classList.add('active');
-                    }
-                });
             });
         });
     </script>

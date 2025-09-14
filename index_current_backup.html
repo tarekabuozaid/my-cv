@@ -3,46 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarek Abdelfattah Zaki — CAFM Administrator | SLA & Performance Expert</title>
-    
-    <!-- Meta Tags -->
-    <meta name="title" content="Tarek Abdelfattah Zaki — CAFM Administrator">
-    <meta name="description" content="CAFM/CMMS Administrator · SLA Monitoring · Reports · 5000+ assets · 99.5% SLA · Abu Dhabi, UAE">
-    <meta name="keywords" content="CAFM, CMMS, Facility Management, SLA, Reports, Abu Dhabi, UAE">
-    <meta name="author" content="Tarek Abdelfattah Zaki">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Tarek Abdelfattah Zaki — CAFM Administrator">
-    <meta property="og:description" content="CAFM/CMMS Administrator · SLA Monitoring · Reports · 5000+ assets · 99.5% SLA">
-    <meta property="og:url" content="https://tarekabuozaid.github.io/my-cv/">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=Tarek+Zaki+CAFM+Administrator">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Tarek Abdelfattah Zaki — CAFM Administrator">
-    <meta property="twitter:description" content="CAFM/CMMS Administrator · SLA Monitoring · Reports · 5000+ assets · 99.5% SLA">
-    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=Tarek+Zaki+CAFM+Administrator">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+    <title>Tarek Zaki - CAFM Administrator | SLA & Performance Expert</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'bounce-slow': 'bounce 2s infinite',
-                    }
-                }
-            }
-        }
-    </script>
     
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -55,11 +19,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
         /* CAFM Professional Theme */
         :root {
             --cafm-primary: #1e3a8a;
@@ -68,12 +27,6 @@
             --sla-yellow: #f59e0b;
             --sla-red: #ef4444;
             --dashboard-bg: #0f172a;
-        }
-        
-        /* Dark Mode Variables */
-        .dark {
-            --cafm-primary: #3b82f6;
-            --cafm-secondary: #f97316;
         }
         
         /* Dashboard Grid Background */
@@ -144,43 +97,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
-        /* Enhanced Hover Effects */
-        .hover-lift {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .hover-scale {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        .hover-glow {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
-        }
-        
-        /* Fix Section Overlap */
-        #experience {
-            margin-bottom: 0 !important;
-            padding-bottom: 15rem !important;
-        }
-        
-        #contact {
-            margin-top: -10rem !important;
-            padding-top: 15rem !important;
-        }
-        
         /* SLA Status Indicator */
         .sla-indicator {
             position: relative;
@@ -234,89 +150,12 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
         }
-        
-        /* Dark Mode Styles */
-        .dark .glass {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .dark .report-card {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            color: #e2e8f0;
-        }
-        
-        .dark .kpi-card {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-        }
-        
-        /* Print Styles */
-        @media print {
-            nav, .no-print, button { display: none !important; }
-            body { margin: 0; background: white !important; color: black !important; }
-            .dark { background: white !important; color: black !important; }
-            .glass { background: white !important; border: 1px solid #ccc !important; }
-        }
-        
-        /* Flip Card Styles - Fixed */
-        .flip {
-            perspective: 1000px;
-        }
-        
-        .flip-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        
-        .flip:hover .flip-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-        
-        .back {
-            transform: rotateY(180deg);
-        }
-        
-        /* Tabs Styles */
-        .tab-panel {
-            display: none;
-        }
-        
-        .tab-panel.active {
-            display: block;
-        }
-        
-        .system-panel {
-            display: none;
-        }
-        
-        .system-panel.active {
-            display: block;
-        }
-        
-        .tab-btn, .system-tab-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .tab-btn:hover, .system-tab-btn:hover {
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body class="bg-gray-50">
     
-    <!-- Fixed Navigation with Dark Mode Toggle -->
-    <nav class="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg z-50 border-b-2 border-blue-900 dark:border-blue-400">
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b-2 border-blue-900">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -324,35 +163,31 @@
                         <i class="fas fa-chart-network text-white"></i>
                     </div>
                     <div>
-                        <div class="text-lg font-bold text-gray-800 dark:text-white">Tarek Zaki</div>
+                        <div class="text-lg font-bold text-gray-800">Tarek Zaki</div>
                         <div class="text-xs text-orange-600 font-semibold">CAFM Administrator</div>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#dashboard" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition">
+                    <a href="#dashboard" class="flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#sla" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition">
+                    <a href="#sla" class="flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition">
                         <i class="fas fa-shield-check"></i>
                         <span>SLA Monitor</span>
                     </a>
-                    <a href="#reports" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition">
+                    <a href="#reports" class="flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition">
                         <i class="fas fa-file-chart-line"></i>
                         <span>Reports</span>
                     </a>
-                    <a href="#systems" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition">
+                    <a href="#systems" class="flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition">
                         <i class="fas fa-server"></i>
                         <span>Systems</span>
                     </a>
-                    <a href="#experience" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition">
+                    <a href="#experience" class="flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition">
                         <i class="fas fa-briefcase"></i>
                         <span>Experience</span>
                     </a>
-                    <button id="themeToggle" class="text-sm px-3 py-1 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:inline"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -383,7 +218,7 @@
                 <!-- Profile with Status -->
                 <div class="relative inline-block mb-8">
                     <img src="https://via.placeholder.com/180x180/1e3a8a/ffffff?text=TZ" 
-                         alt="Tarek Abdelfattah Zaki - CAFM Administrator professional headshot" 
+                         alt="Tarek Zaki" 
                          class="w-44 h-44 rounded-full border-4 border-white shadow-2xl">
                     <div class="absolute bottom-0 right-0 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center">
                         <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
@@ -429,15 +264,12 @@
                 </div>
                 
                 <!-- CTA Buttons -->
-                <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="800">
-                    <a href="#sla" class="bg-gradient-to-r from-blue-900 to-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
+                <div class="flex justify-center space-x-4" data-aos="fade-up" data-aos-delay="800">
+                    <a href="#sla" class="bg-gradient-to-r from-blue-900 to-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
                         <i class="fas fa-chart-area mr-2"></i>View SLA Dashboard
                     </a>
-                    <a href="javascript:window.print()" class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
-                        <i class="fas fa-download mr-2"></i>Download PDF
-                    </a>
-                    <a href="https://wa.me/971545527141?text=Hello%20Tarek,%20I%20saw%20your%20CV%20website%20and%20would%20like%20to%20discuss%20opportunities." target="_blank" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
-                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                    <a href="#reports" class="border-2 border-orange-600 text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-orange-600 hover:text-white transition transform hover:scale-105">
+                        <i class="fas fa-file-pdf mr-2"></i>Sample Reports
                     </a>
                 </div>
             </div>
@@ -562,157 +394,69 @@
                 </p>
             </div>
             
-            <!-- Tabs Navigation -->
-            <div class="flex flex-wrap justify-center mb-8" data-aos="fade-up">
-                <button class="tab-btn active bg-white text-slate-700 font-semibold px-6 py-3 rounded-t-lg border-b-2 border-orange-600 transition-all" data-tab="daily">
-                    <i class="fas fa-calendar-day mr-2"></i>Daily
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="weekly">
-                    <i class="fas fa-calendar-week mr-2"></i>Weekly
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="monthly">
-                    <i class="fas fa-calendar-alt mr-2"></i>Monthly
-                </button>
-                <button class="tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-tab="custom">
-                    <i class="fas fa-chart-bar mr-2"></i>Custom
-                </button>
-            </div>
-            
-            <!-- Tab Panels -->
-            <div class="tab-content">
-                <!-- Daily Reports Panel -->
-                <div id="daily-panel" class="tab-panel active">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-tasks text-2xl text-blue-900"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Work Order Summary</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• 45 New Orders Today</li>
-                                    <li>• 38 Completed (84%)</li>
-                                    <li>• 7 Pending</li>
-                                    <li>• Avg Response: 2.3h</li>
-                                </ul>
-                            </div>
+            <!-- Report Types Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Daily Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer" data-aos="flip-left">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-day text-2xl text-blue-900"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-shield-check text-2xl text-green-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">SLA Compliance</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Critical: 100% (12/12)</li>
-                                    <li>• High Priority: 95% (19/20)</li>
-                                    <li>• Normal: 88% (7/8)</li>
-                                    <li>• Overall: 95%</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Daily Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• Work Order Summary</li>
+                            <li>• SLA Compliance</li>
+                            <li>• Technician Performance</li>
+                            <li>• Asset Status Updates</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Weekly Reports Panel -->
-                <div id="weekly-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-wrench text-2xl text-orange-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">PPM Completion</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Scheduled: 156 Tasks</li>
-                                    <li>• Completed: 142 (91%)</li>
-                                    <li>• Overdue: 8 (5%)</li>
-                                    <li>• Rescheduled: 6 (4%)</li>
-                                </ul>
-                            </div>
+                <!-- Weekly Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer" data-aos="flip-left" data-aos-delay="100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-week text-2xl text-green-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-dollar-sign text-2xl text-purple-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Cost Analysis</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Labor: $12,450</li>
-                                    <li>• Materials: $3,200</li>
-                                    <li>• Vendors: $8,900</li>
-                                    <li>• Total: $24,550</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Weekly Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• PPM Completion Rate</li>
+                            <li>• Cost Analysis</li>
+                            <li>• Vendor Performance</li>
+                            <li>• Inventory Status</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Monthly Reports Panel -->
-                <div id="monthly-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-chart-line text-2xl text-blue-900"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">KPI Dashboard</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• SLA Compliance: 99.5%</li>
-                                    <li>• Asset Uptime: 98.2%</li>
-                                    <li>• Cost per Asset: $45</li>
-                                    <li>• Customer Satisfaction: 4.8/5</li>
-                                </ul>
-                            </div>
+                <!-- Monthly Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer" data-aos="flip-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-alt text-2xl text-orange-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-chart-pie text-2xl text-green-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Budget vs Actual</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Budget: $125,000</li>
-                                    <li>• Actual: $118,750</li>
-                                    <li>• Variance: -5% (Under)</li>
-                                    <li>• Savings: $6,250</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Monthly Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• KPI Dashboard</li>
+                            <li>• Budget vs Actual</li>
+                            <li>• Asset Lifecycle</li>
+                            <li>• Trend Analysis</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Custom Reports Panel -->
-                <div id="custom-panel" class="tab-panel hidden">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-user-tie text-2xl text-red-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Executive Dashboard</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• ROI Analysis</li>
-                                    <li>• Strategic KPIs</li>
-                                    <li>• Risk Assessment</li>
-                                    <li>• Future Planning</li>
-                                </ul>
-                            </div>
+                <!-- Custom Reports -->
+                <div class="report-card rounded-xl p-6 transition-all cursor-pointer" data-aos="flip-left" data-aos-delay="300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-bar text-2xl text-purple-600"></i>
                         </div>
-                        <div class="report-card rounded-xl p-6 transition-all cursor-pointer hover-lift hover-glow" data-aos="flip-left" data-aos-delay="100">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-clipboard-check text-2xl text-yellow-600"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">Compliance Reports</h3>
-                                <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                    <li>• Safety Compliance: 100%</li>
-                                    <li>• Regulatory: 98%</li>
-                                    <li>• Environmental: 95%</li>
-                                    <li>• Quality: 99%</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-2">Custom Reports</h3>
+                        <ul class="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• Executive Dashboards</li>
+                            <li>• Audit Reports</li>
+                            <li>• Compliance Reports</li>
+                            <li>• Ad-hoc Analysis</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -775,27 +519,7 @@
                 </p>
             </div>
             
-            <!-- Systems Tabs Navigation -->
-            <div class="flex flex-wrap justify-center mb-8" data-aos="fade-up">
-                <button class="system-tab-btn active bg-white text-slate-700 font-semibold px-6 py-3 rounded-t-lg border-b-2 border-blue-900 transition-all" data-system="sahaa">
-                    <i class="fas fa-building mr-2"></i>SAHAA
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="maximo">
-                    <i class="fas fa-cogs mr-2"></i>Maximo
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="archibus">
-                    <i class="fas fa-database mr-2"></i>Archibus
-                </button>
-                <button class="system-tab-btn bg-gray-100 text-gray-600 px-6 py-3 rounded-t-lg border-b-2 border-transparent hover:bg-gray-200 transition-all" data-system="concept">
-                    <i class="fas fa-chart-network mr-2"></i>Concept Evolution
-                </button>
-            </div>
-            
-            <!-- Systems Tab Panels -->
-            <div class="systems-content">
-                <!-- SAHAA Panel -->
-                <div id="sahaa-panel" class="system-panel active">
-                    <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- SAHAA System -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all" data-aos="zoom-in">
                     <div class="h-2 bg-gradient-to-r from-blue-600 to-blue-800"></div>
@@ -847,7 +571,7 @@
     </section>
 
     <!-- Professional Experience -->
-    <section id="experience" class="py-20 pb-48 bg-white relative z-10">
+    <section id="experience" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">
@@ -860,75 +584,52 @@
             
             <!-- Experience Timeline -->
             <div class="max-w-4xl mx-auto">
-                <!-- Current Position - Flip Card -->
-                <div class="flip w-full max-w-4xl mx-auto mb-20" data-aos="flip-left">
-                    <div class="flip-inner relative">
-                        <div class="face bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
-                            <div class="flex items-start justify-between mb-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-full p-4">
-                                        <i class="fas fa-building text-2xl"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">CAFM Administrator</h3>
-                                        <p class="text-xl text-blue-900 dark:text-blue-400 font-semibold">Al Mazroui Supplies & Maintenance</p>
-                                        <p class="text-gray-600 dark:text-gray-400">Abu Dhabi, UAE</p>
-                                    </div>
-                                </div>
-                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-4 py-2 rounded-full text-sm font-bold animate-pulse">
-                                    Current
-                                </span>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-6">Jan 2023 – Present</p>
-                            
-                            <!-- Key Metrics -->
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-blue-900 dark:text-blue-400">5000+</div>
-                                    <div class="text-xs text-gray-600 dark:text-gray-400">Assets</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-green-600 dark:text-green-400">99.5%</div>
-                                    <div class="text-xs text-gray-600 dark:text-gray-400">SLA</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-orange-600 dark:text-orange-400">30+</div>
-                                    <div class="text-xs text-gray-600 dark:text-gray-400">Team</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">40%</div>
-                                    <div class="text-xs text-gray-600 dark:text-gray-400">Faster</div>
-                                </div>
-                            </div>
-                            
-                            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
-                                <i class="fas fa-mouse-pointer mr-2"></i>Hover to see details
-                            </div>
+                <!-- Current Position -->
+                <div class="relative mb-12" data-aos="fade-right">
+                    <div class="flex items-start">
+                        <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white rounded-full p-4 z-10">
+                            <i class="fas fa-building text-2xl"></i>
                         </div>
-                        <div class="face back bg-gradient-to-br from-blue-50 to-gray-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-xl p-8">
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                                <i class="fas fa-tasks text-blue-600 mr-2"></i>Key Achievements
-                            </h4>
-                            <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-                                <div class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                                    <span>Managed 5000+ assets with real-time monitoring and 99.5% SLA compliance</span>
+                        <div class="ml-8 flex-1">
+                            <div class="bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-xl p-8 report-card">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-gray-800">CAFM Administrator</h3>
+                                        <p class="text-xl text-blue-900 font-semibold">Al Mazroui Supplies & Maintenance</p>
+                                        <p class="text-gray-600">Abu Dhabi, UAE</p>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+                                        Current
+                                    </span>
                                 </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                                    <span>Developed Power BI dashboards reducing report generation time from 2 days to 3 hours</span>
+                                <p class="text-gray-700 mb-4">Jan 2023 – Present</p>
+                                
+                                <!-- Key Metrics -->
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-900">5000+</div>
+                                        <div class="text-xs text-gray-600">Assets</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-600">99.5%</div>
+                                        <div class="text-xs text-gray-600">SLA</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-orange-600">30+</div>
+                                        <div class="text-xs text-gray-600">Team</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-600">40%</div>
+                                        <div class="text-xs text-gray-600">Faster</div>
+                                    </div>
                                 </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                                    <span>Implemented automated SLA breach alerts using Python and WhatsApp integration</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                                    <span>Led comprehensive training programs for 30+ technicians on CAFM best practices</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                                    <span>Optimized PPM schedules resulting in 40% faster response times</span>
+                                
+                                <!-- Responsibilities -->
+                                <div class="space-y-2 text-sm text-gray-700">
+                                    <div><i class="fas fa-check-circle text-green-500 mr-2"></i>Manage 5000+ assets with real-time monitoring</div>
+                                    <div><i class="fas fa-check-circle text-green-500 mr-2"></i>Develop Power BI dashboards for C-level reporting</div>
+                                    <div><i class="fas fa-check-circle text-green-500 mr-2"></i>Implement automated SLA breach alerts</div>
+                                    <div><i class="fas fa-check-circle text-green-500 mr-2"></i>Lead training programs for 30+ technicians</div>
                                 </div>
                             </div>
                         </div>
@@ -939,7 +640,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="pt-48 pb-20 bg-gradient-to-br from-blue-900 to-orange-600 text-white relative z-20">
+    <section id="contact" class="py-20 bg-gradient-to-br from-blue-900 to-orange-600 text-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4" data-aos="fade-up">
@@ -1008,64 +709,13 @@
         </div>
     </footer>
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Tarek Abdelfattah Zaki",
-        "email": "tarekabuzaidcafm@outlook.com",
-        "telephone": "+971545527141",
-        "jobTitle": "CAFM Administrator",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Al Mazroui Supplies, Contracts & Maintenance"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Abu Dhabi",
-            "addressCountry": "UAE"
-        },
-        "url": "https://tarekabuozaid.github.io/my-cv/",
-        "sameAs": [
-            "https://www.linkedin.com/in/tarekabuozaid",
-            "https://github.com/tarekabuozaid"
-        ],
-        "knowsAbout": [
-            "CAFM",
-            "CMMS",
-            "Facility Management",
-            "SLA Monitoring",
-            "Asset Management",
-            "SAHAA",
-            "Power BI"
-        ]
-    }
-    </script>
-
     <!-- Scripts -->
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 600,
+            duration: 1000,
             once: true,
-            offset: 60
-        });
-        
-        // Dark Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const root = document.documentElement;
-        
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            root.classList.add('dark');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            root.classList.toggle('dark');
-            const newTheme = root.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
+            offset: 100
         });
 
         // Smooth scrolling
@@ -1105,72 +755,6 @@
                     bar.style.transition = 'width 2s ease-in-out';
                     bar.style.width = width;
                 }, 500);
-            });
-        });
-
-        // Tabs Controller for Reports Section
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanels = document.querySelectorAll('.tab-panel');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetTab = button.getAttribute('data-tab');
-                    
-                    // Remove active class from all buttons and panels
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-orange-600');
-                        btn.classList.add('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    });
-                    
-                    tabPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                        panel.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button and corresponding panel
-                    button.classList.add('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-orange-600');
-                    button.classList.remove('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    
-                    const targetPanel = document.getElementById(targetTab + '-panel');
-                    if (targetPanel) {
-                        targetPanel.classList.remove('hidden');
-                        targetPanel.classList.add('active');
-                    }
-                });
-            });
-        });
-
-        // Systems Tabs Controller
-        document.addEventListener('DOMContentLoaded', function() {
-            const systemTabButtons = document.querySelectorAll('.system-tab-btn');
-            const systemPanels = document.querySelectorAll('.system-panel');
-            
-            systemTabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetSystem = button.getAttribute('data-system');
-                    
-                    // Remove active class from all buttons and panels
-                    systemTabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-blue-900');
-                        btn.classList.add('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    });
-                    
-                    systemPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                        panel.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button and corresponding panel
-                    button.classList.add('active', 'bg-white', 'text-slate-700', 'font-semibold', 'border-blue-900');
-                    button.classList.remove('bg-gray-100', 'text-gray-600', 'border-transparent');
-                    
-                    const targetPanel = document.getElementById(targetSystem + '-panel');
-                    if (targetPanel) {
-                        targetPanel.classList.remove('hidden');
-                        targetPanel.classList.add('active');
-                    }
-                });
             });
         });
     </script>
