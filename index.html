@@ -9,202 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0b0f19;--panel:#111827;--muted:#9aa4b2;--text:#e5e7eb;--accent:#7c3aed;--accent-2:#22d3ee;--line:#1f2937}
-    *{box-sizing:border-box}html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:var(--text);text-decoration:none}.wrap{max-width:1080px;margin:0 auto;padding:24px}
-    .top{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(11,15,25,.95), rgba(11,15,25,.6) 65%, rgba(11,15,25,0));backdrop-filter:saturate(140%) blur(6px)}
-    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
-    .brand{display:flex;align-items:center;gap:14px;padding:10px 0}
-    .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1f2333,#0f172a);border:1px solid var(--line)}
-    .brand .name{font-weight:800;letter-spacing:.5px}.badges{display:flex;gap:10px;flex-wrap:wrap}
-    .chip{border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted)}
-    .menu{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.menu a{padding:12px 8px;color:var(--muted)}.menu a.active{color:#fff}
-    .btn{display:inline-block;padding:10px 14px;border:1px solid var(--accent);border-radius:10px;color:#fff}.btn.secondary{border-color:var(--line);color:var(--muted)}
-    .hero{display:grid;grid-template-columns:1.1fr 2fr;gap:28px;align-items:center;padding:28px 0}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    .tagline{color:var(--muted);font-size:14px}.title{font-size:34px;font-weight:800;line-height:1.15;margin:6px 0 6px}
-    .glitch{position:relative;display:inline-block}
-    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;clip-path:inset(0 0 0 0)}
-    .glitch::before{transform:translate(2px,-1px);color:var(--accent);mix-blend-mode:screen;animation:gl1 2.5s infinite linear alternate}
-    .glitch::after{transform:translate(-2px,1px);color:var(--accent-2);mix-blend-mode:screen;animation:gl2 2.8s infinite linear alternate}
-    @keyframes gl1{0%{clip-path:inset(0 0 85% 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(60% 0 0 0)}}
-    @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}}
-    .meta{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
-    .meta a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:14px}
-    section{margin:36px 0;padding:22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg, rgba(17,24,39,.6), rgba(17,24,39,.35))}
-    section h3{margin:0 0 10px;font-size:18px;font-weight:800;display:flex;align-items:center;gap:8px}.sep{height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:14px 0}
-    .timeline{position:relative;margin-left:10px}.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
-    .item{position:relative;margin:18px 0 18px 22px;padding-left:14px}.item::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(124,58,237,.15)}
-    .when{color:var(--muted);font-size:12px}.role{font-weight:700}.place{color:var(--muted)}
-    .skills{display:flex;flex-wrap:wrap;gap:10px}.tag{padding:6px 10px;border:1px dashed var(--accent);border-radius:999px;font-size:13px;color:#cbd5e1}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-    .card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#0e1423}.card h4{margin:0 0 6px}.card p{margin:0;color:#cbd5e1}
-    .ph{width:100%;border-radius:16px;border:1px solid var(--line);aspect-ratio:4/3;background:
-      radial-gradient(1200px 480px at -10% -10%, rgba(124,58,237,.25), transparent 40%),
-      radial-gradient(900px 360px at 110% 110%, rgba(34,211,238,.18), transparent 35%),
-      linear-gradient(135deg,#0f172a,#0b1022 55%,#0b0f19)}
-    footer{margin:40px 0 10px;text-align:center;color:var(--muted)}
-    @media print{.top,.meta .btn,.menu{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
-  </style>
-</head>
-<body>
-  <div class="top">
-    <div class="wrap nav">
-      <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
-        <div>
-          <div class="name">TAREK ABOUZAID</div>
-          <div class="badges">
-            <span class="chip">CAFM ADMIN</span>
-            <span class="chip">Help Desk & Facilities Technology Specialist</span>
-          </div>
-        </div>
-      </div>
-      <nav class="menu" id="menu">
-        <a href="#about">About</a><a href="#experience">Resume</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
-        <a class="btn" href="Tarek_Abouzaid_CV.pdf" download>Download PDF</a>
-      </nav>
-    </div>
-  </div>
-
-  <main class="wrap">
-    <section id="about">
-      <div class="hero">
-        <div>
-          <div class="tagline">Al Dhafra Region, Abu Dhabi</div>
-          <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist |">CAFM ADMIN | Help Desk & Facilities Technology Specialist |</h1>
-          <div class="meta">
-            <a href="mailto:Tarekabuzaidcafm@outlook.com"><span>📧</span><span>Tarekabuzaidcafm@outlook.com</span></a>
-            <a href="https://linkedin.com/in/tarekabuozaid" target="_blank"><span>🔗</span><span>linkedin.com/in/tarekabuozaid</span></a>
-            <a href="https://github.com/tarekabuozaid" target="_blank"><span>💻</span><span>github.com/tarekabuozaid</span></a>
-            <a href="https://wa.me/971545527141" target="_blank" class="btn secondary">+971 54 552 7141</a>
-          </div>
-          <div class="sep"></div>
-          <p>FM professional with strong experience in CAFM/CMMS systems (SEHA FM – Auberon Technology). Skilled in asset management, SLA monitoring, preventive and corrective maintenance, automation, and reporting. Strong ability to support operations, ensure compliance, and deliver accurate data-driven insights.</p>
-        </div>
-        <div><div class="ph" role="img" aria-label="Profile hero visual"></div></div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <h3>Resume</h3>
-      <div class="timeline">
-        <div class="item">
-          <div class="when">Apr 2023 – Present</div>
-          <div class="role">CAFM / FM Administrator</div>
-          <div class="place">Al Mazroui Supplies Contracts & Maintenance Company LLC – Liwa Hospital, Abu Dhabi, UAE</div>
-          <ul>
-            <li>Manage CAFM/CMMS system (SEHA FM – Auberon Technology) for asset registration and maintenance.</li>
-            <li>Assign, monitor, and close work orders with supervisors and technicians.</li>
-            <li>Track SLA performance and produce KPI reports.</li>
-            <li>Maintain accurate asset and maintenance data across multiple sites.</li>
-            <li>Provide system support and training to users.</li>
-            <li>Build Excel/Power BI dashboards for PPM and SLA compliance.</li>
-            <li>Ensure compliance with contractual, HSE, and quality standards.</li>
-          </ul>
-        </div>
-        <div class="item">
-          <div class="when">Jan 2021 – Mar 2023</div>
-          <div class="role">Help Desk & CAFM Operator</div>
-          <div class="place">Liwa Hospital – Abu Dhabi Health Services Company (SEHA)</div>
-          <ul>
-            <li>Operated SEHA CMMS for service requests, complaints, and asset tracking.</li>
-            <li>Monitored work order lifecycle and SLA compliance.</li>
-            <li>Provided first-line CMMS support for supervisors and technicians.</li>
-            <li>Prepared daily and weekly management reports.</li>
-            <li>Acted as the first point of contact for maintenance service requests via phone, ensuring proper logging.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h3>Technical Skills</h3>
-      <div class="skills">
-        <span class="tag">SEHA FM (Auberon)</span><span class="tag">IBM Maximo</span><span class="tag">Concept Evolution</span><span class="tag">Archibus</span><span class="tag">SAP PM</span>
-        <span class="tag">Excel (Advanced, Power Query)</span><span class="tag">Pivot Tables</span><span class="tag">VLOOKUP</span><span class="tag">Power BI</span><span class="tag">Google Data Studio</span>
-        <span class="tag">Ticketing & SLA</span><span class="tag">Outlook (Shared Mailbox)</span><span class="tag">SharePoint</span><span class="tag">Microsoft Teams</span><span class="tag">HRMS basics</span>
-        <span class="tag">Python (Playwright)</span><span class="tag">Python (Selenium)</span><span class="tag">Pandas</span><span class="tag">Google Apps Script</span>
-        <span class="tag">pfSense</span><span class="tag">Debian</span><span class="tag">FreeRADIUS</span><span class="tag">VMware/Proxmox</span>
-      </div>
-    </section>
-
-    <section id="edu">
-      <h3>Education</h3>
-      <p><strong>BSc in Computer &amp; Management Information Systems</strong><br/>Higher Institute of Computers &amp; IT, Tanta, Egypt | 2012</p>
-      <div class="sep"></div>
-      <h3>Certifications</h3>
-      <ul>
-        <li>CAFM/CMMS Systems Training (SEHA FM – Auberon Technology)</li>
-        <li>Preventive Maintenance &amp; Facilities Operations</li>
-        <li>Python for Automation Projects</li>
-      </ul>
-      <div class="sep"></div>
-      <h3>Languages</h3>
-      <ul><li><strong>Arabic:</strong> Native</li><li><strong>English:</strong> Professional Proficiency</li></ul>
-    </section>
-
-    <section id="projects">
-      <h3>Key Projects</h3>
-      <div class="cards">
-        <div class="card"><h4>FixFlowBot (Telegram-based CMMS Alternative)</h4><p>Built and deployed a reporting system integrated with Google Sheets &amp; Drive.</p></div>
-        <div class="card"><h4>Automation</h4><p>Developed Python scripts for various tasks.</p></div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h3>Personal & Contact</h3>
-      <p><strong>Date of Birth:</strong> 13 March 1991<br/><strong>Nationality:</strong> Egyptian</p>
-      <div class="meta">
-        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn">Email Me</a>
-        <a href="https://wa.me/971545527141" target="_blank" class="btn secondary">WhatsApp</a>
-        <a href="Tarek_Abouzaid_CV.pdf" class="btn" download>Download CV (PDF)</a>
-      </div>
-    </section>
-
-    <footer>© <span id="y"></span> TAREK ABOUZAID — Glitche-style layout.</footer>
-  </main>
-
-  <script>
-    const menuLinks=[...document.querySelectorAll('#menu a')];
-    const sections=menuLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const io=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        const id='#'+e.target.id;
-        const link=document.querySelector(`#menu a[href="${id}"]`);
-        if(link){ if(e.isIntersecting){menuLinks.forEach(l=>l.classList.remove('active'));link.classList.add('active');} }
-      });
-    },{rootMargin:'-40% 0px -55% 0px',threshold:0});
-    sections.forEach(s=>io.observe(s));
-    document.getElementById('y').textContent=new Date().getFullYear();
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TAREK ABOUZAID — CV</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0f19;         /* base bg */
-      --panel:#111827;      /* panels */
-      --muted:#9aa4b2;      /* text secondary */
-      --text:#e5e7eb;       /* text primary */
-      --accent:#7c3aed;     /* purple */
-      --accent-2:#22d3ee;   /* cyan */
-      --line:#1f2937;       /* borders */
-    }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
     a{color:var(--text);text-decoration:none}
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
-    /* ===== Top Nav ===== */
+    /* Top Nav */
     .top{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(11,15,25,.95), rgba(11,15,25,.6) 65%, rgba(11,15,25,0));backdrop-filter:saturate(140%) blur(6px)}
     .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:14px;padding:10px 0}
@@ -217,29 +27,24 @@
     .menu a.active{color:#fff}
     .btn{display:inline-block;padding:10px 14px;border:1px solid var(--accent);border-radius:10px;color:#fff}
     .btn.secondary{border-color:var(--line);color:var(--muted)}
-
-    /* ===== Hero / Glitch ===== */
+    /* Hero / Glitch */
     .hero{display:grid;grid-template-columns:1.1fr 2fr;gap:28px;align-items:center;padding:28px 0}
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
     .tagline{color:var(--muted);font-size:14px}
     .title{font-size:34px;font-weight:800;line-height:1.15;margin:6px 0 6px}
-
     .glitch{position:relative;display:inline-block}
-    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;clip-path:inset(0 0 0 0);}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;clip-path:inset(0 0 0 0)}
     .glitch::before{transform:translate(2px,-1px);color:var(--accent);mix-blend-mode:screen;animation:gl1 2.5s infinite linear alternate}
     .glitch::after{transform:translate(-2px,1px);color:var(--accent-2);mix-blend-mode:screen;animation:gl2 2.8s infinite linear alternate}
     @keyframes gl1{0%{clip-path:inset(0 0 85% 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(60% 0 0 0)}}
     @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}}
-
     .meta{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
     .meta a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:14px}
-
-    /* ===== Sections ===== */
-    section{margin:36px 0;padding:22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg, rgba(17,24,39,.6), rgba(17,24,39,.35));}
+    /* Sections */
+    section{margin:36px 0;padding:22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg, rgba(17,24,39,.6), rgba(17,24,39,.35))}
     section h3{margin:0 0 10px;font-size:18px;font-weight:800;display:flex;align-items:center;gap:8px}
     .sep{height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:14px 0}
-
-    /* Resume timeline */
+    /* Timeline */
     .timeline{position:relative;margin-left:10px}
     .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
     .item{position:relative;margin:18px 0 18px 22px;padding-left:14px}
@@ -247,36 +52,25 @@
     .when{color:var(--muted);font-size:12px}
     .role{font-weight:700}
     .place{color:var(--muted)}
-
     /* Skills */
     .skills{display:flex;flex-wrap:wrap;gap:10px}
     .tag{padding:6px 10px;border:1px dashed var(--accent);border-radius:999px;font-size:13px;color:#cbd5e1}
-
     /* Cards */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#0e1423}
     .card h4{margin:0 0 6px}
     .card p{margin:0;color:#cbd5e1}
-
-    /* Hero placeholder (no external assets required) */
+    /* Hero placeholder */
     .ph{width:100%;border-radius:16px;border:1px solid var(--line);aspect-ratio:4/3;background:
       radial-gradient(1200px 480px at -10% -10%, rgba(124,58,237,.25), transparent 40%),
       radial-gradient(900px 360px at 110% 110%, rgba(34,211,238,.18), transparent 35%),
-      linear-gradient(135deg,#0f172a,#0b1022 55%,#0b0f19);
-    }
-
+      linear-gradient(135deg,#0f172a,#0b1022 55%,#0b0f19)}
     footer{margin:40px 0 10px;text-align:center;color:var(--muted)}
-
-    /* Print for PDF */
-    @media print{
-      .top,.meta .btn,.menu{display:none}
-      body{background:#fff;color:#111}
-      section{background:#fff;border-color:#e5e7eb}
-    }
+    @media print{.top,.meta .btn,.menu{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
   </style>
 </head>
 <body>
-  <!-- ===== Top ===== -->
+  <!-- Top -->
   <div class="top">
     <div class="wrap nav">
       <div class="brand">
@@ -285,7 +79,7 @@
           <div class="name">TAREK ABOUZAID</div>
           <div class="badges">
             <span class="chip">CAFM ADMIN</span>
-            <span class="chip">Help Desk & Facilities Technology Specialist</span>
+            <span class="chip">Help Desk &amp; Facilities Technology Specialist</span>
           </div>
         </div>
       </div>
@@ -299,46 +93,33 @@
       </nav>
     </div>
   </div>
-
   <main class="wrap">
-    <!-- ===== Hero ===== -->
+    <!-- About -->
     <section id="about">
       <div class="hero">
         <div>
           <div class="tagline">Al Dhafra Region, Abu Dhabi</div>
-          <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist |">CAFM ADMIN | Help Desk & Facilities Technology Specialist |</h1>
+          <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk &amp; Facilities Technology Specialist |">CAFM ADMIN | Help Desk &amp; Facilities Technology Specialist |</h1>
           <div class="meta">
-            <a href="mailto:Tarekabuzaidcafm@outlook.com" title="Email">
-              <span>📧</span><span>Tarekabuzaidcafm@outlook.com</span>
-            </a>
-            <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" title="LinkedIn">
-              <span>🔗</span><span>linkedin.com/in/tarekabuozaid</span>
-            </a>
-            <a href="https://github.com/tarekabuozaid" target="_blank" title="GitHub">
-              <span>💻</span><span>github.com/tarekabuozaid</span>
-            </a>
-            <a href="https://wa.me/971545527141" target="_blank" title="WhatsApp" class="btn secondary">+971 54 552 7141</a>
+            <a href="mailto:Tarekabuzaidcafm@outlook.com"><span>📧</span><span>Tarekabuzaidcafm@outlook.com</span></a>
+            <a href="https://linkedin.com/in/tarekabuozaid" target="_blank"><span>🔗</span><span>linkedin.com/in/tarekabuozaid</span></a>
+            <a href="https://github.com/tarekabuozaid" target="_blank"><span>💻</span><span>github.com/tarekabuozaid</span></a>
+            <a href="https://wa.me/971545527141" target="_blank" class="btn secondary">+971 54 552 7141</a>
           </div>
           <div class="sep"></div>
-          <p>
-            FM professional with strong experience in CAFM/CMMS systems (SEHA FM – Auberon Technology). Skilled in asset management, SLA monitoring, preventive and corrective maintenance, automation, and reporting. Strong ability to support operations, ensure compliance, and deliver accurate data-driven insights.
-          </p>
+          <p>FM professional with strong experience in CAFM/CMMS systems (SEHA FM – Auberon Technology). Skilled in asset management, SLA monitoring, preventive and corrective maintenance, automation, and reporting. Strong ability to support operations, ensure compliance, and deliver accurate data-driven insights.</p>
         </div>
-        <div>
-          <!-- Placeholder gradient (no image needed). Replace with <img src="assets/profile-hero.jpg"> if you want -->
-          <div class="ph" role="img" aria-label="Profile hero visual"></div>
-        </div>
+        <div><div class="ph" role="img" aria-label="Profile hero visual"></div></div>
       </div>
     </section>
-
-    <!-- ===== Resume ===== -->
+    <!-- Experience -->
     <section id="experience">
       <h3>Resume</h3>
       <div class="timeline">
         <div class="item">
           <div class="when">Apr 2023 – Present</div>
           <div class="role">CAFM / FM Administrator</div>
-          <div class="place">Al Mazroui Supplies Contracts & Maintenance Company LLC – Liwa Hospital, Abu Dhabi, UAE</div>
+          <div class="place">Al Mazroui Supplies Contracts &amp; Maintenance Company LLC – Liwa Hospital, Abu Dhabi, UAE</div>
           <ul>
             <li>Manage CAFM/CMMS system (SEHA FM – Auberon Technology) for asset registration and maintenance.</li>
             <li>Assign, monitor, and close work orders with supervisors and technicians.</li>
@@ -351,7 +132,7 @@
         </div>
         <div class="item">
           <div class="when">Jan 2021 – Mar 2023</div>
-          <div class="role">Help Desk & CAFM Operator</div>
+          <div class="role">Help Desk &amp; CAFM Operator</div>
           <div class="place">Liwa Hospital – Abu Dhabi Health Services Company (SEHA)</div>
           <ul>
             <li>Operated SEHA CMMS for service requests, complaints, and asset tracking.</li>
@@ -363,8 +144,7 @@
         </div>
       </div>
     </section>
-
-    <!-- ===== Skills ===== -->
+    <!-- Skills -->
     <section id="skills">
       <h3>Technical Skills</h3>
       <div class="skills">
@@ -393,8 +173,7 @@
         <span class="tag">VMware/Proxmox</span>
       </div>
     </section>
-
-    <!-- ===== Education / Certs / Languages ===== -->
+    <!-- Education / Certs / Languages -->
     <section id="edu">
       <h3>Education</h3>
       <p><strong>BSc in Computer &amp; Management Information Systems</strong><br/>Higher Institute of Computers &amp; IT, Tanta, Egypt | 2012</p>
@@ -412,8 +191,7 @@
         <li><strong>English:</strong> Professional Proficiency</li>
       </ul>
     </section>
-
-    <!-- ===== Projects ===== -->
+    <!-- Projects -->
     <section id="projects">
       <h3>Key Projects</h3>
       <div class="cards">
@@ -427,10 +205,9 @@
         </div>
       </div>
     </section>
-
-    <!-- ===== Personal / Contact ===== -->
+    <!-- Personal / Contact -->
     <section id="contact">
-      <h3>Personal & Contact</h3>
+      <h3>Personal &amp; Contact</h3>
       <p><strong>Date of Birth:</strong> 13 March 1991<br/><strong>Nationality:</strong> Egyptian</p>
       <div class="meta">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn">Email Me</a>
@@ -438,525 +215,20 @@
         <a href="Tarek_Abouzaid_CV.pdf" class="btn" download>Download CV (PDF)</a>
       </div>
     </section>
-
-    <footer>
-      © <span id="y"></span> TAREK ABOUZAID — Glitche-style layout.
-    </footer>
+    <footer>© <span id="y"></span> TAREK ABOUZAID — Glitche-style layout.</footer>
   </main>
-
   <script>
-    // Active menu on scroll
     const menuLinks=[...document.querySelectorAll('#menu a')];
     const sections=menuLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const io=new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         const id='#'+e.target.id;
         const link=document.querySelector(`#menu a[href="${id}"]`);
-        if(link){
-          if(e.isIntersecting){menuLinks.forEach(l=>l.classList.remove('active'));link.classList.add('active');}
-        }
+        if(link){ if(e.isIntersecting){menuLinks.forEach(l=>l.classList.remove('active'));link.classList.add('active');} }
       });
     },{rootMargin:'-40% 0px -55% 0px',threshold:0});
     sections.forEach(s=>io.observe(s));
-    // Year
     document.getElementById('y').textContent=new Date().getFullYear();
   </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAREK ABOUZAID — FM/CAFM ADMIN driving SLA & PPM results</title>
-    
-    <!-- Meta Tags -->
-    <meta name="title" content="TAREK ABOUZAID — FM/CAFM ADMIN driving SLA & PPM results">
-    <meta name="description" content="CAFM/CMMS ADMIN in UAE (SEHA). 5,000+ assets, 12k+ work orders, SLA 99.5%. Power BI dashboards, Python automation, PPM scheduling.">
-    <meta name="keywords" content="CAFM, CMMS, Facility Management, SLA, Reports, Abu Dhabi, UAE">
-    <meta name="author" content="TAREK ABOUZAID">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="TAREK ABOUZAID — FM/CAFM ADMIN driving SLA & PPM results">
-    <meta property="og:description" content="SLA & PPM performance, SEHA-Auberon CAFM Platform, Power BI, Python.">
-    <meta property="og:url" content="https://tarekabuozaid.github.io/my-cv/">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=TAREK+ABOUZAID+CAFM+ADMIN">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="TAREK ABOUZAID — FM/CAFM ADMIN driving SLA & PPM results">
-    <meta property="twitter:description" content="SLA & PPM performance, SEHA-Auberon CAFM Platform, Power BI, Python.">
-    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=TAREK+ABOUZAID+CAFM+ADMIN">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://tarekabuozaid.github.io/my-cv/">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts: Inter & Rubik -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                    }
-                }
-            }
-        }
-        // Active link highlight on scroll
-        const menuLinks = Array.from(document.querySelectorAll('#menu a'));
-        const targets = menuLinks
-            .map(a => document.querySelector(a.getAttribute('href')))
-            .filter(Boolean);
-        const observer = new IntersectionObserver(entries => {
-            for (const e of entries) {
-                const id = '#' + e.target.id;
-                const link = document.querySelector(`#menu a[href="${id}"]`);
-                if (!link) continue;
-                if (e.isIntersecting) {
-                    menuLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                }
-            }
-        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-        targets.forEach(t => observer.observe(t));
-    </script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Global typography and colors */
-        body {
-            font-family: Inter, Rubik, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        }
-        h1, h2, h3, h4 { color: #0F172A; }
-        .thin-divider { height: 1px; background: rgba(15, 23, 42, 0.08); }
-
-        /* Vertical timeline styles */
-        .timeline { position: relative; padding-left: 2.25rem; }
-        .timeline::before { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: rgba(15,23,42,0.12); }
-        .timeline-item { position: relative; margin-bottom: 1.25rem; }
-        .timeline-item::before { content: ""; position: absolute; left: -2px; top: 1.1rem; width: 10px; height: 10px; background: #0F172A; border-radius: 9999px; box-shadow: 0 0 0 3px rgba(15,23,42,0.08); }
-
-        /* Glitch title */
-        :root{ --accent:#7c3aed; --accent2:#22d3ee; }
-        .glitch{ position:relative; display:inline-block; }
-        .glitch::before,.glitch::after{ content:attr(data-text); position:absolute; left:0; top:0; clip-path:inset(0 0 0 0); pointer-events:none; }
-        .glitch::before{ transform:translate(2px,-1px); color:var(--accent); mix-blend-mode:screen; animation:gl1 2.5s infinite linear alternate; }
-        .glitch::after{ transform:translate(-2px,1px); color:var(--accent2); mix-blend-mode:screen; animation:gl2 2.8s infinite linear alternate; }
-        @keyframes gl1{0%{clip-path:inset(0 0 85% 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(60% 0 0 0)}}
-        @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}}
-
-        /* Sticky top nav */
-        .top-nav{ position:sticky; top:0; z-index:50; background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.65) 65%, rgba(255,255,255,0)); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(15,23,42,0.08); }
-        .top-link{ color:#334155; }
-        .top-link.active{ color:#0F172A; font-weight:600; }
-    </style>
-</head>
-<body class="bg-gray-50">
-    
-    <!-- Header / Top Nav -->
-    <div class="top-nav">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between py-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-slate-900 border border-slate-200" aria-hidden="true"></div>
-                    <div class="text-slate-900 font-extrabold tracking-tight">TAREK ABOUZAID</div>
-                    <div class="hidden md:flex items-center gap-2 ml-3">
-                        <span class="text-xs border border-slate-300 rounded-full px-2 py-1 text-slate-600">CAFM ADMIN</span>
-                        <span class="text-xs border border-slate-300 rounded-full px-2 py-1 text-slate-600">Help Desk</span>
-                    </div>
-                </div>
-                <nav id="menu" class="flex items-center gap-4 text-sm">
-                    <a class="top-link" href="#about">About</a>
-                    <a class="top-link" href="#experience">Resume</a>
-                    <a class="top-link" href="#skills">Skills</a>
-                    <a class="top-link" href="#edu">Education</a>
-                    <a class="top-link" href="#projects">Projects</a>
-                    <a class="top-link" href="#contact">Contact</a>
-                    <a class="top-link border border-slate-300 rounded-lg px-3 py-1.5" href="/my-cv/resume.pdf">Download PDF</a>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-    <header class="py-16">
-        <div class="container mx-auto px-6 text-center" id="about">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4" data-aos="fade-up">
-                TAREK ABOUZAID
-            </h1>
-            
-            <h2 class="text-2xl md:text-3xl font-semibold mb-2 glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist | Python Automation" data-aos="fade-up" data-aos-delay="200">CAFM ADMIN | Help Desk & Facilities Technology Specialist | Python Automation</h2>
-
-            <p class="text-lg mb-4 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="300">
-                Al Dhafra Region, Abu Dhabi
-            </p>
-            <p class="text-sm opacity-90 mb-2 max-w-3xl mx-auto flex items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="350">
-                <span class="flex items-center gap-2"><i class="fas fa-envelope"></i><a href="mailto:Tarekabuzaidcafm@outlook.com" class="underline">Tarekabuzaidcafm@outlook.com</a></span>
-                <span class="thin-divider w-px"></span>
-                <span class="flex items-center gap-2"><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/tarekabuozaid" class="underline">linkedin.com/in/tarekabuozaid</a></span>
-                <span class="thin-divider w-px"></span>
-                <span class="flex items-center gap-2"><i class="fab fa-github"></i><a href="https://github.com/tarekabuozaid" class="underline">github.com/tarekabuozaid</a></span>
-            </p>
-            <p class="text-sm opacity-90 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="375">+971 54 552 7141</p>
-            
-            <!-- CTAs -->
-            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
-                <a href="/my-cv/resume.pdf" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover:scale-105 flex items-center">
-                    <i class="fas fa-download mr-2"></i>Download CV (PDF)
-                </a>
-                <a href="mailto:tarekabuzaidcafm@outlook.com" class="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-all hover:scale-105 flex items-center">
-                    <i class="fas fa-envelope mr-2"></i>Email
-                </a>
-                <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all hover:scale-105 flex items-center">
-                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
-                </a>
-                <a href="https://www.linkedin.com/in/tarekabuozaid/" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all hover:scale-105 flex items-center">
-                    <i class="fab fa-linkedin mr-2"></i>LinkedIn
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Professional Summary -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
-                    <i class="fas fa-user-tie text-blue-900 mr-3"></i>Professional Summary
-                </h2>
-                <div class="bg-gray-50 rounded-xl p-8">
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        CAFM ADMIN with strong experience in CAFM/CMMS systems (SEHA FM – Auberon Technology). 
-                        Skilled in asset management, SLA monitoring, preventive and corrective maintenance, automation, and reporting. 
-                        Strong ability to support operations, ensure compliance, and deliver accurate data-driven insights.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Achievements removed to match CV order -->
-
-    <!-- Experience -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-briefcase text-blue-900 mr-3"></i>Work Experience
-                </h2>
-                <div class="space-y-6 timeline">
-                    <!-- Role 1 -->
-                    <div class="bg-gray-50 rounded-xl p-6 timeline-item">
-                        <h3 class="text-xl font-bold text-gray-800">CAFM ADMIN / HELP DESK </h3>
-                        <p class="text-gray-700 mb-2">Al Mazroui Supplies Contracts & Maintenance Company LLC – Liwa Hospital, Abu Dhabi, UAE</p>
-                        <p class="text-sm text-gray-500 mb-4">Apr 2023 – Present</p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>Manage CAFM/CMMS system (SEHA FM – Auberon Technology) for asset registration and maintenance.</li>
-                            <li>Assign, monitor, and close work orders with supervisors and technicians.</li>
-                            <li>Track SLA performance and produce KPI reports.</li>
-                            <li>Maintain accurate asset and maintenance data across multiple sites.</li>
-                            <li>Provide system support and training to users.</li>
-                            <li>Build Excel/Power BI dashboards for PPM and SLA compliance.</li>
-                            <li>Ensure compliance with contractual, HSE, and quality standards.</li>
-                        </ul>
-                    </div>
-                    <!-- Role 2 -->
-                    <div class="bg-gray-50 rounded-xl p-6 timeline-item">
-                        <h3 class="text-xl font-bold text-gray-800">Help Desk & CAFM Operator</h3>
-                        <p class="text-gray-700 mb-2">Liwa Hospital – Abu Dhabi Health Services Company (SEHA)</p>
-                        <p class="text-sm text-gray-500 mb-4">Jan 2021 – Mar 2023</p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>Operated SEHA CMMS for service requests, complaints, and asset tracking.</li>
-                            <li>Monitored work order lifecycle and SLA compliance.</li>
-                            <li>Provided first-line CMMS support for supervisors and technicians.</li>
-                            <li>Prepared daily and weekly management reports.</li>
-                            <li>Handled maintenance service calls and ensured proper logging in the system.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Skills -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="max-w-5xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-cogs text-purple-600 mr-3"></i>Technical Skills
-                </h2>
-                <div class="bg-white rounded-xl p-6 shadow-lg">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">CAFM/CMMS</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>SEHA FM (Auberon Technology), IBM Maximo, Concept Evolution, Archibus</li>
-                                <li>SAP PM (quick onboarding to other CMMS)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">Reporting & Data</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>Excel (Advanced, Power Query, Pivot Tables, VLOOKUP), Power BI</li>
-                                <li>Google Data Studio; standardized CSV templates</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">Helpdesk</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>Ticketing systems, SLA escalations, Outlook (shared mailbox)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">Collaboration & Docs</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>SharePoint, Microsoft Teams (templates, versioning)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">HRMS basics</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>timesheets, leave workflows</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">Automation</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>Python: Playwright, Selenium, Pandas</li>
-                                <li>Google Apps Script</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800 mb-3">Networking & Systems</h3>
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
-                                <li>pfSense, Debian, FreeRADIUS, VMware/Proxmox</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">
-                    <i class="fas fa-graduation-cap text-blue-900 mr-3"></i>Education
-                </h2>
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <p class="text-lg text-gray-700">BSc Computer & MIS — Egypt, 2012</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-certificate text-indigo-600 mr-3"></i>Certifications
-                </h2>
-                <div class="bg-white rounded-xl p-6">
-                    <ul class="space-y-2 text-gray-700">
-                        <li>• CAFM/CMMS Systems Training (SEHA FM – Auberon Technology) — Al Mazroui Training Center — 2023</li>
-                        <li>• Preventive Maintenance & Facilities Operations — 2022</li>
-                        <li>• Python for Automation Projects — 2021</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Languages -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-language text-blue-900 mr-3"></i>Languages
-                </h2>
-                <div class="bg-white rounded-xl p-6">
-                    <ul class="space-y-2 text-gray-700">
-                        <li>• Arabic: Native</li>
-                        <li>• English: Professional Proficiency</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Projects (cards) -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-project-diagram text-indigo-600 mr-3"></i>Key Projects
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 rounded-xl p-6 shadow hover-lift border border-gray-100">
-                        <div class="flex items-center mb-3"><span class="text-2xl mr-2">🛠</span><h3 class="font-bold">FixFlowBot</h3></div>
-                        <p class="text-gray-700 text-sm">Telegram-based CMMS Alternative. Built and deployed a reporting system integrated with Google Sheets & Drive.</p>
-                    </div>
-                    <div class="bg-gray-50 rounded-xl p-6 shadow hover-lift border border-gray-100">
-                        <div class="flex items-center mb-3"><span class="text-2xl mr-2">⚙️</span><h3 class="font-bold">Python Automations</h3></div>
-                        <p class="text-gray-700 text-sm">Developed Python scripts (Playwright, Selenium, Pandas) for SLA alerts and reporting; standardized CSV templates.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Personal Details -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                    <i class="fas fa-id-card text-blue-900 mr-3"></i>Personal Details
-                </h2>
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <ul class="space-y-2 text-gray-700">
-                        <li>• Date of Birth: 13 March 1991</li>
-                        <li>• Nationality: Egyptian</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Removed Performance Analytics to match CV order -->
-
-    
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-300">
-                Abu Dhabi, UAE • tarekabuzaidcafm@outlook.com • 
-                <a href="https://www.linkedin.com/in/tarekabuozaid/" class="text-blue-400 hover:text-blue-300">LinkedIn</a> • 
-                <a href="https://github.com/tarekabuozaid" class="text-blue-400 hover:text-blue-300">GitHub</a> • 
-                <a href="https://wa.me/971545527141" class="text-green-400 hover:text-green-300">WhatsApp</a>
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 600,
-            once: true,
-            offset: 120
-        });
-        
-        // Dark Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const root = document.documentElement;
-        
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        root.classList.toggle('dark', currentTheme === 'dark');
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                root.classList.toggle('dark');
-                const newTheme = root.classList.contains('dark') ? 'dark' : 'light';
-                localStorage.setItem('theme', newTheme);
-            });
-        }
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "dateModified": "2025-01-13T21:10:00+04:00",
-        "name": "TAREK ABOUZAID",
-        "email": "tarekabuzaidcafm@outlook.com",
-        "telephone": "+971545527141",
-        "jobTitle": "CAFM ADMIN",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Abu Dhabi Health Services Company (SEHA)"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Abu Dhabi",
-            "addressCountry": "UAE"
-        },
-        "url": "https://tarekabuozaid.github.io/my-cv/",
-        "sameAs": [
-            "https://www.linkedin.com/in/tarekabuozaid",
-            "https://github.com/tarekabuozaid",
-            "https://wa.me/971545527141"
-        ],
-        "knowsAbout": [
-            "CAFM",
-            "CMMS", 
-            "SEHA",
-            "PPM",
-            "SLA",
-            "Power BI",
-            "Python"
-        ]
-    }
-    </script>
 </body>
 </html>
