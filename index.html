@@ -49,6 +49,23 @@
                 }
             }
         }
+        // Active link highlight on scroll
+        const menuLinks = Array.from(document.querySelectorAll('#menu a'));
+        const targets = menuLinks
+            .map(a => document.querySelector(a.getAttribute('href')))
+            .filter(Boolean);
+        const observer = new IntersectionObserver(entries => {
+            for (const e of entries) {
+                const id = '#' + e.target.id;
+                const link = document.querySelector(`#menu a[href="${id}"]`);
+                if (!link) continue;
+                if (e.isIntersecting) {
+                    menuLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        targets.forEach(t => observer.observe(t));
     </script>
     
     <!-- Font Awesome -->
@@ -94,20 +111,56 @@
         .timeline::before { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: rgba(15,23,42,0.12); }
         .timeline-item { position: relative; margin-bottom: 1.25rem; }
         .timeline-item::before { content: ""; position: absolute; left: -2px; top: 1.1rem; width: 10px; height: 10px; background: #0F172A; border-radius: 9999px; box-shadow: 0 0 0 3px rgba(15,23,42,0.08); }
+
+        /* Glitch title */
+        :root{ --accent:#7c3aed; --accent2:#22d3ee; }
+        .glitch{ position:relative; display:inline-block; }
+        .glitch::before,.glitch::after{ content:attr(data-text); position:absolute; left:0; top:0; clip-path:inset(0 0 0 0); pointer-events:none; }
+        .glitch::before{ transform:translate(2px,-1px); color:var(--accent); mix-blend-mode:screen; animation:gl1 2.5s infinite linear alternate; }
+        .glitch::after{ transform:translate(-2px,1px); color:var(--accent2); mix-blend-mode:screen; animation:gl2 2.8s infinite linear alternate; }
+        @keyframes gl1{0%{clip-path:inset(0 0 85% 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(60% 0 0 0)}}
+        @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}}
+
+        /* Sticky top nav */
+        .top-nav{ position:sticky; top:0; z-index:50; background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.65) 65%, rgba(255,255,255,0)); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(15,23,42,0.08); }
+        .top-link{ color:#334155; }
+        .top-link.active{ color:#0F172A; font-weight:600; }
     </style>
 </head>
 <body class="bg-gray-50">
     
-    <!-- Header -->
-    <header class="bg-gradient-to-br from-blue-900 to-orange-600 text-white py-20">
-        <div class="container mx-auto px-6 text-center">
+    <!-- Header / Top Nav -->
+    <div class="top-nav">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-900 border border-slate-200" aria-hidden="true"></div>
+                    <div class="text-slate-900 font-extrabold tracking-tight">TAREK ABOUZAID</div>
+                    <div class="hidden md:flex items-center gap-2 ml-3">
+                        <span class="text-xs border border-slate-300 rounded-full px-2 py-1 text-slate-600">CAFM ADMIN</span>
+                        <span class="text-xs border border-slate-300 rounded-full px-2 py-1 text-slate-600">Help Desk</span>
+                    </div>
+                </div>
+                <nav id="menu" class="flex items-center gap-4 text-sm">
+                    <a class="top-link" href="#about">About</a>
+                    <a class="top-link" href="#experience">Resume</a>
+                    <a class="top-link" href="#skills">Skills</a>
+                    <a class="top-link" href="#edu">Education</a>
+                    <a class="top-link" href="#projects">Projects</a>
+                    <a class="top-link" href="#contact">Contact</a>
+                    <a class="top-link border border-slate-300 rounded-lg px-3 py-1.5" href="/my-cv/resume.pdf">Download PDF</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <header class="py-16">
+        <div class="container mx-auto px-6 text-center" id="about">
             <h1 class="text-5xl md:text-6xl font-bold mb-4" data-aos="fade-up">
                 TAREK ABOUZAID
             </h1>
             
-            <h2 class="text-2xl md:text-3xl font-semibold mb-2" data-aos="fade-up" data-aos-delay="200">
-                CAFM ADMIN | Help Desk & Facilities Technology Specialist | Python Automation
-            </h2>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-2 glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist | Python Automation" data-aos="fade-up" data-aos-delay="200">CAFM ADMIN | Help Desk & Facilities Technology Specialist | Python Automation</h2>
 
             <p class="text-lg mb-4 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="300">
                 Al Dhafra Region, Abu Dhabi
@@ -323,7 +376,7 @@
                     </div>
                     <div class="bg-gray-50 rounded-xl p-6 shadow hover-lift border border-gray-100">
                         <div class="flex items-center mb-3"><span class="text-2xl mr-2">⚙️</span><h3 class="font-bold">Python Automations</h3></div>
-                        <p class="text-gray-700 text-sm">Playwright/Selenium/Pandas for SLA alerts and reporting; standardized CSV templates.</p>
+                        <p class="text-gray-700 text-sm">Developed Python scripts (Playwright, Selenium, Pandas) for SLA alerts and reporting; standardized CSV templates.</p>
                     </div>
                 </div>
             </div>
