@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root{--bg:#0b0f19;--panel:#111827;--muted:#9aa4b2;--text:#e5e7eb;--accent:#7c3aed;--accent-2:#22d3ee;--line:#1f2937}
-    [data-theme="light"]{--bg:#f8fafc;--panel:#ffffff;--muted:#64748b;--text:#1e293b;--accent:#7c3aed;--accent-2:#0ea5e9;--line:#e2e8f0}
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
@@ -99,6 +98,9 @@
     /* Cursor Trail */
     .cursor-trail{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;opacity:0.8;transition:opacity 0.3s ease}
     .cursor-trail::before{content:'';position:absolute;width:20px;height:20px;background:radial-gradient(circle,rgba(124,58,237,0.3),transparent);border-radius:50%;top:-7px;left:-7px}
+    /* Matrix Rain Effect */
+    .matrix-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.1;pointer-events:none}
+    .matrix-column{position:absolute;top:-100px;font-family:'Courier New',monospace;font-size:14px;color:var(--accent);white-space:nowrap;animation:matrix-fall linear infinite}
     /* Cards */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .card{border:1px solid var(--line);border-radius:14px;padding:18px;background:#0e1423;transition:transform 0.2s ease, border-color 0.2s ease}
@@ -122,10 +124,19 @@
     .fab-container.active .fab-options{opacity:1;visibility:visible}
     .fab-option{width:50px;height:50px;background:var(--panel);border:1px solid var(--line);border-radius:50%;color:var(--text);text-decoration:none;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all 0.3s ease}
     .fab-option:hover{background:var(--accent);color:#fff;transform:scale(1.1)}
-    @media print{.top,.meta .btn,.menu,.fab-container{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
+    /* Music Control */
+    .music-control{position:fixed;top:50%;left:30px;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:10px}
+    .music-btn{width:50px;height:50px;background:rgba(17,24,39,0.9);border:1px solid var(--line);border-radius:50%;color:var(--text);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all 0.3s ease;backdrop-filter:blur(10px)}
+    .music-btn:hover{background:var(--accent);color:#fff;transform:scale(1.1)}
+    .music-btn.active{background:var(--accent);color:#fff}
+    .volume-slider{writing-mode:bt-lr;-webkit-appearance:slider-vertical;appearance:slider-vertical;width:30px;height:100px;background:transparent;outline:none}
+    @media print{.top,.meta .btn,.menu,.fab-container,.music-control{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
   </style>
 </head>
 <body>
+  <!-- Matrix Background -->
+  <div class="matrix-bg" id="matrix-bg"></div>
+  
   <!-- Top -->
   <div class="top">
     <div class="wrap nav">
@@ -147,7 +158,6 @@
         <a href="#achievements">Achievements</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-        <button id="theme-toggle" class="btn secondary" title="Toggle Theme"><i class="fas fa-moon" id="theme-icon"></i></button>
         <a href="pdf.pdf" class="btn" download>Download CV (PDF)</a>
       </nav>
     </div>
@@ -363,6 +373,19 @@
     <footer>© <span id="y"></span> TAREK ABOUZAID — Glitche-style layout.</footer>
   </main>
   
+  <!-- Music Control -->
+  <div class="music-control">
+    <button class="music-btn" id="play-pause" title="Play/Pause Music">
+      <i class="fas fa-play"></i>
+    </button>
+    <input type="range" class="volume-slider" id="volume" min="0" max="100" value="30" title="Volume">
+  </div>
+  
+  <!-- Hidden Audio Element -->
+  <audio id="background-music" loop>
+    <source src="https://www.soundjay.com/misc/sounds/beep-07a.mp3" type="audio/mpeg">
+  </audio>
+  
   <!-- Floating Action Button -->
   <div class="fab-container">
     <div class="fab-options">
@@ -394,18 +417,27 @@
     sections.forEach(s=>io.observe(s));
     document.getElementById('y').textContent=new Date().getFullYear();
     
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    // Music Control
+    const audio = document.getElementById('background-music');
+    const playPauseBtn = document.getElementById('play-pause');
+    const volumeSlider = document.getElementById('volume');
     
-    themeToggle.addEventListener('click', () => {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    audio.volume = 0.3;
+    
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        playPauseBtn.classList.add('active');
+      } else {
+        audio.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        playPauseBtn.classList.remove('active');
+      }
+    });
+    
+    volumeSlider.addEventListener('input', (e) => {
+      audio.volume = e.target.value / 100;
     });
     
     // Typewriter effect
@@ -483,6 +515,58 @@
       requestAnimationFrame(updateTrail);
     }
     updateTrail();
+    
+    // Matrix Rain Effect
+    function createMatrixRain() {
+      const matrixBg = document.getElementById('matrix-bg');
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+      const columns = Math.floor(window.innerWidth / 20);
+      
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i * 20) + 'px';
+        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDelay = Math.random() * 2 + 's';
+        
+        let text = '';
+        for (let j = 0; j < Math.floor(Math.random() * 20 + 10); j++) {
+          const char = characters[Math.floor(Math.random() * characters.length)];
+          text += char + '<br>';
+        }
+        column.innerHTML = text;
+        
+        // Add CSS animation keyframes dynamically
+        const styleSheet = document.styleSheets[0];
+        const keyframes = `
+          @keyframes matrix-fall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(${window.innerHeight + 100}px); opacity: 0; }
+          }
+        `;
+        
+        try {
+          styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+        } catch (e) {
+          // Rule might already exist
+        }
+        
+        matrixBg.appendChild(column);
+        
+        // Remove and recreate column after animation
+        setTimeout(() => {
+          if (column.parentNode) {
+            column.remove();
+          }
+        }, (Math.random() * 3 + 2) * 1000);
+      }
+    }
+    
+    // Start matrix effect
+    createMatrixRain();
+    setInterval(createMatrixRain, 5000);
   </script>
 </body>
 </html>
