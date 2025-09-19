@@ -362,17 +362,28 @@
       opacity: 0; 
     }
     .holo-hero.ready .holo-chip{
-      opacity: 1;
+      transform: rotate(var(--a)) translate(calc(var(--radius))) rotate(calc(var(--a)*-1));
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: flex !important;
       transition-delay: calc(var(--a) / 360 * .28s); /* دخول متتابع حسب الزاوية */
     }
 
   /* تكيفات | تعديلات للعرض على الشاشات الصغيرة */
-    @media (max-width: 768px){ 
-      /* إظهار الهولوجرام على الموبايل أيضًا */
-      .holo-hero{ display:block; }
-      /* استثناء الهولوجرام من قاعدة إخفاء أقسام main على الموبايل */
-      main section.holo-hero{ display:block; }
-    }
+    /* تأكيد عرض الهولوجرام على جميع الشاشات */
+  .holo-hero{ 
+    display:block !important; 
+  }
+  main section.holo-hero{ 
+    display:block !important; 
+  }
+
+  @media (max-width: 768px){ 
+    /* إظهار الهولوجرام على الموبايل أيضًا */
+    .holo-hero{ display:block !important; }
+    /* استثناء الهولوجرام من قاعدة إخفاء أقسام main على الموبايل */
+    main section.holo-hero{ display:block !important; }
+  }
   @media (max-width: 420px){ .holo-chip{ padding:10px; } }
     @media (prefers-reduced-motion: reduce){
       .holo-chip, .holo-ring{ animation: none !important; transition: none !important; }
@@ -573,21 +584,25 @@
 
   /* قلّل البريق والظلّ للـchips وخليها أصغر */
   .holo-chip{
-    padding:8px 10px; border-radius:12px;
+    padding:8px 10px; 
+    border-radius:12px;
     box-shadow: 0 8px 22px rgba(0,0,0,.22);
     background: linear-gradient(180deg, rgba(34,211,238,.12), rgba(124,58,237,.10));
+    display: flex !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    opacity: 1 !important; /* ضمان ظهور الأزرار على سطح المكتب */
   }
   .holo-chip:hover{
     box-shadow: 0 10px 26px rgba(34,211,238,.22);
   }
 
-  /* قلّل العدد الظاهر على الديسكتوب: أخفي 3 من 6 (لسه تقدر تفتح الباقي من القائمة) */
+  /* اظهار كل الأزرار على سطح المكتب */
   @media (min-width: 901px){
-    /* Keeping all holo chips visible 
-    .holo-chip[style*="--a:120deg"],
-    .holo-chip[style*="--a:240deg"],
-    .holo-chip[style*="--a:300deg"]{ display:none; }
-    */
+    /* عرض كل الأزرار */
+    .holo-chip {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
   }
 
   /* امنع أي تأثير hover ترجيع-سحب يزيد العك مع الـtilt */
@@ -1455,13 +1470,64 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
 
 // ===== وظائف الهولوجرام الرئيسية =====
 (function(){
-  const hero = document.getElementById('hero');
+  // تحديد عناصر الهولوجرام بشكل أكثر موثوقية
+  const hero = document.getElementById('hero') || document.querySelector('.holo-hero');
   const bg   = hero?.querySelector('.holo-bg');
   const chips= hero? hero.querySelectorAll('.holo-chip') : [];
 
-  // 1) تفعيل الانبعاث المتتابع
-  window.addEventListener('load', ()=> hero?.classList.add('ready'), {once:true});
+  // 1) تفعيل الانبعاث المتتابع - تأكد من إضافة ready مباشرة وأيضاً عند التحميل
+  if (hero) {
+    hero.classList.add('ready'); // إضافة مباشرة
+    
+    // تأكد من إظهار الـchips بشكل مباشر باستخدام JavaScript
+    if (chips && chips.length > 0) {
+      chips.forEach(chip => {
+        chip.style.display = 'flex';
+        chip.style.opacity = '1';
+        chip.style.visibility = 'visible';
+        
+        // تأكد من ظهور الأيقونات داخل الchips
+        const icon = chip.querySelector('i');
+        if (icon) {
+          icon.style.display = 'inline-block';
+          icon.style.visibility = 'visible';
+        }
+      });
+    }
+  }
+  
+  window.addEventListener('load', () => {
+    if (hero) {
+      hero.classList.add('ready');
+      console.log("Hologram activated"); // للتأكد من تنفيذ الكود
+      
+      // تأكد مرة أخرى من إظهار الـchips عند التحميل الكامل
+      if (chips && chips.length > 0) {
+        chips.forEach(chip => {
+          chip.style.display = 'flex';
+          chip.style.opacity = '1';
+          chip.style.visibility = 'visible';
+        });
+      }
+    }
+  }, {once:true});
 
+  // تنفيذ وظيفة النقر على الأزرار
+  if (chips && chips.length > 0) {
+    chips.forEach(chip => {
+      chip.addEventListener('click', function() {
+        const section = this.getAttribute('data-section');
+        if (section) {
+          // انتقل إلى القسم المناسب
+          const targetSection = document.getElementById(section);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  }
+  
   // 2) بارالاكس لطيف على الخلفية والحلقة
   const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
   const parallax = (x,y)=>{
