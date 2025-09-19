@@ -577,6 +577,14 @@
 
   /* أيقونات <img> داخل .holo-chip و .icon-btn: ثبّت الحجم لأن SVG ما يتلوّن زي <i> */
   .menu-icon, .social-icon{ width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  
+  /* أخفّي الحلقة على الديسكتوب أو أخفّفها */
+  @media (min-width:901px){
+    .holo-ring{ opacity:.15; filter: blur(1px); }
+  }
+  
+  /* فوكس واضح للـchips (تحسين وصول) */
+  .holo-chip:focus{ outline:2px solid var(--accent-2); outline-offset:2px; }
   </style>
 </head>
 <body>
@@ -1400,7 +1408,7 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     if(!bg) return;
     const rx = clamp((x - innerWidth/2)/innerWidth, -0.5, 0.5);
     const ry = clamp((y - innerHeight/2)/innerHeight,-0.5, 0.5);
-    bg.style.transform = `translate3d(${rx*16}px, ${ry*12}px, 0) scale(1.03)`;
+    bg.style.transform = `translate3d(${rx*10}px, ${ry*8}px, 0) scale(1.02)`;
   };
   window.addEventListener('pointermove', e=> parallax(e.clientX,e.clientY), {passive:true});
 
@@ -1685,6 +1693,10 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
       const matrix = document.getElementById('matrix-bg');
       if (matrix) matrix.style.display = 'none';
     }
+
+    // إخفاء تلميح الهولو بعد ثوانٍ
+    const hint = document.querySelector('.holo-hint');
+    if(hint){ setTimeout(()=> hint.style.display='none', 3500); }
   })();
   </script>
 </body>
