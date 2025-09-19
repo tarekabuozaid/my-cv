@@ -467,24 +467,26 @@
   .icon-btn:hover i {
     color: var(--accent-2);
   }
-  /* footer icons responsive */
+  
+  /* Footer icons - hidden to avoid duplication with meta-icons */
   footer .footer-icons {
     display: none;
     gap: 12px;
     justify-content: center;
     margin-bottom: 10px;
   }
+  
+  /* Mobile specific styles */
   @media (max-width:768px) {
-    footer .footer-icons {
-      display: flex;
-    }
-    
+    /* Make sure mobile icon styling is applied */
     .meta-icons .icon-btn i {
       display: inline-block !important;
       visibility: visible !important;
       opacity: 1 !important;
       color: var(--accent) !important;
     }
+    
+    /* Hide footer text on mobile */
     footer .footer-text {
       display: none;
     }
@@ -946,7 +948,8 @@
       </div>
     </section>
     <footer>
-      <div class="footer-icons">
+      <!-- Hidden icons to avoid duplication with mobile meta-icons -->
+      <div class="footer-icons" style="display: none !important;">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/tarekabuozaid" target="_blank" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
