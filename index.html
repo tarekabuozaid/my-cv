@@ -282,40 +282,54 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      min-height: 320px;
+      min-height: 480px; /* زيادة ارتفاع القسم ليظهر الهولوجرام بشكل أفضل */
+      height: 66vh; /* حوالي ثلثي ارتفاع الشاشة */
       margin: 14px 0 18px;
       isolation: isolate;
       box-shadow: 0 25px 80px rgba(0,0,0,.35);
     }
+    
+    /* ضبط الهولوجرام على أحجام الشاشات المختلفة */
+    @media (min-width: 1200px) {
+      .holo-hero {
+        min-height: 560px; /* ارتفاع أكبر على الشاشات الكبيرة */
+      }
+    }
 
   /* صورة BIG.png كخلفية أساسية | صورة خلفية الهولوجرام */
     .holo-hero .holo-bg{
-      position:absolute; inset:0;
-      background: url("BIG.png") center/cover no-repeat;
-      filter: saturate(1.05) contrast(1.05);
-      transform: translateZ(0);
+      position: absolute; inset: 0;
+      background: url("BIG.png") center/contain no-repeat;
+      background-size: auto 100%;
+      background-position: center center;
+      filter: saturate(1.25) contrast(1.15) brightness(1.15);
+      transform: translateZ(0) scale(1.02);
       will-change: transform;
+      transition: transform 0.5s ease-out;
     }
 
   /* تظليل + لمسة هولوجرام | طبقة تظليل فوق الخلفية */
     .holo-hero .holo-overlay{
-      position:absolute; inset:0;
+      position: absolute; inset: 0;
       background:
-        radial-gradient(120% 120% at 30% 30%, rgba(12,18,28,.25) 0%, rgba(8,12,20,.85) 70%),
-        linear-gradient(115deg, rgba(34,211,238,.25), rgba(124,58,237,.15));
+        radial-gradient(120% 120% at 30% 30%, rgba(12,18,28,.1) 0%, rgba(8,12,20,.65) 70%),
+        linear-gradient(115deg, rgba(34,211,238,.35), rgba(124,58,237,.25));
       pointer-events: none;
       mix-blend-mode: screen;
+      opacity: 0.85; /* تحكم إضافي في شفافية الطبقة */
     }
 
   /* الحلقة المركزية | حلقة الهولوجرام الدائرية */
     .holo-ring{
-      position:absolute; left:50%; top:50%; translate:-50% -50%;
-      width:min(56vw,360px); aspect-ratio:1/1;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: inset 0 0 100px rgba(34,211,238,.15);
+      position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+      width: min(62vw, 480px); /* زيادة حجم الحلقة */
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: inset 0 0 120px rgba(34,211,238,.2);
       backdrop-filter: blur(2px);
       animation: ringSpin 18s linear infinite;
+      z-index: 1; /* التأكد من أن الحلقة فوق الصورة الخلفية */
     }
     .holo-ring::after{
       content:""; position:absolute; inset:10%;
@@ -335,12 +349,13 @@
 
   /* الشرائح المنبعثة | أزرار الهولوجرام الدائرية */
     .holo-chip{
-      --radius: clamp(90px, 22vw, 150px);   /* نصف قطر التوزيع */
+      --radius: clamp(110px, 26vw, 200px);   /* زيادة نصف قطر التوزيع */
       --a: 0deg;                             /* مخصّص لكل زر بالإنلاين */
-      position:absolute; left:50%; top:50%;
-      translate:-50% -50%;
-      transform: rotate(var(--a)) translate(var(--radius)) rotate(calc(var(--a)*-1)) scale(.96);
+      position: absolute; left: 50%; top: 50%;
+      translate: -50% -50%;
+      transform: rotate(var(--a)) translate(var(--radius)) rotate(calc(var(--a)*-1)) scale(1);
       transform-origin: center;
+      z-index: 2; /* التأكد من أن الأزرار فوق الحلقة */
       display:flex; align-items:center; gap:8px;
       padding:10px 12px;
       border-radius: 14px;
@@ -380,11 +395,54 @@
 
   @media (max-width: 768px){ 
     /* إظهار الهولوجرام على الموبايل أيضًا */
-    .holo-hero{ display:block !important; }
+    .holo-hero{ 
+      display: block !important;
+      min-height: 360px !important; /* ارتفاع أقل للموبايل */
+      margin-bottom: 30px !important; /* زيادة المسافة في الأسفل */
+    }
     /* استثناء الهولوجرام من قاعدة إخفاء أقسام main على الموبايل */
-    main section.holo-hero{ display:block !important; }
+    main section.holo-hero{ display: block !important; }
+    
+    /* إعادة ضبط عرض الحلقة على الموبايل */
+    .holo-ring {
+      width: min(80vw, 300px) !important;
+    }
+    
+    /* توزيع أفضل للمساحات على الموبايل */
+    .wrap {
+      padding: 12px !important;
+    }
+    
+    /* تكبير أيقونات التواصل على الموبايل */
+    .meta-icons .icon-btn {
+      width: 50px !important;
+      height: 50px !important;
+      margin: 0 6px !important;
+    }
+    
+    .meta-icons .icon-btn i {
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 28px !important;
+    }
+    
+    /* تقليل المساحة أسفل الصفحة على الموبايل */
+    footer {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+      padding-bottom: 20px !important;
+    }
   }
-  @media (max-width: 420px){ .holo-chip{ padding:10px; } }
+  
+  @media (max-width: 420px){ 
+    .holo-chip{ padding: 10px; }
+    
+    /* ضبط إضافي للمساحات على الشاشات الصغيرة جدًا */
+    .mobile-headline {
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+    }
+  }
     @media (prefers-reduced-motion: reduce){
       .holo-chip, .holo-ring{ animation: none !important; transition: none !important; }
     }
@@ -418,13 +476,23 @@
     @media (max-width:768px){
       .mobile-headline{ display:block; padding:8px 12px 2px; text-align:center; }
       .mobile-headline .title{ font-size:22px; line-height:1.25; margin:4px auto 6px; letter-spacing:.3px; }
-      .meta-icons{ display:flex; justify-content:center; gap:12px; margin:6px 0 10px; }
+      .meta-icons{ 
+        display: flex; 
+        justify-content: center; 
+        gap: 16px; /* زيادة المسافة بين الأيقونات */
+        margin: 15px 0 20px; /* زيادة الهوامش فوق وتحت */
+      }
       .icon-btn{
-        display:inline-flex; align-items:center; justify-content:center;
-        width:42px; height:42px; border-radius:12px; border:1px solid var(--line);
-        background:linear-gradient(180deg, rgba(17,24,39,.6), rgba(17,24,39,.35));
-        box-shadow:0 6px 20px rgba(124,58,237,.15);
-        transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center;
+        width: 50px; /* تكبير أبعاد الزر */
+        height: 50px;
+        border-radius: 14px; /* زيادة تقويس الحواف */
+        border: 1.5px solid var(--line); /* حدود أكثر وضوحاً */
+        background: linear-gradient(180deg, rgba(17,24,39,.7), rgba(17,24,39,.4));
+        box-shadow: 0 8px 24px rgba(124,58,237,.2);
+        transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
       }
       .icon-btn i, .icon-btn img.social-icon { font-size:18px; color:var(--text); width:18px; height:18px; }
       .icon-btn:hover{ transform:translateY(-2px); border-color:var(--accent); box-shadow:0 10px 26px rgba(124,58,237,.25); }
@@ -531,6 +599,38 @@
       transform: translateY(-6px);
       box-shadow: 0 12px 30px rgba(0,0,0,.35);
       border-color: var(--accent);
+    }
+    
+  /* زر العودة للأعلى | زر للرجوع إلى قسم الهولوجرام */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 20px rgba(124,58,237,.3);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .3s ease, transform .3s ease;
+      z-index: 100;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 24px rgba(124,58,237,.5);
     }
 
   /* العناصر المسموح لها بتأثير الميلان الثلاثي الأبعاد | عناصر تدعم الميلان 3D */
@@ -1823,6 +1923,35 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     // إخفاء تلميح الهولو بعد ثوانٍ
     const hint = document.querySelector('.holo-hint');
     if(hint){ setTimeout(()=> hint.style.display='none', 3500); }
+    
+    // تنفيذ زر العودة للأعلى
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.id = 'backToTop';
+    backToTopBtn.setAttribute('aria-label', 'العودة للأعلى');
+    backToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    document.body.appendChild(backToTopBtn);
+    
+    // إظهار/إخفاء الزر عند التمرير
+    window.addEventListener('scroll', () => {
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        if (heroBottom < 0) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+    });
+    
+    // تنفيذ التمرير عند النقر على الزر
+    backToTopBtn.addEventListener('click', () => {
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        heroSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   })();
   </script>
 </body>
