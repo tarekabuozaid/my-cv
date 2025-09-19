@@ -578,6 +578,11 @@
   /* أيقونات <img> داخل .holo-chip و .icon-btn: ثبّت الحجم لأن SVG ما يتلوّن زي <i> */
   .menu-icon, .social-icon{ width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
   
+  /* ضبط حجم أيقونات Font Awesome على الموبايل */
+  @media (max-width:768px){
+    .icon-btn i{ font-size:18px; width:18px; height:18px; }
+  }
+  
   /* أخفّي الحلقة على الديسكتوب أو أخفّفها */
   @media (min-width:901px){
     .holo-ring{ opacity:.15; filter: blur(1px); }
@@ -666,19 +671,19 @@
 
       <div class="meta-icons" role="navigation" aria-label="Quick actions">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email">
-          <img src="icons/envelope.svg" alt="Email" class="social-icon">
+          <i class="fas fa-envelope"></i>
         </a>
         <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="icon-btn" aria-label="LinkedIn">
-          <img src="icons/linkedin-in.svg" alt="LinkedIn" class="social-icon">
+          <i class="fab fa-linkedin-in"></i>
         </a>
         <a href="https://github.com/tarekabuozaid" target="_blank" class="icon-btn" aria-label="GitHub">
-          <img src="icons/github.svg" alt="GitHub" class="social-icon">
+          <i class="fab fa-github"></i>
         </a>
         <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" class="icon-btn" aria-label="WhatsApp">
-          <img src="icons/whatsapp.svg" alt="WhatsApp" class="social-icon">
+          <i class="fab fa-whatsapp"></i>
         </a>
         <a href="pdf.pdf" download class="icon-btn" aria-label="Download CV (PDF)">
-          <img src="icons/download.svg" alt="Download CV" class="social-icon">
+          <i class="fas fa-download"></i>
         </a>
       </div>
     </div>
