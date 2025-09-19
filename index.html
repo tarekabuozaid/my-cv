@@ -40,6 +40,8 @@
   <!-- الأيقونات -->
   <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErz4dVBJNDgBmE8Vz5tKaJJGwdN0GyKnRJhkQpqVgKgU/JbJk+XvYoJdVy" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Fallback Font Awesome for mobile browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" crossorigin="anonymous" />
 
   <!-- تحميل مسبق للصورة الرئيسية -->
   <link rel="preload" as="image" href="BIG.png" imagesrcset="BIG.png 1200w" imagesizes="(max-width: 900px) 100vw, 50vw" />
@@ -438,6 +440,11 @@
     color: var(--accent) !important;
     background: none !important;
     vertical-align: middle !important;
+    /* Fix for Font Awesome icons */
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
   }
   .icon-btn {
     display: inline-flex !important;
@@ -574,9 +581,11 @@
 
   /* قلّل العدد الظاهر على الديسكتوب: أخفي 3 من 6 (لسه تقدر تفتح الباقي من القائمة) */
   @media (min-width: 901px){
+    /* Keeping all holo chips visible 
     .holo-chip[style*="--a:120deg"],
     .holo-chip[style*="--a:240deg"],
     .holo-chip[style*="--a:300deg"]{ display:none; }
+    */
   }
 
   /* امنع أي تأثير hover ترجيع-سحب يزيد العك مع الـtilt */
@@ -589,12 +598,41 @@
   .menu-icon, .social-icon, .hint-icon { width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
   
   /* ضبط حجم أيقونات Font Awesome */
-  .holo-chip i { font-size:18px; color: #22d3ee; width:18px; height:18px; }
-  .holo-hint i { font-size:18px; width:18px; height:18px; }
+  .holo-chip i { 
+    font-size:18px !important; 
+    color: #22d3ee !important; 
+    width:18px !important; 
+    height:18px !important;
+    display: inline-block !important;
+  }
+  .holo-hint i { 
+    font-size:18px !important; 
+    width:18px !important; 
+    height:18px !important;
+    display: inline-block !important;
+  }
   
   /* ضبط حجم أيقونات Font Awesome على الموبايل */
   @media (max-width:768px){
-    .icon-btn i{ font-size:18px; width:18px; height:18px; }
+    .icon-btn i{ 
+      font-size:18px !important; 
+      width:18px !important; 
+      height:18px !important;
+      display: inline-block !important;
+    }
+    
+    /* Make holo-chips visible on mobile */
+    .holo-chip {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    /* Fix for Font Awesome icons in mobile */
+    .fab, .fas, .fa, .far, .fa-brands, .fa-solid {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      display: inline-block !important;
+    }
   }
   
   /* أخفّي الحلقة على الديسكتوب أو أخفّفها */
@@ -688,7 +726,7 @@
           <i class="fas fa-envelope"></i>
         </a>
         <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="icon-btn" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
+          <i class="fab fa-linkedin-in" style="display: inline-block !important; color: var(--accent) !important;"></i>
         </a>
         <a href="https://github.com/tarekabuozaid" target="_blank" class="icon-btn" aria-label="GitHub">
           <i class="fab fa-github"></i>
