@@ -472,7 +472,9 @@
 
     /* لتفادي تعارض hover القديم للكروت مع الـ tilt (اختياري) */
     .card:hover{ /* اتركها أو خفّفها */
-      /* transform: translateY(-2px);  <-- يمكن تعليقها لو عاوز tilt أنعم */
+  /* transform: none; */
+/* Patch 2: Countup font style */
+.countup { font-variant-numeric: tabular-nums; }
     }
 
     /* تحسين شكل نقاط التايملاين عند الظهور */
@@ -1160,6 +1162,28 @@
   // ===== Mobile Section Views (history + aria) =====
   let currentSection = null;
 
+// Patch 4: Section view accessibility (focus/restore)
+let lastFocus = null;
+
+const _openView = window.openSection;
+window.openSection = function(name){
+  lastFocus = document.activeElement;
+  _openView(name);
+  // فوكس على عنوان الـ view
+  const header = document.querySelector(`#${name}-view .section-header h2`);
+  if (header) header.setAttribute('tabindex','-1'), header.focus({ preventScroll:true });
+};
+
+const _closeView = window.closeSection;
+window.closeSection = function(){
+  _closeView();
+  // رجّع الفوكس لآخر عنصر
+  if (lastFocus && typeof lastFocus.focus === 'function'){
+    lastFocus.focus({ preventScroll:true });
+  }
+  lastFocus = null;
+};
+
   window.openSection = function(name){
     // On mobile: open section view; on desktop: logic handled by FLIP wrapper
     if (!isMobile()) return;
@@ -1376,6 +1400,57 @@
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
 
+  /* STAGGER: لو العنصر Section أو حاوي لكروت/تاجز، نزّله بموجات متتالية */
+  function staggerChildren(container){
+    const kids = container.querySelectorAll('.card, .tag, .role-tag, .item');
+    let delay = 40; // ms
+    kids.forEach((k, idx)=>{
+      // ما تعملش Stagger للمخفيين (views)
+      if (k.closest('.section-view')) return;
+      k.style.viewTransitionName = '';
+      k.animate(
+        [{opacity:0, transform:'translateY(12px)'}, {opacity:1, transform:'translateY(0)'}],
+        { duration: 420, delay: idx*delay, easing: 'cubic-bezier(.22,.61,.36,1)' }
+      );
+      k.classList.remove('motion-hide');
+    });
+  }
+
+  // دمجه مع reveal-on-scroll الحالي:
+  const oldAnimateIn = animateIn;
+  animateIn = function(el){
+    oldAnimateIn(el);
+    // بعد ما العنصر ظهر، لو هو section أو عنده كروت/تاجز، فعّل stagger للأطفال
+    if (el.matches('section') || el.querySelector('.card, .tag, .role-tag, .item')){
+      requestAnimationFrame(()=> staggerChildren(el));
+    }
+  };
+
+  /* COUNT-UP: أي عنصر عليه data-count="98" هيعدّ لحدها */
+  function runCountup(root=document){
+    const targets = root.querySelectorAll('[data-count]');
+    targets.forEach(el=>{
+      const to = parseFloat(el.getAttribute('data-count'));
+      if (!isFinite(to)) return;
+      const dur = 900; // ms
+      const start = performance.now();
+      const from = 0;
+      el.classList.add('countup');
+      const step = (t)=>{
+        const p = Math.min(1, (t-start)/dur);
+        const val = Math.floor(from + (to-from)*p);
+        el.textContent = val.toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      // ما نعيدهاش تاني
+      el.removeAttribute('data-count');
+    });
+  }
+  // شغّلها أول ما الصفحة تفتح وبمجرد ظهور أي سيكشن
+  runCountup();
+  document.addEventListener('scroll', ()=> runCountup(), { passive:true });
+
     /* 1) Scroll progress bar */
     const bar = document.createElement('div');
     bar.id = 'scrollbar';
@@ -1456,14 +1531,19 @@
       if (!el) return;
       const r = el.getBoundingClientRect();
       const cx = r.left + r.width/2, cy = r.top + r.height/2;
-      const dx = (e.clientX - cx) / r.width;
-      const dy = (e.clientY - cy) / r.height;
-      el.style.transform = `rotateY(${dx*8}deg) rotateX(${-dy*8}deg) translateZ(0)`;
+      const dx = (e.clientX - cx) / (r.width/2);
+      const dy = (e.clientY - cy) / (r.height/2);
+      const mx = Math.max(-1, Math.min(1, dx));
+      const my = Math.max(-1, Math.min(1, dy));
+      el.style.transform = `rotateY(${mx*6}deg) rotateX(${-my*6}deg) translateZ(0)`;
     }, { passive: true });
 
     document.addEventListener('pointerleave', (e)=>{
       const el = e.target.closest('.card.tilt-3d');
-      if (el) el.style.transform = '';
+      if (el) el.animate(
+        [{ transform: getComputedStyle(el).transform }, { transform:'none' }],
+        { duration: 180, easing: 'cubic-bezier(.22,.61,.36,1)' }
+      ).onfinish = ()=> { el.style.transform = ''; };
     }, true);
 
     // Ripple على الأزرار
