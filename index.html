@@ -459,6 +459,105 @@
     .fab-container.active .fab-options{opacity:1;visibility:visible}
     .fab-option{width:50px;height:50px;background:var(--panel);border:1px solid var(--line);border-radius:50%;color:var(--text);text-decoration:none;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all 0.3s ease}
     .fab-option:hover{background:var(--accent);color:#fff;transform:scale(1.1)}
+    
+    /* ===== HOLO HERO ===== */
+    .holo-hero{
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 320px;
+      margin: 14px 0 18px;
+      isolation: isolate;
+      box-shadow: 0 25px 80px rgba(0,0,0,.35);
+    }
+
+    /* صورة BIG.png كخلفية أساسية */
+    .holo-hero .holo-bg{
+      position:absolute; inset:0;
+      background: url("BIG.png") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* تظليل + لمسة هولوجرام */
+    .holo-hero .holo-overlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(120% 120% at 30% 30%, rgba(12,18,28,.25) 0%, rgba(8,12,20,.85) 70%),
+        linear-gradient(115deg, rgba(34,211,238,.25), rgba(124,58,237,.15));
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* الحلقة المركزية */
+    .holo-ring{
+      position:absolute; left:50%; top:50%; translate:-50% -50%;
+      width:min(56vw,360px); aspect-ratio:1/1;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 0 100px rgba(34,211,238,.15);
+      backdrop-filter: blur(2px);
+      animation: ringSpin 18s linear infinite;
+    }
+    .holo-ring::after{
+      content:""; position:absolute; inset:10%;
+      border-radius:50%;
+      border:1px dashed rgba(34,211,238,.35);
+      filter: drop-shadow(0 0 8px rgba(34,211,238,.35));
+    }
+    .ring-core{
+      position:absolute; left:50%; top:50%; translate:-50% -50%;
+      width:28%; aspect-ratio:1;
+      border-radius:50%;
+      background: radial-gradient(circle at 50% 45%, rgba(34,211,238,.55), transparent 60%);
+      box-shadow: 0 0 24px rgba(34,211,238,.45), inset 0 0 24px rgba(124,58,237,.35);
+    }
+
+    @keyframes ringSpin{ to{ rotate: 360deg; } }
+
+    /* الشرائح المنبعثة */
+    .holo-chip{
+      --radius: clamp(90px, 22vw, 150px);   /* نصف قطر التوزيع */
+      --a: 0deg;                             /* مخصّص لكل زر بالإنلاين */
+      position:absolute; left:50%; top:50%;
+      translate:-50% -50%;
+      transform: rotate(var(--a)) translate(var(--radius)) rotate(calc(var(--a)*-1)) scale(.96);
+      transform-origin: center;
+      display:flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius: 14px;
+      color:#e8f7ff;
+      background: linear-gradient(180deg, rgba(34,211,238,.16), rgba(124,58,237,.14));
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .45s cubic-bezier(.22,.61,.36,1),
+                 box-shadow .3s ease, background .3s ease;
+      will-change: transform;
+    }
+    .holo-chip i{ color:#22d3ee; }
+    .holo-chip:hover{ transform: rotate(var(--a)) translate(calc(var(--radius) + 6px)) rotate(calc(var(--a)*-1)) scale(1.02); box-shadow: 0 14px 40px rgba(34,211,238,.28); }
+    .holo-chip:active{ transform: rotate(var(--a)) translate(calc(var(--radius) + 2px)) rotate(calc(var(--a)*-1)) scale(.99); }
+
+    .holo-hero:not(.ready) .holo-chip{
+      transform: rotate(var(--a)) translate(0px) rotate(calc(var(--a)*-1)) scale(.72);
+      opacity: 0; 
+    }
+    .holo-hero.ready .holo-chip{
+      opacity: 1;
+      transition-delay: calc(var(--a) / 360 * .28s); /* دخول متتابع حسب الزاوية */
+    }
+
+    /* تكيفات */
+    @media (max-width: 768px){ 
+      .holo-hero{ display: none; } /* إخفاء الهولوجرام على الموبايل */
+    }
+    @media (max-width: 420px){ .holo-chip span{ display:none; } .holo-chip{ padding:10px; } }
+    @media (prefers-reduced-motion: reduce){
+      .holo-chip, .holo-ring{ animation: none !important; transition: none !important; }
+    }
+
     @media print{.top,.meta .btn,.menu,.fab-container{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
   </style>
 </head>
@@ -491,6 +590,36 @@
     </div>
   </div>
   <main class="wrap">
+    <!-- HOLO HERO (emanating hub) -->
+    <section class="holo-hero hero" id="hero">
+      <div class="holo-bg" aria-hidden="true"></div>
+      <div class="holo-overlay" aria-hidden="true"></div>
+
+      <div class="holo-ring">
+        <div class="ring-core"></div>
+      </div>
+
+      <!-- Chips المنبعثة من الصورة -->
+      <button class="holo-chip" data-section="about"    style="--a:0deg">
+        <i class="fas fa-user"></i><span>About</span>
+      </button>
+      <button class="holo-chip" data-section="experience" style="--a:60deg">
+        <i class="fas fa-briefcase"></i><span>Resume</span>
+      </button>
+      <button class="holo-chip" data-section="skills"   style="--a:120deg">
+        <i class="fas fa-tools"></i><span>Skills</span>
+      </button>
+      <button class="holo-chip" data-section="edu"      style="--a:180deg">
+        <i class="fas fa-graduation-cap"></i><span>Education</span>
+      </button>
+      <button class="holo-chip" data-section="projects" style="--a:240deg">
+        <i class="fas fa-diagram-project"></i><span>Projects</span>
+      </button>
+      <button class="holo-chip" data-section="contact"  style="--a:300deg">
+        <i class="fas fa-envelope"></i><span>Contact</span>
+      </button>
+    </section>
+
     <!-- About -->
     <section id="about">
       <div class="hero">
@@ -1133,6 +1262,17 @@
   const mobileGrid = $('#mobile-grid');
 
   window.openSection = function(name){
+    // Desktop: use holo chips, Mobile: use mobile grid
+    const isDesktop = !isMobile();
+    if (isDesktop) {
+      // For desktop, scroll to section or handle holo navigation
+      const targetSection = $(`#${name}`);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+    
     if (!isMobile()) return;
     const view = $(`#${name}-view`);
     if (!view) return;
@@ -1197,6 +1337,44 @@
   window.addEventListener('resize', handleResize, { passive: true });
   window.addEventListener('load', handleResize, { once: true, passive: true });
 
+})();
+
+// ===== HOLO HERO FUNCTIONALITY =====
+(function(){
+  const hero = document.getElementById('hero');
+  const bg   = hero?.querySelector('.holo-bg');
+  const chips= hero? hero.querySelectorAll('.holo-chip') : [];
+
+  // 1) تفعيل الانبعاث المتتابع
+  window.addEventListener('load', ()=> hero?.classList.add('ready'), {once:true});
+
+  // 2) بارالاكس لطيف على الخلفية والحلقة
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  const parallax = (x,y)=>{
+    if(!bg) return;
+    const rx = clamp((x - innerWidth/2)/innerWidth, -0.5, 0.5);
+    const ry = clamp((y - innerHeight/2)/innerHeight,-0.5, 0.5);
+    bg.style.transform = `translate3d(${rx*16}px, ${ry*12}px, 0) scale(1.03)`;
+  };
+  window.addEventListener('pointermove', e=> parallax(e.clientX,e.clientY), {passive:true});
+
+  // 3) نداء الأقسام من الشرائح + إعلام نظام FLIP أننا انطلقنا من chip
+  document.addEventListener('pointerdown', (e)=>{
+    const chip = e.target.closest('.holo-chip');
+    if(chip){
+      // خزّن آخر عنصر كبداية حركة (يتوافق مع الكود السابق الذي يلتقط lastTile)
+      window.__lastHoloTile = chip;
+    }
+  }, true);
+
+  chips.forEach(ch=>{
+    ch.addEventListener('click', ()=>{
+      const s = ch.getAttribute('data-section');
+      // عرّف lastTile العالمي لكي يلتقطه سكربت FLIP (لو كنت تستخدم متغير lastTile)
+      window.__lastHoloTile = ch;
+      if(typeof openSection === 'function') openSection(s);
+    });
+  });
 })();
   </script>
 </body>
