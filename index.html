@@ -67,20 +67,270 @@
     /* Hero / Glitch */
     .hero{display:grid;grid-template-columns:1.1fr 2fr;gap:28px;align-items:center;padding:28px 0}
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    /* Mobile Grid View */
     @media (max-width:768px){
-      .wrap{padding:16px}
-      .nav{flex-direction:column;gap:12px}
-      .menu{justify-content:center;flex-wrap:wrap}
-      .title{font-size:28px}
-      .meta{justify-content:center}
-      .cards{grid-template-columns:1fr}
-      section{margin:24px 0;padding:16px}
+      .wrap{padding:8px}
+      .nav{display:none}
+      
+      /* Mobile Grid Container */
+      .mobile-grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 20px;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0b0f19, #1a1f2e);
+        position: relative;
+      }
+      
+      .mobile-grid::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(124,58,237,0.1), transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(34,211,238,0.1), transparent 50%);
+        pointer-events: none;
+        animation: backgroundShift 8s ease-in-out infinite;
+      }
+      
+      @keyframes backgroundShift{
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.1); }
+      }
+      
+      /* Grid Items */
+      .grid-item{
+        background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(34,211,238,0.05));
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .grid-item:hover{
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px rgba(124,58,237,0.3);
+        background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(34,211,238,0.1));
+      }
+      
+      .grid-item:active{
+        transform: translateY(-4px) scale(0.98);
+        transition: all 0.1s ease;
+      }
+      
+      .grid-item i{
+        font-size: 32px;
+        color: var(--accent);
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+      }
+      
+      .grid-item h3{
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+        color: var(--text);
+      }
+      
+      .grid-item p{
+        font-size: 12px;
+        color: var(--muted);
+        margin: 8px 0 0;
+        opacity: 0.8;
+      }
+      
+      /* Active Section View */
+      .section-view{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg);
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        padding: 0;
+      }
+      
+      .section-view.active{
+        transform: translateX(0);
+      }
+      
+      /* Section Header */
+      .section-header{
+        position: sticky;
+        top: 0;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        padding: 20px;
+        color: white;
+        z-index: 10;
+      }
+      
+      .section-header h2{
+        margin: 0;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      
+      .close-btn{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .close-btn:hover{
+        background: rgba(255,255,255,0.3);
+        transform: rotate(90deg);
+      }
+      
+      /* Section Content */
+      .section-content{
+        padding: 24px;
+        animation: slideInUp 0.6s ease-out;
+      }
+      
+      @keyframes slideInUp{
+        from{
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to{
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Hide desktop sections on mobile */
+      main section{
+        display: none;
+      }
+      
+      /* Hide FAB on mobile */
+      .fab-container{
+        display: none;
+      }
+      
+      .mobile-nav{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, rgba(11,15,25,0), rgba(11,15,25,0.95));
+        padding: 12px 20px 20px;
+        text-align: center;
+        z-index: 100;
+      }
+      
+      .back-to-grid{
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .back-to-grid:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+      }
+      
+      /* Profile Section Special Layout */
+      .mobile-profile{
+        grid-column: span 2;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        text-align: left;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .mobile-profile::before{
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+        animation: profilePulse 4s ease-in-out infinite;
+      }
+      
+      @keyframes profilePulse{
+        0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+        50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
+      }
+      
+      .mobile-profile .profile-info{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .mobile-profile img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid rgba(255,255,255,0.3);
+      }
+      
+      .mobile-profile h2{
+        font-size: 18px;
+        margin: 0;
+        font-weight: 800;
+      }
+      
+      .mobile-profile p{
+        font-size: 13px;
+        margin: 4px 0 0;
+        opacity: 0.9;
+      }
     }
+    
     @media (max-width:480px){
-      .title{font-size:24px}
-      .hero{gap:20px}
-      .brand{text-align:center}
-      .badges{justify-content:center}
+      .mobile-grid{
+        padding: 16px;
+        gap: 10px;
+      }
+      
+      .grid-item{
+        padding: 16px;
+      }
+      
+      .grid-item i{
+        font-size: 28px;
+      }
+      
+      .grid-item h3{
+        font-size: 14px;
+      }
     }
     .tagline{color:var(--muted);font-size:14px}
     .title{font-size:34px;font-weight:800;line-height:1.15;margin:6px 0 6px}
@@ -395,6 +645,280 @@
     </footer>
   </main>
   
+  <!-- Mobile Grid View -->
+  <div class="mobile-grid" id="mobile-grid">
+    <!-- Profile Section -->
+    <div class="grid-item mobile-profile" onclick="openSection('about')">
+      <div class="profile-info">
+        <img src="SMALL.png" alt="Tarek Abouzaid">
+        <div>
+          <h2>TAREK ABOUZAID</h2>
+          <p>CAFM ADMIN | Help Desk Specialist</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Experience -->
+    <div class="grid-item" onclick="openSection('experience')">
+      <i class="fas fa-briefcase"></i>
+      <h3>Experience</h3>
+      <p>Professional Journey</p>
+    </div>
+    
+    <!-- Skills -->
+    <div class="grid-item" onclick="openSection('skills')">
+      <i class="fas fa-tools"></i>
+      <h3>Skills</h3>
+      <p>Technical Expertise</p>
+    </div>
+    
+    <!-- Education -->
+    <div class="grid-item" onclick="openSection('education')">
+      <i class="fas fa-graduation-cap"></i>
+      <h3>Education</h3>
+      <p>Academic Background</p>
+    </div>
+    
+    <!-- Projects -->
+    <div class="grid-item" onclick="openSection('projects')">
+      <i class="fas fa-project-diagram"></i>
+      <h3>Projects</h3>
+      <p>Key Achievements</p>
+    </div>
+    
+    <!-- Contact -->
+    <div class="grid-item" onclick="openSection('contact')">
+      <i class="fas fa-address-card"></i>
+      <h3>Contact</h3>
+      <p>Get In Touch</p>
+    </div>
+  </div>
+  
+  <!-- Section Views -->
+  <div class="section-view" id="about-view">
+    <div class="section-header">
+      <h2><i class="fas fa-user"></i> About Me</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="BIG.png" alt="Tarek Abouzaid" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 16px;">
+        <h3>TAREK ABOUZAID</h3>
+        <p style="color: var(--muted);">Al Dhafra Region, Abu Dhabi</p>
+      </div>
+      
+      <p>Experienced CAFM Administrator and Help Desk Specialist with comprehensive expertise in CAFM/CMMS systems including SEHA FM (Auberon Technology), IBM Maximo, Archibus, Concept Evolution, and SAP PM.</p>
+      
+      <div class="target-roles" style="margin: 20px 0;">
+        <h4>Target Roles</h4>
+        <div class="roles-tags">
+          <span class="role-tag">CAFM Admin</span>
+          <span class="role-tag">CMMS Analyst</span>
+          <span class="role-tag">Help Desk (FM)</span>
+          <span class="role-tag">Facilities Data & Reporting</span>
+        </div>
+      </div>
+      
+      <div class="meta" style="justify-content: center; margin: 24px 0;">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://wa.me/971545527141" class="btn secondary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-view" id="experience-view">
+    <div class="section-header">
+      <h2><i class="fas fa-briefcase"></i> Experience</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <div class="timeline">
+        <div class="item">
+          <div class="when">Apr 2023 – Present</div>
+          <div class="role">CAFM / FM Administrator</div>
+          <div class="place">Al Mazroui Supplies - Liwa Hospital, Abu Dhabi</div>
+          <ul style="margin-left: 0; padding-left: 16px;">
+            <li>Manage CAFM/CMMS system (SEHA FM – Auberon Technology)</li>
+            <li>Execute work order lifecycle management</li>
+            <li>Monitor SLA governance and performance metrics</li>
+            <li>Develop Power BI dashboards for compliance monitoring</li>
+          </ul>
+        </div>
+        <div class="item">
+          <div class="when">Jan 2021 – Mar 2023</div>
+          <div class="role">Help Desk & CAFM Operator</div>
+          <div class="place">Liwa Hospital – SEHA</div>
+          <ul style="margin-left: 0; padding-left: 16px;">
+            <li>Operated SEHA CMMS system for service requests</li>
+            <li>Monitored work order lifecycle and SLA compliance</li>
+            <li>Provided first-line CMMS support and training</li>
+            <li>Prepared detailed management reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-view" id="skills-view">
+    <div class="section-header">
+      <h2><i class="fas fa-tools"></i> Technical Skills</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <div class="skill-category">
+        <h4><i class="fas fa-building"></i> Core CAFM</h4>
+        <div class="skills">
+          <span class="tag">Asset Register</span>
+          <span class="tag">PPM Scheduling</span>
+          <span class="tag">WO Lifecycle</span>
+          <span class="tag">SLA Governance</span>
+          <span class="tag">Escalation Matrix</span>
+          <span class="tag">Data Audit</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4><i class="fas fa-cogs"></i> Tools</h4>
+        <div class="skills">
+          <span class="tag">SEHA (Auberon)</span>
+          <span class="tag">IBM Maximo</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Excel (Power Query/Pivot)</span>
+          <span class="tag">SharePoint/Teams</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4><i class="fas fa-robot"></i> Automation/Dev</h4>
+        <div class="skills">
+          <span class="tag">Python</span>
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Web Scraping</span>
+          <span class="tag">API Integration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-view" id="education-view">
+    <div class="section-header">
+      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <h3>BSc in Computer & Management Information Systems</h3>
+      <p style="color: var(--muted); margin-bottom: 24px;">Higher Institute of Computers & IT, Tanta, Egypt | 2012</p>
+      
+      <div class="sep"></div>
+      
+      <h3><i class="fas fa-certificate"></i> Professional Certifications</h3>
+      <div class="timeline">
+        <div class="item">
+          <div class="when">2023</div>
+          <div class="role">CAFM/CMMS Systems Training</div>
+          <div class="place">SEHA FM – Auberon Technology</div>
+        </div>
+        <div class="item">
+          <div class="when">2022</div>
+          <div class="role">Preventive Maintenance & Facilities Operations</div>
+        </div>
+        <div class="item">
+          <div class="when">2021</div>
+          <div class="role">Python for Automation Projects</div>
+        </div>
+      </div>
+      
+      <div class="sep"></div>
+      
+      <h3><i class="fas fa-language"></i> Languages</h3>
+      <ul>
+        <li><strong>Arabic:</strong> Native</li>
+        <li><strong>English:</strong> Professional Proficiency</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="section-view" id="projects-view">
+    <div class="section-header">
+      <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <div class="card" style="margin-bottom: 20px;">
+        <h4><i class="fas fa-robot"></i> FixFlowBot (Telegram-based CMMS)</h4>
+        <p>Comprehensive reporting system integrated with Google Sheets & Drive. Features automated work order tracking and real-time notifications.</p>
+        <div class="project-tech">
+          <span class="tag">Python</span>
+          <span class="tag">Telegram Bot API</span>
+          <span class="tag">Google Sheets API</span>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h4><i class="fas fa-cogs"></i> CAFM Data Automation Suite</h4>
+        <p>Python scripts for automated data processing, SLA monitoring, and KPI report generation. Reduced manual work by 80%.</p>
+        <div class="project-tech">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Selenium</span>
+        </div>
+      </div>
+      
+      <div class="sep" style="margin: 24px 0;"></div>
+      
+      <h3><i class="fas fa-trophy"></i> Key Achievements</h3>
+      <div class="card" style="margin-bottom: 16px;">
+        <h4><i class="fas fa-chart-line"></i> SLA Compliance Improvement</h4>
+        <p>Improved SLA compliance from 85% to 98% through systematic process optimization.</p>
+      </div>
+      
+      <div class="card">
+        <h4><i class="fas fa-users"></i> Team Training</h4>
+        <p>Successfully trained 50+ technicians on CAFM system usage, reducing errors by 40%.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-view" id="contact-view">
+    <div class="section-header">
+      <h2><i class="fas fa-address-card"></i> Contact</h2>
+      <button class="close-btn" onclick="closeSection()">&times;</button>
+    </div>
+    <div class="section-content">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="SMALL.png" alt="Tarek Abouzaid" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent);">
+      </div>
+      
+      <div class="meta" style="flex-direction: column; gap: 16px; align-items: stretch;">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn" style="justify-content: center;">
+          <i class="fas fa-envelope"></i> Tarekabuzaidcafm@outlook.com
+        </a>
+        <a href="https://wa.me/971545527141" class="btn secondary" style="justify-content: center;">
+          <i class="fab fa-whatsapp"></i> +971 54 552 7141
+        </a>
+        <a href="https://linkedin.com/in/tarekabuozaid" class="btn secondary" style="justify-content: center;">
+          <i class="fab fa-linkedin"></i> LinkedIn Profile
+        </a>
+        <a href="pdf.pdf" class="btn" download style="justify-content: center;">
+          <i class="fas fa-download"></i> Download CV (PDF)
+        </a>
+      </div>
+      
+      <div class="sep" style="margin: 24px 0;"></div>
+      
+      <p><strong>Date of Birth:</strong> 13 March 1991</p>
+      <p><strong>Nationality:</strong> Egyptian</p>
+      <p><strong>Location:</strong> Al Dhafra Region, Abu Dhabi, UAE</p>
+    </div>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <button class="back-to-grid" onclick="backToGrid()">
+      <i class="fas fa-th"></i> Back to Menu
+    </button>
+  </div>
+  
   <!-- Floating Action Button -->
   <div class="fab-container">
     <div class="fab-options">
@@ -541,6 +1065,105 @@
     // Start matrix effect
     createMatrixRain();
     setInterval(createMatrixRain, 5000);
+    
+    // Mobile Grid Navigation
+    let currentSection = null;
+    
+    function openSection(sectionName) {
+      if (window.innerWidth <= 768) {
+        currentSection = sectionName;
+        const sectionView = document.getElementById(sectionName + '-view');
+        const mobileGrid = document.getElementById('mobile-grid');
+        
+        if (sectionView) {
+          // Hide grid and show section
+          mobileGrid.style.display = 'none';
+          sectionView.classList.add('active');
+          
+          // Add entrance animation
+          setTimeout(() => {
+            const content = sectionView.querySelector('.section-content');
+            if (content) {
+              content.style.animation = 'slideInUp 0.6s ease-out';
+            }
+          }, 100);
+          
+          // Prevent body scroll
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    }
+    
+    function closeSection() {
+      if (currentSection) {
+        const sectionView = document.getElementById(currentSection + '-view');
+        if (sectionView) {
+          sectionView.classList.remove('active');
+          
+          setTimeout(() => {
+            const mobileGrid = document.getElementById('mobile-grid');
+            mobileGrid.style.display = 'grid';
+            document.body.style.overflow = 'auto';
+          }, 500);
+        }
+        currentSection = null;
+      }
+    }
+    
+    function backToGrid() {
+      closeSection();
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        // Desktop view
+        const mobileGrid = document.getElementById('mobile-grid');
+        const sectionViews = document.querySelectorAll('.section-view');
+        
+        mobileGrid.style.display = 'none';
+        sectionViews.forEach(view => view.classList.remove('active'));
+        document.body.style.overflow = 'auto';
+        currentSection = null;
+      } else {
+        // Mobile view
+        const mobileGrid = document.getElementById('mobile-grid');
+        mobileGrid.style.display = 'grid';
+      }
+    });
+    
+    // Initialize mobile view on load
+    window.addEventListener('load', () => {
+      if (window.innerWidth <= 768) {
+        const mobileGrid = document.getElementById('mobile-grid');
+        mobileGrid.style.display = 'grid';
+      } else {
+        const mobileGrid = document.getElementById('mobile-grid');
+        mobileGrid.style.display = 'none';
+      }
+    });
+    
+    // Handle back button on mobile
+    window.addEventListener('popstate', () => {
+      if (currentSection && window.innerWidth <= 768) {
+        closeSection();
+      }
+    });
+    
+    // Add smooth grid item animations on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const gridItems = document.querySelectorAll('.grid-item');
+      gridItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+          item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    });
   </script>
 </body>
 </html>
