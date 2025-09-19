@@ -559,6 +559,16 @@
     }
 
     @media print{.top,.meta .btn,.menu,.fab-container{display:none}body{background:#fff;color:#111}section{background:#fff;border-color:#e5e7eb}}
+
+    /* FLIP ghost (العنصر الطائر بين المصدر والوجهة) */
+    .flip-ghost{
+      position:fixed; left:0; top:0; width:0; height:0; z-index:9999;
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(124,58,237,.18), rgba(34,211,238,.16));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 14px 50px rgba(0,0,0,.35);
+      pointer-events:none;
+    }
   </style>
 </head>
 <body>
@@ -1376,6 +1386,115 @@
     });
   });
 })();
+  </script>
+  <script>
+  (function(){
+    const $ = (s, c=document) => c.querySelector(s);
+    const isMobile = () => innerWidth <= 768;
+
+    // التقط آخر عنصر ضغط عليه المستخدم (هولو-Chip أو كارت في الشبكة)
+    document.addEventListener('pointerdown', (e)=>{
+      const invoker = e.target.closest('.holo-chip, .mobile-grid .grid-item');
+      if (invoker) window.__lastInvoker = invoker;
+    }, true);
+
+    function rectOf(el){
+      const r = el.getBoundingClientRect();
+      const br = parseFloat(getComputedStyle(el).borderRadius) || 14;
+      return {x:r.left, y:r.top, w:r.width, h:r.height, br};
+    }
+
+    function flip(fromEl, toEl){
+      if(!fromEl || !toEl) return;
+      const f = rectOf(fromEl), t = rectOf(toEl);
+      const ghost = document.createElement('div');
+      ghost.className = 'flip-ghost';
+      Object.assign(ghost.style, {
+        left: f.x+'px', top: f.y+'px', width: f.w+'px', height: f.h+'px', borderRadius: f.br+'px'
+      });
+      document.body.appendChild(ghost);
+
+      const anim = ghost.animate([
+        { left:f.x+'px', top:f.y+'px', width:f.w+'px', height:f.h+'px', borderRadius:f.br+'px', opacity:.95 },
+        { left:t.x+'px', top:t.y+'px', width:t.w+'px', height:t.h+'px', borderRadius:t.br+'px', opacity:1 }
+      ], { duration:520, easing:'cubic-bezier(.22,.61,.36,1)' });
+
+      anim.onfinish = ()=> ghost.remove();
+    }
+
+    // نحفظ النسخ الأصلية ثم نُعيد تعريف open/close بإضافة FLIP
+    const _open = window.openSection;
+    const _close = window.closeSection;
+
+    // فتح قسم
+    window.openSection = function(name){
+      if (!isMobile()){
+        // ديسكتوب: انبعاث من الهولو-Chip إلى سكشن الديسكتوب
+        const from = window.__lastInvoker || document.querySelector(`.holo-chip[data-section="${name}"]`);
+        const target = document.getElementById(name);
+        if (from && target){
+          const anchor = target.querySelector('h3, .title, .tagline') || target;
+          flip(from, anchor);
+          // ابدأ سكرول بعد نص ثانية ليتزامن مع الحركة
+          setTimeout(()=> target.scrollIntoView({behavior:'smooth', block:'start'}), 260);
+        }else if(target){
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+        window.__lastInvoker = null;
+        return;
+      }
+
+      // موبايل: افتح العرض الكامل مع حركة من الكارت إلى ترويسة الواجهة
+      const view = document.getElementById(`${name}-view`);
+      if (!view) return;
+      const header = view.querySelector('.section-header');
+
+      const from = window.__lastInvoker || document.querySelector(`.mobile-grid .grid-item[onclick*="openSection('${name}')"]`);
+      if (from) flip(from, header);
+
+      // نفّذ المنطق الأصلي
+      _open ? _open(name) : (function(){
+        const grid = document.getElementById('mobile-grid');
+        if (grid) grid.style.display = 'none';
+        view.classList.add('active');
+        view.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        history.pushState({section:name}, '', `#${name}`);
+        window.__currentSection = name;
+      })();
+
+      window.__lastInvoker = null;
+    };
+
+    // إغلاق/رجوع
+    window.closeSection = function(){
+      const name = (window.__currentSection) || (typeof currentSection !== 'undefined' ? currentSection : null);
+      const view = name && document.getElementById(`${name}-view`);
+      if (isMobile() && view){
+        const header = view.querySelector('.section-header');
+        const to = document.querySelector(`.mobile-grid .grid-item[onclick*="openSection('${name}')"]`);
+        if (to) flip(header, to);
+      }else{
+        // ديسكتوب: ارجع إلى الشريحة الهولوجرامية إن وُجدت
+        const openHeader = document.querySelector('.section-view.active .section-header'); // احتياطي
+        const to = name ? document.querySelector(`.holo-chip[data-section="${name}"]`) : null;
+        if (openHeader && to) flip(openHeader, to);
+      }
+
+      // نفّذ المنطق الأصلي
+      if (_close) _close(); else {
+        if (view) {
+          view.classList.remove('active');
+          view.setAttribute('aria-hidden','true');
+        }
+        const grid = document.getElementById('mobile-grid');
+        if (grid) grid.style.display = 'grid';
+        document.body.style.overflow = 'auto';
+        history.pushState({}, '', location.pathname);
+        window.__currentSection = null;
+      }
+    };
+  })();
   </script>
 </body>
 </html>
