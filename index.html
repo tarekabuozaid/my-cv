@@ -1508,7 +1508,15 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
   })();
 
   // ===== إدارة عرض الأقسام على الموبايل (تاريخ + تركيز) =====
-  const mobileState = { current:null, lastFocus:null };
+  const mobileState = { current:null, lastFocus:null, isScrolling:false };
+  
+  // منع الإغلاق العرضي للأقسام
+  function preventAccidentalClose(e) {
+    if (mobileState.current && isMobile() && mobileState.isScrolling) {
+      // منع انتشار الحدث الذي قد يتسبب في إغلاق القسم
+      e.stopPropagation();
+    }
+  }
 
   function openSectionMobile(name){
     // مهم: تأكد من أننا على الموبايل قبل فتح أقسام الموبايل
@@ -1526,6 +1534,30 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     view.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
 
+    // منع التمرير من إغلاق القسم عن طريق تثبيت المحتوى
+    const sectionContent = view.querySelector('.section-content');
+    if (sectionContent) {
+      // إضافة مستمعي أحداث للتعامل مع التمرير
+      const handleTouchStart = () => { mobileState.isScrolling = true; };
+      const handleTouchMove = () => { mobileState.isScrolling = true; };
+      const handleTouchEnd = () => { 
+        // ضمان عدم إغلاق القسم مباشرة بعد التمرير
+        setTimeout(() => { mobileState.isScrolling = false; }, 300); 
+      };
+
+      sectionContent.addEventListener('touchstart', handleTouchStart, { passive: true });
+      sectionContent.addEventListener('touchmove', handleTouchMove, { passive: true });
+      sectionContent.addEventListener('touchend', handleTouchEnd, { passive: true });
+      
+      // تخزين المستمعين في كائن الحالة لإزالتهم لاحقًا
+      mobileState.eventHandlers = {
+        touchstart: handleTouchStart,
+        touchmove: handleTouchMove,
+        touchend: handleTouchEnd,
+        element: sectionContent
+      };
+    }
+
     const header = view.querySelector('.section-header h2');
     if (header){
       header.setAttribute('tabindex','-1');
@@ -1537,9 +1569,21 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
   }
 
   function closeSectionMobile(){
+    // منع الإغلاق أثناء التمرير النشط
+    if (mobileState.isScrolling) return false;
+    
     if (!mobileState.current) return false;
     const view = $(`#${mobileState.current}-view`);
     if (view){
+      // إزالة مستمعي أحداث التمرير إذا كانوا موجودين
+      if (mobileState.eventHandlers && mobileState.eventHandlers.element) {
+        const eh = mobileState.eventHandlers;
+        eh.element.removeEventListener('touchstart', eh.touchstart);
+        eh.element.removeEventListener('touchmove', eh.touchmove);
+        eh.element.removeEventListener('touchend', eh.touchend);
+        mobileState.eventHandlers = null;
+      }
+
       view.classList.remove('active');
       view.setAttribute('aria-hidden','true');
     }
@@ -1559,6 +1603,11 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
   window.openSection = openSectionMobile;
   window.closeSection = closeSectionMobile;
   window.backToGrid = closeSectionMobile;
+
+  // إضافة مستمعي أحداث لمنع الإغلاق العرضي للقسم عند التمرير
+  document.addEventListener('scroll', preventAccidentalClose, { passive: true });
+  document.addEventListener('touchmove', preventAccidentalClose, { passive: true });
+  document.addEventListener('wheel', preventAccidentalClose, { passive: true });
 
   window.addEventListener('popstate', ()=>{
     if (isMobile() && mobileState.current){
