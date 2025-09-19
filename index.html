@@ -38,6 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- الأيقونات -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErz4dVBJNDgBmE8Vz5tKaJJGwdN0GyKnRJhkQpqVgKgU/JbJk+XvYoJdVy" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- تحميل مسبق للصورة الرئيسية -->
@@ -430,25 +431,27 @@
 
   /* أيقونات موحدة لكل أجزاء الصفحة (footer, meta, mobile) | توحيد مظهر الأيقونات */
   .icon-btn i, .footer-icons .icon-btn i, .meta .icon-btn i, .meta a i {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    font-size: 22px;
-    color: var(--accent);
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 22px !important;
+    color: var(--accent) !important;
     background: none !important;
-    vertical-align: middle;
+    vertical-align: middle !important;
   }
   .icon-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: none;
-    padding: 0;
-    margin: 0 4px;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: background 0.2s, box-shadow 0.2s;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 4px !important;
+    cursor: pointer !important;
+    border-radius: 12px !important;
+    transition: background 0.2s, box-shadow 0.2s !important;
+    width: 42px !important;
+    height: 42px !important;
   }
   .icon-btn:focus {
     outline: 2px solid var(--accent);
@@ -467,6 +470,13 @@
   @media (max-width:768px) {
     footer .footer-icons {
       display: flex;
+    }
+    
+    .meta-icons .icon-btn i {
+      display: inline-block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: var(--accent) !important;
     }
     footer .footer-text {
       display: none;
