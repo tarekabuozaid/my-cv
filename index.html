@@ -233,6 +233,21 @@
     section.reveal{opacity:1;transform:translateY(0)}
     section h3{margin:0 0 10px;font-size:18px;font-weight:800;display:flex;align-items:center;gap:8px}
     .sep{height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:14px 0}
+    
+    /* إظهار/إخفاء الأقسام حسب نوع الجهاز */
+    @media (max-width:768px){
+      /* إخفاء أقسام المحتوى العادية على الموبايل (باستثناء الهولوجرام) */
+      section:not(.holo-hero){
+        display: none !important;
+      }
+    }
+    
+    @media (min-width:769px){
+      /* إخفاء عروض الأقسام الخاصة بالموبايل على سطح المكتب */
+      .section-view{
+        display: none !important;
+      }
+    }
   /* ===== المخطط الزمني ===== | تنسيق المخطط الزمني للخبرات */
     .timeline{position:relative;margin-left:10px}
     .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
@@ -1310,7 +1325,17 @@
 // ===== دوال المساعدة الموحدة (مرة واحدة فقط) =====
 const $ = (sel, ctx=document) => ctx.querySelector(sel); // تحديد عنصر واحد
 const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel)); // تحديد عدة عناصر
-const isMobile = () => window.innerWidth <= 768; // كشف الموبايل
+const isMobile = () => {
+  // كشف الموبايل بناءً على عرض الشاشة وخصائص الجهاز
+  return window.innerWidth <= 768 || 
+         (navigator.userAgent.match(/Android/i) || 
+          navigator.userAgent.match(/webOS/i) || 
+          navigator.userAgent.match(/iPhone/i) || 
+          navigator.userAgent.match(/iPad/i) || 
+          navigator.userAgent.match(/iPod/i) || 
+          navigator.userAgent.match(/BlackBerry/i) || 
+          navigator.userAgent.match(/Windows Phone/i));
+};
 // تعريف متغير عام للتفضيلات
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
@@ -1486,7 +1511,9 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
   const mobileState = { current:null, lastFocus:null };
 
   function openSectionMobile(name){
+    // مهم: تأكد من أننا على الموبايل قبل فتح أقسام الموبايل
     if (!isMobile()) return false;
+    
     const view = $(`#${name}-view`);
     if (!view) return false;
 
@@ -1618,10 +1645,22 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
       chip.addEventListener('click', function() {
         const section = this.getAttribute('data-section');
         if (section) {
-          // انتقل إلى القسم المناسب
-          const targetSection = document.getElementById(section);
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+          if (isMobile()) {
+            // فتح عرض القسم على الموبايل فقط
+            openSectionMobile(section);
+          } else {
+            // على سطح المكتب، انتقل إلى القسم المناسب وتأكد من إخفاء section-view
+            const targetSection = document.getElementById(section);
+            if (targetSection) {
+              // إخفاء أي section-view نشط على سطح المكتب (للتأكد)
+              document.querySelectorAll('.section-view.active').forEach(view => {
+                view.classList.remove('active');
+                view.setAttribute('aria-hidden', 'true');
+              });
+              
+              // التمرير إلى القسم المطلوب
+              targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
           }
         }
       });
