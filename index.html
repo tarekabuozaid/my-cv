@@ -576,7 +576,11 @@
   .matrix-bg{ display:none !important; }
 
   /* أيقونات <img> داخل .holo-chip و .icon-btn: ثبّت الحجم لأن SVG ما يتلوّن زي <i> */
-  .menu-icon, .social-icon{ width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  .menu-icon, .social-icon, .hint-icon { width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  
+  /* ضبط حجم أيقونات Font Awesome */
+  .holo-chip i { font-size:18px; color: #22d3ee; width:18px; height:18px; }
+  .holo-hint i { font-size:18px; width:18px; height:18px; }
   
   /* ضبط حجم أيقونات Font Awesome على الموبايل */
   @media (max-width:768px){
@@ -632,33 +636,33 @@
 
       <!-- الأزرار الدائرية المنبعثة من الصورة -->
       <button class="holo-chip" data-section="about"    style="--a:0deg">
-        <img src="icons/user.svg" alt="User icon" class="menu-icon">
+        <i class="fas fa-user"></i>
         <span>About</span>
       </button>
       <button class="holo-chip" data-section="experience" style="--a:60deg">
-        <img src="icons/briefcase.svg" alt="Briefcase icon" class="menu-icon">
+        <i class="fas fa-briefcase"></i>
         <span>Resume</span>
       </button>
       <button class="holo-chip" data-section="skills"   style="--a:120deg">
-        <img src="icons/tools.svg" alt="Tools icon" class="menu-icon">
+        <i class="fas fa-tools"></i>
         <span>Skills</span>
       </button>
       <button class="holo-chip" data-section="education"      style="--a:180deg">
-        <img src="icons/graduation-cap.svg" alt="Graduation cap icon" class="menu-icon">
+        <i class="fas fa-graduation-cap"></i>
         <span>Education</span>
       </button>
       <button class="holo-chip" data-section="projects" style="--a:240deg">
-        <img src="icons/diagram-project.svg" alt="Projects icon" class="menu-icon">
+        <i class="fas fa-diagram-project"></i>
         <span>Projects</span>
       </button>
       <button class="holo-chip" data-section="contact"  style="--a:300deg">
-        <img src="icons/envelope.svg" alt="Envelope icon" class="menu-icon">
+        <i class="fas fa-envelope"></i>
         <span>Contact</span>
       </button>
 
       <!-- تلميح توجيهي أعلى الهولوجرام -->
       <div class="holo-hint">
-        <img src="icons/hand-pointer.svg" alt="Click here" class="hint-icon" style="color: var(--accent-2);">
+        <i class="fas fa-hand-pointer" style="color: var(--accent-2);"></i>
         Tap the chips to navigate between sections
       </div>
     </section>
