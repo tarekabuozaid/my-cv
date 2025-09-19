@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tarek Abouzaid — CAFM Admin & Help Desk Specialist | CV</title>
 
   <!-- SEO Core -->
@@ -580,6 +580,34 @@
       z-index:3; pointer-events:none; white-space: nowrap;
     }
     @media (max-width:420px){ .holo-hint{ font-size:12px; top:10px; } }
+
+    /* === Mobile headline under the holo hero === */
+    .mobile-headline{display:none;}
+    @media (max-width:768px){
+      .mobile-headline{ display:block; padding:8px 12px 2px; text-align:center; }
+      .mobile-headline .title{ font-size:22px; line-height:1.25; margin:4px auto 6px; letter-spacing:.3px; }
+      .meta-icons{ display:flex; justify-content:center; gap:12px; margin:6px 0 10px; }
+      .icon-btn{
+        display:inline-flex; align-items:center; justify-content:center;
+        width:42px; height:42px; border-radius:12px; border:1px solid var(--line);
+        background:linear-gradient(180deg, rgba(17,24,39,.6), rgba(17,24,39,.35));
+        box-shadow:0 6px 20px rgba(124,58,237,.15);
+        transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      }
+      .icon-btn i{ font-size:18px; color:var(--text); }
+      .icon-btn:hover{ transform:translateY(-2px); border-color:var(--accent); box-shadow:0 10px 26px rgba(124,58,237,.25); }
+      /* Comfortable space below holo on mobile */
+      .holo-hero{ margin-bottom:6px; min-height:360px; }
+      .holo-hint{ top:8px; }
+      .holo-chip{ font-size:14px; }
+    }
+
+    /* Footer icons on mobile */
+    footer .footer-icons{ display:none; gap:12px; justify-content:center; margin-bottom:10px; }
+    @media (max-width:768px){
+      footer .footer-icons{ display:flex; }
+      footer .footer-text{ display:none; }
+    }
   </style>
 </head>
 <body>
@@ -646,6 +674,31 @@
         Tap the chips to navigate between sections
       </div>
     </section>
+
+    <!-- === Mobile headline + quick icons (visible on <=768px) === -->
+    <div class="mobile-headline" aria-hidden="false">
+      <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist |">
+        <span id="typewriterMobile"></span><span class="cursor">|</span>
+      </h1>
+
+      <div class="meta-icons" role="navigation" aria-label="Quick actions">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="icon-btn" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/tarekabuozaid" target="_blank" class="icon-btn" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" class="icon-btn" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="pdf.pdf" download class="icon-btn" aria-label="Download CV (PDF)">
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+    </div>
 
     <!-- About -->
     <section id="about">
@@ -853,11 +906,21 @@
       </div>
     </section>
     <footer>
-      <a href="https://tarekabuozaid.github.io/my-cv/">tarekabuozaid.github.io/my-cv</a> • 
-      <a href="mailto:Tarekabuzaidcafm@outlook.com">Tarekabuzaidcafm@outlook.com</a> • 
-      <a href="https://linkedin.com/in/tarekabuozaid">linkedin.com/in/tarekabuozaid</a> • 
-      <a href="https://github.com/tarekabuozaid">github.com/tarekabuozaid</a> • 
-      Last updated: September 2025
+      <div class="footer-icons">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" class="icon-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/tarekabuozaid" target="_blank" class="icon-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" class="icon-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="pdf.pdf" class="icon-btn" download aria-label="Download CV (PDF)"><i class="fas fa-download"></i></a>
+      </div>
+
+      <div class="footer-text">
+        <a href="https://tarekabuozaid.github.io/my-cv/">tarekabuozaid.github.io/my-cv</a> • 
+        <a href="mailto:Tarekabuzaidcafm@outlook.com">Tarekabuzaidcafm@outlook.com</a> • 
+        <a href="https://linkedin.com/in/tarekabuozaid">linkedin.com/in/tarekabuozaid</a> • 
+        <a href="https://github.com/tarekabuozaid">github.com/tarekabuozaid</a> • 
+        Last updated: September 2025
+      </div>
     </footer>
   </main>
   
@@ -1162,18 +1225,21 @@
     sections.forEach(s=>io.observe(s));
   }
 
-  // ===== Typewriter (optimized) =====
-  const typeEl = $('#typewriter');
+  // ===== Typewriter (desktop + mobile) =====
+  const typeTargets = ['#typewriter', '#typewriterMobile']
+    .map(sel => $(sel))
+    .filter(Boolean);
   const typeText = 'CAFM ADMIN | Help Desk & Facilities Technology Specialist';
-  if (typeEl){
+  if (typeTargets.length){
     let i = 0;
-    const tick = () => {
+    const speed = 16; // ~60fps
+    (function tick(){
       if (i < typeText.length){
-        typeEl.textContent += typeText.charAt(i++);
-        setTimeout(tick, 16); // ~60fps
+        const ch = typeText.charAt(i++);
+        typeTargets.forEach(el => el.textContent += ch);
+        setTimeout(tick, speed);
       }
-    };
-    setTimeout(tick, 300);
+    })();
   }
 
   // ===== Scroll Reveal (IntersectionObserver) =====
