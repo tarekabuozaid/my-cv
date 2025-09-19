@@ -538,6 +538,46 @@
       }
     }
   </style>
+  
+  <!-- إضافة نمط لتهدئة الهولو وتفكيك الزحمة البصرية -->
+  <style>
+  /* — Clean Hero — */
+  .holo-hero{min-height:260px;margin-top:14px;}
+  .holo-hero .holo-bg{
+    filter: brightness(.68) saturate(1.05) contrast(1.05);
+  }
+  .holo-hero .holo-overlay{
+    background:
+      radial-gradient(120% 120% at 25% 40%, rgba(8,12,20,.75) 0%, rgba(8,12,20,.92) 55%, rgba(8,12,20,.92) 100%),
+      linear-gradient(115deg, rgba(34,211,238,.18), rgba(124,58,237,.12));
+  }
+
+  /* قلّل البريق والظلّ للـchips وخليها أصغر */
+  .holo-chip{
+    padding:8px 10px; border-radius:12px;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    background: linear-gradient(180deg, rgba(34,211,238,.12), rgba(124,58,237,.10));
+  }
+  .holo-chip:hover{
+    box-shadow: 0 10px 26px rgba(34,211,238,.22);
+  }
+
+  /* قلّل العدد الظاهر على الديسكتوب: أخفي 3 من 6 (لسه تقدر تفتح الباقي من القائمة) */
+  @media (min-width: 901px){
+    .holo-chip[style*="--a:120deg"],
+    .holo-chip[style*="--a:240deg"],
+    .holo-chip[style*="--a:300deg"]{ display:none; }
+  }
+
+  /* امنع أي تأثير hover ترجيع-سحب يزيد العك مع الـtilt */
+  .card:hover{ transform: none; }
+
+  /* طفي الـMatrix على كل الشاشات (مش بس الموبايل) */
+  .matrix-bg{ display:none !important; }
+
+  /* أيقونات <img> داخل .holo-chip و .icon-btn: ثبّت الحجم لأن SVG ما يتلوّن زي <i> */
+  .menu-icon, .social-icon{ width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  </style>
 </head>
 <body>
   <!-- خلفية الماتريكس -->
@@ -1561,6 +1601,9 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     const bar = document.createElement('div');
     bar.id = 'scrollbar';
     document.body.appendChild(bar);
+
+    // أوقف الماتريكس نهائياً (حتى لو اتغيرت حالة reduce/match)
+    const m = document.getElementById('matrix-bg'); if (m) m.style.display = 'none';
 
     /* شريط التقدم أثناء التمرير */
     let ticking = false;
