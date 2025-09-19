@@ -125,90 +125,10 @@
     /* Hero / Glitch */
     .hero{display:grid;grid-template-columns:1.1fr 2fr;gap:28px;align-items:center;padding:28px 0}
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    /* Mobile Grid View */
+    /* Mobile Section View base */
     @media (max-width:768px){
       .wrap{padding:8px}
       .nav{display:none}
-      
-      /* Mobile Grid Container */
-      .mobile-grid{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 20px;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #0b0f19, #1a1f2e);
-        position: relative;
-      }
-      
-      .mobile-grid::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-          radial-gradient(circle at 20% 20%, rgba(124,58,237,0.1), transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(34,211,238,0.1), transparent 50%);
-        pointer-events: none;
-        animation: backgroundShift 8s ease-in-out infinite;
-      }
-      
-      @keyframes backgroundShift{
-        0%, 100% { opacity: 0.5; transform: scale(1); }
-        50% { opacity: 0.8; transform: scale(1.1); }
-      }
-      
-      /* Grid Items */
-      .grid-item{
-        background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(34,211,238,0.05));
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .grid-item:hover{
-        transform: translateY(-8px) scale(1.02);
-        border-color: var(--accent);
-        box-shadow: 0 20px 40px rgba(124,58,237,0.3);
-        background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(34,211,238,0.1));
-      }
-      
-      .grid-item:active{
-        transform: translateY(-4px) scale(0.98);
-        transition: all 0.1s ease;
-      }
-      
-      .grid-item i{
-        font-size: 32px;
-        color: var(--accent);
-        margin-bottom: 12px;
-        transition: all 0.3s ease;
-      }
-      
-      .grid-item h3{
-        font-size: 16px;
-        font-weight: 700;
-        margin: 0;
-        color: var(--text);
-      }
-      
-      .grid-item p{
-        font-size: 12px;
-        color: var(--muted);
-        margin: 8px 0 0;
-        opacity: 0.8;
-      }
       
       /* Active Section View */
       .section-view{
@@ -287,109 +207,8 @@
         display: none;
       }
       
-      /* Hide FAB on mobile */
-      .fab-container{
-        display: none;
-      }
-      
-      .mobile-nav{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(180deg, rgba(11,15,25,0), rgba(11,15,25,0.95));
-        padding: 12px 20px 20px;
-        text-align: center;
-        z-index: 100;
-      }
-      
-      .back-to-grid{
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        border: none;
-        padding: 12px 24px;
-        border-radius: 25px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-      
-      .back-to-grid:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(124,58,237,0.4);
-      }
-      
-      /* Profile Section Special Layout */
-      .mobile-profile{
-        grid-column: span 2;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: white;
-        text-align: left;
-        padding: 24px;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .mobile-profile::before{
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
-        animation: profilePulse 4s ease-in-out infinite;
-      }
-      
-      @keyframes profilePulse{
-        0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
-        50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
-      }
-      
-      .mobile-profile .profile-info{
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      
-      .mobile-profile img{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: 3px solid rgba(255,255,255,0.3);
-      }
-      
-      .mobile-profile h2{
-        font-size: 18px;
-        margin: 0;
-        font-weight: 800;
-      }
-      
-      .mobile-profile p{
-        font-size: 13px;
-        margin: 4px 0 0;
-        opacity: 0.9;
-      }
     }
     
-    @media (max-width:480px){
-      .mobile-grid{
-        padding: 16px;
-        gap: 10px;
-      }
-      
-      .grid-item{
-        padding: 16px;
-      }
-      
-      .grid-item i{
-        font-size: 28px;
-      }
-      
-      .grid-item h3{
-        font-size: 14px;
-      }
-    }
     .tagline{color:var(--muted);font-size:14px}
     .title{font-size:34px;font-weight:800;line-height:1.15;margin:6px 0 6px}
     .glitch{position:relative;display:inline-block}
@@ -924,55 +743,6 @@
     </footer>
   </main>
   
-  <!-- Mobile Grid View -->
-  <div class="mobile-grid" id="mobile-grid">
-    <!-- Profile Section -->
-    <div class="grid-item mobile-profile" role="button" tabindex="0" aria-label="View About Section" onclick="openSection('about')">
-      <div class="profile-info">
-        <img src="SMALL.png" alt="Tarek Abouzaid" width="200" height="200" loading="lazy">
-        <div>
-          <h2>TAREK ABOUZAID</h2>
-          <p>CAFM ADMIN | Help Desk Specialist</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Experience -->
-    <div class="grid-item" role="button" tabindex="0" aria-label="View Experience Section" onclick="openSection('experience')">
-      <i class="fas fa-briefcase"></i>
-      <h3>Experience</h3>
-      <p>Professional Journey</p>
-    </div>
-    
-    <!-- Skills -->
-    <div class="grid-item" role="button" tabindex="0" aria-label="View Skills Section" onclick="openSection('skills')">
-      <i class="fas fa-tools"></i>
-      <h3>Skills</h3>
-      <p>Technical Expertise</p>
-    </div>
-    
-    <!-- Education -->
-    <div class="grid-item" role="button" tabindex="0" aria-label="View Education Section" onclick="openSection('education')">
-      <i class="fas fa-graduation-cap"></i>
-      <h3>Education</h3>
-      <p>Academic Background</p>
-    </div>
-    
-    <!-- Projects -->
-    <div class="grid-item" role="button" tabindex="0" aria-label="View Projects Section" onclick="openSection('projects')">
-      <i class="fas fa-project-diagram"></i>
-      <h3>Projects</h3>
-      <p>Key Achievements</p>
-    </div>
-    
-    <!-- Contact -->
-    <div class="grid-item" role="button" tabindex="0" aria-label="View Contact Section" onclick="openSection('contact')">
-      <i class="fas fa-address-card"></i>
-      <h3>Contact</h3>
-      <p>Get In Touch</p>
-    </div>
-  </div>
-  
   <!-- Section Views -->
   <div class="section-view" id="about-view" aria-hidden="true">
     <div class="section-header">
@@ -1193,8 +963,7 @@
     </div>
   </div>
   
-  <!-- Mobile Navigation -->
-  <div class="mobile-nav"></div>
+  
   
   <!-- Floating Action Button -->
   
@@ -1253,7 +1022,7 @@
     revealEls.forEach(el=>ro.observe(el));
   }
 
-  // FAB removed: hologram is the sole navigation focus.
+  // Hologram is the sole navigation focus.
 
   // ===== Cursor Trail (RAF single loop + disable on reduce/mobile) =====
   const trailEnabled = !prefersReduced && !isMobile();
@@ -1324,7 +1093,6 @@
 
   // ===== Mobile Section Views (history + aria) =====
   let currentSection = null;
-  const mobileGrid = $('#mobile-grid');
 
   window.openSection = function(name){
     // On mobile: open section view; on desktop: logic handled by FLIP wrapper
@@ -1333,7 +1101,6 @@
     if (!view) return;
     currentSection = name;
 
-    if (mobileGrid) mobileGrid.style.display = 'none'; // grid is hidden globally but keep safety
     view.classList.add('active');
     view.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1347,7 +1114,6 @@
       view.classList.remove('active');
       view.setAttribute('aria-hidden', 'true');
     }
-    if (mobileGrid) mobileGrid.style.display = 'grid';
     document.body.style.overflow = 'auto';
     history.pushState({}, '', location.pathname);
     currentSection = null;
@@ -1381,12 +1147,11 @@
   // ===== Resize handling (unified) =====
   const handleResize = ()=>{
     if (isMobile()){
-      if (mobileGrid) mobileGrid.style.display = 'none';
       $$('.section-view').forEach(v=>v.classList.remove('active'));
       document.body.style.overflow = 'auto';
       currentSection = null;
     } else {
-      if (mobileGrid) mobileGrid.style.display = 'none';
+      // No mobile grid to toggle; keep default state
     }
   };
   window.addEventListener('resize', handleResize, { passive: true });
@@ -1437,9 +1202,9 @@
     const $ = (s, c=document) => c.querySelector(s);
     const isMobile = () => innerWidth <= 768;
 
-    // التقط آخر عنصر ضغط عليه المستخدم (هولو-Chip أو كارت في الشبكة)
+    // التقط آخر عنصر ضغط عليه المستخدم (هولو-Chip)
     document.addEventListener('pointerdown', (e)=>{
-      const invoker = e.target.closest('.holo-chip, .mobile-grid .grid-item');
+      const invoker = e.target.closest('.holo-chip');
       if (invoker) window.__lastInvoker = invoker;
     }, true);
 
