@@ -1,0 +1,15 @@
+# Archive folder - local only
+archive/
+
+# Backup files
+*.backup
+*_backup*
+*.bak
+
+# Temporary files
+*.tmp
+*.temp
+
+# Development files
+.vscode/
+*.log

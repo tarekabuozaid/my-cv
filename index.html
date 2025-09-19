@@ -115,14 +115,7 @@
     .skills{display:flex;flex-wrap:wrap;gap:10px}
     .tag{padding:6px 10px;border:1px dashed var(--accent);border-radius:999px;font-size:13px;color:#cbd5e1;transition:all 0.2s ease}
     .tag:hover{background:rgba(124,58,237,0.1);border-color:var(--accent-2);color:#fff;transform:scale(1.05)}
-    /* Skills Progress */
-    .skills-progress{margin-bottom:20px}
-    .skill-item{margin-bottom:15px}
-    .skill-name{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--text)}
-    .skill-bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
-    .skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:4px;width:0;transition:width 2s ease-in-out}
-    .skill-fill.animate{animation:fillBar 2s ease-in-out forwards}
-    @keyframes fillBar{from{width:0}}
+
     /* Cursor Trail */
     .cursor-trail{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;opacity:0.8;transition:opacity 0.3s ease}
     .cursor-trail::before{content:'';position:absolute;width:20px;height:20px;background:radial-gradient(circle,rgba(124,58,237,0.3),transparent);border-radius:50%;top:-7px;left:-7px}
@@ -138,11 +131,7 @@
     .card p{margin:0 0 12px;color:#cbd5e1;line-height:1.5}
     .project-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
     .project-tech .tag{font-size:11px;padding:4px 8px}
-    /* Hero placeholder */
-    .ph{width:100%;border-radius:16px;border:1px solid var(--line);aspect-ratio:4/3;background:
-      radial-gradient(1200px 480px at -10% -10%, rgba(124,58,237,.25), transparent 40%),
-      radial-gradient(900px 360px at 110% 110%, rgba(34,211,238,.18), transparent 35%),
-      linear-gradient(135deg,#0f172a,#0b1022 55%,#0b0f19)}
+
     footer{margin:40px 0 10px;text-align:center;color:var(--muted);font-size:14px;line-height:1.6}
     footer a{color:var(--muted);text-decoration:none;transition:color 0.3s ease}
     footer a:hover{color:var(--accent)}
@@ -460,18 +449,7 @@
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
     
-    // Skills progress bars
-    const skillBars = document.querySelectorAll('.skill-fill');
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const width = bar.getAttribute('data-width');
-          bar.style.width = width;
-        }
-      });
-    }, { threshold: 0.5 });
-    skillBars.forEach(bar => skillObserver.observe(bar));
+
     
     // Floating Action Button
     const fabToggle = document.getElementById('fab-toggle');
