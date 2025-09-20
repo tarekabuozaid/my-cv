@@ -52,11 +52,86 @@
   <!-- الخطوط -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- الأيقونات -->
+  <!-- الأيقونات - تم تحديثها لضمان التوافق مع جميع المتصفحات -->
   <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErz4dVBJNDgBmE8Vz5tKaJJGwdN0GyKnRJhkQpqVgKgU/JbJk+XvYoJdVy" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Fallback Font Awesome for mobile browsers -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" crossorigin="anonymous" />
+  <!-- نسخة إضافية من مكتبة الأيقونات لزيادة التوافقية -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css" crossorigin="anonymous" />
+  
+  <!-- بيانات SVG احتياطية للأيقونات في حالة عدم تحميل Font Awesome -->
+  <style>
+    .fa-icon-fallback {
+      display: none;
+      width: 18px;
+      height: 18px;
+      fill: #22d3ee;
+    }
+    /* عرض الأيقونات الاحتياطية فقط عند تعذر تحميل Font Awesome */
+    .fontawesome-i-fail .fa-icon-fallback {
+      display: inline-block;
+    }
+    .fontawesome-i-fail .fas, 
+    .fontawesome-i-fail .fab, 
+    .fontawesome-i-fail .far {
+      display: none !important;
+    }
+  </style>
+  
+  <!-- كشف فشل تحميل Font Awesome وحل بديل -->
+  <script>
+    // يتم تنفيذ هذا الكود فوراً للكشف عن فشل تحميل Font Awesome
+    (function detectFontAwesomeFailure() {
+      // إضافة فحص الأيقونات عند تحميل الصفحة
+      window.addEventListener('DOMContentLoaded', function() {
+        // نحدد أول فحص فوري
+        checkFontAwesome();
+        
+        // وفحص آخر بعد تأخير للتأكد من اكتمال تحميل الصفحة
+        setTimeout(checkFontAwesome, 500);
+        setTimeout(checkFontAwesome, 1500);
+        
+        // ثم بعد التحميل الكامل للصفحة
+        window.addEventListener('load', function() {
+          setTimeout(checkFontAwesome, 100);
+        });
+      });
+      
+      function checkFontAwesome() {
+        // محاولة العثور على أيقونات Font Awesome
+        const testIcons = document.querySelectorAll('.fas, .fab, .far');
+        let failed = true;
+        
+        // اختبار وجود الأيقونات وصحة عرضها
+        if (testIcons.length > 0) {
+          for (let i = 0; i < Math.min(testIcons.length, 5); i++) {
+            const style = window.getComputedStyle(testIcons[i]);
+            const fontFamily = style.fontFamily;
+            // التحقق من وجود Font Awesome في اسم العائلة
+            if (fontFamily && 
+                (fontFamily.indexOf('Font Awesome') > -1 ||
+                 fontFamily.indexOf('FontAwesome') > -1)) {
+              failed = false;
+              break;
+            }
+          }
+        }
+        
+        // إذا فشل تحميل الأيقونات، استخدم البديل
+        if (failed) {
+          document.documentElement.classList.add('fontawesome-i-fail');
+          console.log('Font Awesome failed to load correctly - using fallback icons');
+          // محاولة إعادة تحميل مكتبة Font Awesome
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://kit-free.fontawesome.com/releases/latest/css/free.min.css';
+          link.crossOrigin = 'anonymous';
+          document.head.appendChild(link);
+        }
+      }
+    })();
+  </script>
 
   <!-- تحميل مسبق للصورة الرئيسية -->
   <link rel="preload" as="image" href="BIG.avif" type="image/avif" imagesizes="(max-width: 900px) 100vw, 50vw" />
@@ -828,6 +903,9 @@
     background: linear-gradient(180deg, rgba(37, 129, 143, 0.12), rgba(124,58,237,.10));
     display: flex !important; /* ضمان ظهور الأزرار على سطح المكتب */
     opacity: 1 !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    visibility: visible !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    position: relative !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    z-index: 10 !important; /* ضمان ظهور الأزرار على سطح المكتب */
   }
   .holo-chip:hover{
     box-shadow: 0 10px 26px rgba(34,211,238,.22);
@@ -852,10 +930,21 @@
   /* أيقونات <img> داخل .holo-chip و .icon-btn: ثبّت الحجم لأن SVG ما يتلوّن زي <i> */
   .menu-icon, .social-icon, .hint-icon { width:18px; height:18px; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
   
+  /* تحسين ظهور الأيقونات - إصلاح مشكلة عدم ظهور الأيقونات في بعض المتصفحات */
+  [class^="fa-"], 
+  [class*=" fa-"],
+  .fa, .fas, .fab, .far {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
   /* ضبط حجم أيقونات Font Awesome */
   .holo-chip i { 
     font-size:18px !important; 
     color: #22d3ee !important; 
+    display: inline-block !important;
+    visibility: visible !important;
     width:18px !important; 
     height:18px !important;
     display: inline-block !important;
@@ -912,7 +1001,7 @@
   <div class="top">
     <div class="wrap nav">
       <div class="brand">
-        <img src="SMALL.png" alt="Tarek Abouzaid" width="200" height="200" loading="lazy" class="avatar" style="object-fit: cover; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);">
+        <img src="./SMALL.png" alt="Tarek Abouzaid" width="200" height="200" loading="lazy" class="avatar" onerror="this.onerror=null; this.src='https://placehold.co/200x200/0f172a/22d3ee?text=TA'" style="object-fit: cover; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);">
         <div>
           <div class="name">TAREK ABOUZAID</div>
           <div class="badges">
@@ -947,26 +1036,32 @@
       <!-- الأزرار الدائرية المنبعثة من الصورة -->
       <button class="holo-chip" data-section="about" style="--a:0deg" aria-controls="about-view" aria-expanded="false">
         <i class="fas fa-user"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
         <span>About</span>
       </button>
       <button class="holo-chip" data-section="experience" style="--a:60deg" aria-controls="experience-view" aria-expanded="false">
         <i class="fas fa-briefcase"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/></svg>
         <span>Resume</span>
       </button>
       <button class="holo-chip" data-section="skills" style="--a:120deg" aria-controls="skills-view" aria-expanded="false">
         <i class="fas fa-tools"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M78.6 5C69.1-2.4 55.6-1.5 47 7L7 47c-8.5 8.5-9.4 22-2.1 31.6l80 104c4.5 5.9 11.6 9.4 19 9.4h54.1l109 109c-14.7 29-10 65.4 14.3 89.6l112 112c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-112-112c-24.2-24.2-60.6-29-89.6-14.3l-109-109V104c0-7.5-3.5-14.5-9.4-19L78.6 5z"/></svg>
         <span>Skills</span>
       </button>
       <button class="holo-chip" data-section="education" style="--a:180deg" aria-controls="education-view" aria-expanded="false">
         <i class="fas fa-graduation-cap"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9v28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5V291.9c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"/></svg>
         <span>Education</span>
       </button>
       <button class="holo-chip" data-section="projects" style="--a:240deg" aria-controls="projects-view" aria-expanded="false">
         <i class="fas fa-diagram-project"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H384c-8.8 0-16-7.2-16-16V352c0-8.8-7.2-16-16-16s-16 7.2-16 16v48c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM576 80c0 26.5-21.5 48-48 48H432V96h96V80c0-26.5 21.5-48 48-48s48 21.5 48 48z"/></svg>
         <span>Projects</span>
       </button>
       <button class="holo-chip" data-section="contact" style="--a:300deg" aria-controls="contact-view" aria-expanded="false">
         <i class="fas fa-envelope"></i>
+        <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
         <span>Contact</span>
       </button>
 
@@ -1034,7 +1129,7 @@
             </div>
           </div>
         </div>
-        <div><img src="BIG.png" alt="Tarek Abouzaid - CAFM Administrator and Help Desk Specialist with expertise in Auberon CMMS system, asset management, and facility maintenance automation in Abu Dhabi healthcare sector" width="1200" height="900" style="width: 100%; border-radius: 16px; border: 1px solid var(--line); aspect-ratio: 4/3; object-fit: cover;"></div>
+        <div><img src="./BIG.png" alt="Tarek Abouzaid - CAFM Administrator and Help Desk Specialist with expertise in Auberon CMMS system, asset management, and facility maintenance automation in Abu Dhabi healthcare sector" width="1200" height="900" onerror="this.onerror=null; this.src='https://placehold.co/1200x900/0f172a/22d3ee?text=TAREK+ABOUZAID'" style="width: 100%; border-radius: 16px; border: 1px solid var(--line); aspect-ratio: 4/3; object-fit: cover;"></div>
       </div>
     </section>
     
@@ -1255,7 +1350,7 @@
     </div>
     <div class="section-content">
       <div style="text-align: center; margin-bottom: 24px;">
-        <img src="BIG.png" alt="Tarek Abouzaid - Professional CAFM Administrator specializing in Facilities Management systems with over 8 years of experience in healthcare and commercial sectors" width="1200" height="900" loading="lazy" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 16px;">
+        <img src="./BIG.png" alt="Tarek Abouzaid - Professional CAFM Administrator specializing in Facilities Management systems with over 8 years of experience in healthcare and commercial sectors" width="1200" height="900" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/200x200/0f172a/22d3ee?text=TA'" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 16px;">
         <h3>TAREK ABOUZAID</h3>
         <p style="color: var(--muted);">Al Dhafra Region, Abu Dhabi</p>
       </div>
