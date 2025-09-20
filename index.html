@@ -301,8 +301,8 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      min-height: 480px; /* زيادة ارتفاع القسم ليظهر الهولوجرام بشكل أفضل */
-      height: 66vh; /* حوالي ثلثي ارتفاع الشاشة */
+      min-height: 540px; /* زيادة ارتفاع القسم لاستيعاب الصورة المكبرة */
+      height: 75vh; /* زيادة ارتفاع الصورة بالنسبة لارتفاع الشاشة */
       margin: 14px 0 18px;
       isolation: isolate;
       box-shadow: 0 25px 80px rgba(0,0,0,.35);
@@ -311,7 +311,7 @@
     /* ضبط الهولوجرام على أحجام الشاشات المختلفة */
     @media (min-width: 1200px) {
       .holo-hero {
-        min-height: 560px; /* ارتفاع أكبر على الشاشات الكبيرة */
+        min-height: 620px; /* ارتفاع أكبر على الشاشات الكبيرة */
       }
     }
 
@@ -319,10 +319,10 @@
     .holo-hero .holo-bg{
       position: absolute; inset: 0;
       background: url("BIG.png") center/contain no-repeat;
-      background-size: auto 100%;
+      background-size: auto 130%; /* تكبير الصورة بنسبة 130% */
       background-position: center center;
       filter: saturate(1.25) contrast(1.15) brightness(1.15);
-      transform: translateZ(0) scale(1.02);
+      transform: translateZ(0) scale(1.1); /* زيادة التكبير قليلاً */
       will-change: transform;
       transition: transform 0.5s ease-out;
     }
@@ -341,7 +341,7 @@
   /* الحلقة المركزية | حلقة الهولوجرام الدائرية */
     .holo-ring{
       position: absolute; left: 50%; top: 50%; translate: -50% -50%;
-      width: min(62vw, 480px); /* زيادة حجم الحلقة */
+      width: min(70vw, 550px); /* زيادة حجم الحلقة لتناسب الصورة المكبرة */
       aspect-ratio: 1/1;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,.18);
@@ -368,7 +368,7 @@
 
   /* الشرائح المنبعثة | أزرار الهولوجرام الدائرية */
     .holo-chip{
-      --radius: clamp(110px, 26vw, 200px);   /* زيادة نصف قطر التوزيع */
+      --radius: clamp(140px, 32vw, 260px);   /* زيادة نصف قطر التوزيع لتناسب الصورة المكبرة */
       --a: 0deg;                             /* مخصّص لكل زر بالإنلاين */
       position: absolute; left: 50%; top: 50%;
       translate: -50% -50%;
@@ -388,7 +388,7 @@
       will-change: transform;
     }
     .holo-chip i{ color:#22d3ee; }
-    .holo-chip:hover{ transform: rotate(var(--a)) translate(calc(var(--radius) + 6px)) rotate(calc(var(--a)*-1)) scale(1.02); box-shadow: 0 14px 40px rgba(34,211,238,.28); }
+    .holo-chip:hover{ transform: rotate(var(--a)) translate(calc(var(--radius) + 8px)) rotate(calc(var(--a)*-1)) scale(1.05); box-shadow: 0 14px 40px rgba(34,211,238,.32); }
     .holo-chip:active{ transform: rotate(var(--a)) translate(calc(var(--radius) + 2px)) rotate(calc(var(--a)*-1)) scale(.99); }
 
     .holo-hero:not(.ready) .holo-chip{
