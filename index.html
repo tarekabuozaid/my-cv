@@ -52,13 +52,9 @@
   <!-- الخطوط -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- الأيقونات - تم تحديثها لضمان التوافق مع جميع المتصفحات -->
+  <!-- الأيقونات - نسخة واحدة من Font Awesome لتجنب التعارض -->
   <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErz4dVBJNDgBmE8Vz5tKaJJGwdN0GyKnRJhkQpqVgKgU/JbJk+XvYoJdVy" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Fallback Font Awesome for mobile browsers -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" crossorigin="anonymous" />
-  <!-- نسخة إضافية من مكتبة الأيقونات لزيادة التوافقية -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css" crossorigin="anonymous" />
   
   <!-- بيانات SVG احتياطية للأيقونات في حالة عدم تحميل Font Awesome -->
   <style>
@@ -431,10 +427,10 @@
       url("BIG.png") type("image/png")
     );
     background-repeat: no-repeat;
-    background-size: auto 130%;
+    background-size: auto 135%;
     background-position: center center;
-    filter: saturate(1.25) contrast(1.15) brightness(1.15);
-    transform: translateZ(0) scale(1.1);
+    filter: saturate(1.35) contrast(1.2) brightness(1.25);
+    transform: translateZ(0) scale(1.05);
     will-change: transform;
     transition: transform 0.5s ease-out;
   }
@@ -451,12 +447,12 @@
   }
 
   /* 3. طبقة التراكب/الإضاءة */
-  .holo-hero .holo-overlay {
+  .holo-hero .holo-overlay{
     position: absolute; 
     inset: 0;
     background:
-      radial-gradient(120% 120% at 30% 30%, rgba(12,18,28,.1) 0%, rgba(8,12,20,.65) 70%),
-      linear-gradient(115deg, rgba(34,211,238,.35), rgba(124,58,237,.25));
+      radial-gradient(120% 120% at 25% 40%, rgba(8,12,20,.45) 0%, rgba(8,12,20,.6) 55%, rgba(8,12,20,.65) 100%),
+      linear-gradient(115deg, rgba(34,211,238,.25), rgba(124,58,237,.2));
     pointer-events: none;
     mix-blend-mode: screen;
     opacity: 0.85;
@@ -716,7 +712,7 @@
     /* Fix for Font Awesome icons */
     font-style: normal;
     font-variant: normal;
-    font-weight: 400;
+    /* تم إزالة font-weight: 400 لتجنب التعارض مع Font Awesome */
     line-height: 1;
   }
   html body .icon-btn,
@@ -743,15 +739,22 @@
   }
   
   /* محددات أكثر تخصصًا لأيقونات Font Awesome */
-  .fa, .fas, .fab, .far, .fal, 
-  h1 .fa, h1 .fas, h1 .fab, h1 .far, h1 .fal,
-  h2 .fa, h2 .fas, h2 .fab, h2 .far, h2 .fal,
-  h3 .fa, h3 .fas, h3 .fab, h3 .far, h3 .fal,
-  button .fa, button .fas, button .fab, button .far, button .fal,
-  a .fa, a .fas, a .fab, a .far, a .fal {
+  .fa, .fab, .far, .fal, 
+  h1 .fa, h1 .fab, h1 .far, h1 .fal,
+  h2 .fa, h2 .fab, h2 .far, h2 .fal,
+  h3 .fa, h3 .fab, h3 .far, h3 .fal,
+  button .fa, button .fab, button .far, button .fal,
+  a .fa, a .fab, a .far, a .fal {
     font-style: normal;
     font-variant: normal;
-    font-weight: 400;
+    line-height: 1;
+  }
+  
+  /* إعدادات خاصة بأيقونات Font Awesome Solid (.fas) */
+  .fas, h1 .fas, h2 .fas, h3 .fas, button .fas, a .fas {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 900; /* الوزن الصحيح لأيقونات Solid */
     line-height: 1;
   }
   
@@ -891,24 +894,27 @@
   }
   .holo-hero .holo-overlay{
     background:
-      radial-gradient(120% 120% at 25% 40%, rgba(8,12,20,.75) 0%, rgba(8,12,20,.92) 55%, rgba(8,12,20,.92) 100%),
-      linear-gradient(115deg, rgba(34,211,238,.18), rgba(124,58,237,.12));
+      radial-gradient(120% 120% at 25% 40%, rgba(8,12,20,.45) 0%, rgba(8,12,20,.6) 55%, rgba(8,12,20,.65) 100%),
+      linear-gradient(115deg, rgba(34,211,238,.25), rgba(124,58,237,.2));
   }
 
   /* قلّل البريق والظلّ للـchips وخليها أصغر */
   .holo-chip{
-    padding:8px 10px; 
-    border-radius:12px;
+    padding: 8px 10px; 
+    border-radius: 12px;
     box-shadow: 0 8px 22px rgba(0,0,0,.22);
-    background: linear-gradient(180deg, rgba(37, 129, 143, 0.12), rgba(124,58,237,.10));
+    background: linear-gradient(180deg, rgba(37, 129, 143, 0.15), rgba(124,58,237,.12));
     display: flex !important; /* ضمان ظهور الأزرار على سطح المكتب */
     opacity: 1 !important; /* ضمان ظهور الأزرار على سطح المكتب */
     visibility: visible !important; /* ضمان ظهور الأزرار على سطح المكتب */
-    position: relative !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    position: absolute !important; /* ضمان ظهور الأزرار على سطح المكتب */
     z-index: 10 !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    border: 1px solid rgba(255,255,255,.25) !important; /* إضافة حدود أكثر وضوحًا */
   }
   .holo-chip:hover{
-    box-shadow: 0 10px 26px rgba(34,211,238,.22);
+    box-shadow: 0 10px 26px rgba(34,211,238,.25);
+    background: linear-gradient(180deg, rgba(37, 129, 143, 0.25), rgba(124,58,237,.18));
+    border: 1px solid rgba(255,255,255,.35) !important;
   }
 
   /* اظهار كل الأزرار على سطح المكتب */
@@ -937,23 +943,39 @@
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: normal !important;
+  }
+  
+  /* تصحيح وزن الخط للأيقونات الصلبة */
+  .fa-solid, .fas {
+    font-weight: 900 !important;
   }
   
   /* ضبط حجم أيقونات Font Awesome */
-  .holo-chip i { 
-    font-size:18px !important; 
+  .holo-chip i, 
+  .holo-chip .fab, 
+  .holo-chip .fas, 
+  .holo-chip .far { 
+    font-size: 18px !important; 
     color: #22d3ee !important; 
     display: inline-block !important;
     visibility: visible !important;
-    width:18px !important; 
-    height:18px !important;
-    display: inline-block !important;
+    width: 18px !important; 
+    height: 18px !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
   }
   .holo-hint i { 
-    font-size:18px !important; 
-    width:18px !important; 
-    height:18px !important;
+    font-size: 18px !important; 
+    width: 18px !important; 
+    height: 18px !important;
     display: inline-block !important;
+    font-weight: 400 !important;
   }
   
   /* ضبط حجم أيقونات Font Awesome على الموبايل */
