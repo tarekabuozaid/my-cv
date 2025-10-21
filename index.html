@@ -408,6 +408,7 @@
     margin: 14px 0 18px;
     isolation: isolate;
     box-shadow: 0 25px 80px rgba(0,0,0,.35);
+    background: #000000; /* خلفية سوداء */
   }
     
   /* ضبط الهولوجرام على أحجام الشاشات المختلفة */
@@ -421,11 +422,7 @@
   .holo-hero .holo-bg {
     position: absolute; 
     inset: 0;
-    background-image: image-set(
-      url("BIG.avif") type("image/avif"),
-      url("BIG.webp") type("image/webp"),
-      url("BIG.png") type("image/png")
-    );
+    background-image: url("BIG.png");
     background-repeat: no-repeat;
     background-size: auto 135%;
     background-position: center center;
@@ -438,11 +435,7 @@
   /* نسخة أصغر من الصورة للموبايل لتحسين الأداء */
   @media (max-width: 768px) {
     .holo-hero .holo-bg {
-      background-image: image-set(
-        url("BIG-mobile.avif") type("image/avif"),
-        url("BIG-mobile.webp") type("image/webp"),
-        url("BIG-mobile.png") type("image/png")
-      );
+      background-image: url("BIG.png");
     }
   }
 
@@ -817,31 +810,82 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 50px;
-      height: 50px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 20px rgba(124,58,237,.3);
+      font-size: 24px;
+      box-shadow: 
+        0 4px 20px rgba(124,58,237,.3),
+        0 2px 8px rgba(0,0,0,.2);
       cursor: pointer;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .3s ease, transform .3s ease;
+      transform: translateY(20px) scale(0.8);
+      transition: all .4s cubic-bezier(.22,.61,.36,1);
       z-index: 100;
+      border: none;
+      outline: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* ضمان ظهور السهم */
+    .back-to-top i {
+      display: inline-block !important;
+      font-size: 24px !important;
+      color: white !important;
+      line-height: 1 !important;
+    }
+    
+    .back-to-top .fa-icon-fallback {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
     }
     
     .back-to-top.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     
     .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 24px rgba(124,58,237,.5);
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 
+        0 8px 32px rgba(124,58,237,.4),
+        0 4px 16px rgba(0,0,0,.3);
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-4px) scale(1.05);
+    }
+    
+    .back-to-top:focus {
+      outline: 2px solid var(--accent-2);
+      outline-offset: 4px;
+    }
+    
+    /* تحسين للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+      }
+    }
+    
+    /* أنيميشن الـ ripple */
+    @keyframes ripple {
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
     }
 
   /* العناصر المسموح لها بتأثير الميلان الثلاثي الأبعاد | عناصر تدعم الميلان 3D */
@@ -888,7 +932,7 @@
   <style>
   /* ===== CSS: تنسيقات الهولوغرام ===== */
   /* — Clean Hero — */
-  .holo-hero{min-height:260px;margin-top:14px;}
+  .holo-hero{min-height:260px;margin-top:14px;background:#000000;}
   .holo-hero .holo-bg{
     filter: brightness(.68) saturate(1.05) contrast(1.05);
   }
@@ -1104,11 +1148,11 @@
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email">
           <i class="fas fa-envelope"></i>
         </a>
-        <a href="https://linkedin.com/in/tarekabuozaid" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in" style="display: inline-block !important; color: var(--accent) !important;"></i>
+        <a href="https://github.com/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
+          <i class="fab fa-github" style="display: inline-block !important; color: var(--accent) !important;"></i>
         </a>
-        <a href="https://github.com/tarekabuozaid" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
-          <i class="fab fa-github"></i>
+        <a href="https://www.linkedin.com/in/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" style="display: inline-block !important; color: var(--accent) !important;"></i>
         </a>
         <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="WhatsApp">
           <i class="fab fa-whatsapp"></i>
@@ -1337,10 +1381,12 @@
     <!-- البيانات الشخصية وطرق التواصل -->
     <section id="contact">
       <h3><i class="fas fa-address-card"></i> Personal &amp; Contact</h3>
-      <p><strong>Date of Birth:</strong> 13 March 1991<br/><strong>Nationality:</strong> Egyptian</p>
+      <p><strong>Date of Birth:</strong> 13 March 1991<br/><strong>Nationality:</strong> Egyptian<br/><strong>Location:</strong> Al Dhafra Region, Abu Dhabi, UAE</p>
       <div class="meta">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
         <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" rel="noopener noreferrer" class="btn secondary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://github.com/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="btn secondary"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="btn secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a href="pdf.pdf" class="btn" download type="application/pdf" fetchpriority="low"><i class="fas fa-download"></i> Download CV (PDF)</a>
       </div>
     </section>
@@ -1565,10 +1611,13 @@
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn" style="justify-content: center;">
           <i class="fas fa-envelope"></i> Tarekabuzaidcafm@outlook.com
         </a>
-        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" class="btn secondary" style="justify-content: center;">
+        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> +971 54 552 7141
         </a>
-        <a href="https://linkedin.com/in/tarekabuozaid" class="btn secondary" style="justify-content: center;">
+        <a href="https://github.com/tarekabuozaid/" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i> GitHub Profile
+        </a>
+        <a href="https://www.linkedin.com/in/tarekabuozaid/" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-linkedin"></i> LinkedIn Profile
         </a>
         <a href="pdf.pdf" class="btn" download style="justify-content: center;" type="application/pdf" fetchpriority="low">
@@ -2495,30 +2544,112 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.id = 'backToTop';
     backToTopBtn.setAttribute('aria-label', 'العودة للأعلى');
-    backToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    backToTopBtn.setAttribute('title', 'العودة للأعلى');
+    backToTopBtn.innerHTML = `
+      <i class="fas fa-arrow-up"></i>
+      <svg class="fa-icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="display: none;">
+        <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+      </svg>
+      <span class="text-fallback" style="display: none; font-size: 20px; font-weight: bold;">↑</span>
+    `;
     document.body.appendChild(backToTopBtn);
     
-    // إظهار/إخفاء الزر عند التمرير
-    window.addEventListener('scroll', () => {
-      const heroSection = document.getElementById('hero');
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        if (heroBottom < 0) {
+    // التحقق من تحميل Font Awesome وإظهار البديل المناسب
+    setTimeout(() => {
+      const icon = backToTopBtn.querySelector('.fas');
+      const svg = backToTopBtn.querySelector('.fa-icon-fallback');
+      const textFallback = backToTopBtn.querySelector('.text-fallback');
+      
+      // التحقق من وجود Font Awesome
+      const isFontAwesomeLoaded = icon && 
+        getComputedStyle(icon).fontFamily.includes('Font Awesome') &&
+        icon.offsetWidth > 0;
+      
+      if (!isFontAwesomeLoaded) {
+        // إخفاء أيقونة Font Awesome
+        if (icon) icon.style.display = 'none';
+        
+        // محاولة إظهار SVG أولاً
+        if (svg) {
+          svg.style.display = 'inline-block';
+          svg.style.width = '24px';
+          svg.style.height = '24px';
+          svg.style.fill = 'currentColor';
+        } else if (textFallback) {
+          // إذا لم يعمل SVG، إظهار النص
+          textFallback.style.display = 'inline-block';
+        }
+      }
+    }, 1000);
+    
+    // تحسين إظهار/إخفاء الزر عند التمرير
+    let scrollTimeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // إظهار الزر عند التمرير لأسفل أكثر من 300px
+        if (scrollY > 300) {
           backToTopBtn.classList.add('visible');
         } else {
           backToTopBtn.classList.remove('visible');
         }
+      }, 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // تحسين التمرير عند النقر على الزر
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // تأثير النقر
+      backToTopBtn.style.transform = 'translateY(-4px) scale(1.05)';
+      setTimeout(() => {
+        backToTopBtn.style.transform = '';
+      }, 150);
+      
+      // التمرير السلس للأعلى
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        heroSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      } else {
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
       }
     });
     
-    // تنفيذ التمرير عند النقر على الزر
-    backToTopBtn.addEventListener('click', () => {
-      const heroSection = document.getElementById('hero');
-      if (heroSection) {
-        heroSection.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    // إضافة تأثير الـ ripple للزر
+    backToTopBtn.addEventListener('mousedown', (e) => {
+      const ripple = document.createElement('span');
+      const rect = backToTopBtn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+      `;
+      
+      backToTopBtn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
     });
   })();
   </script>
