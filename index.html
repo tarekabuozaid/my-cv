@@ -120,12 +120,8 @@
         if (failed) {
           document.documentElement.classList.add('fontawesome-i-fail');
           console.log('Font Awesome failed to load correctly - using fallback icons');
-          // محاولة إعادة تحميل مكتبة Font Awesome
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = 'https://kit-free.fontawesome.com/releases/latest/css/free.min.css';
-          link.crossOrigin = 'anonymous';
-          document.head.appendChild(link);
+          // تم إزالة محاولة إعادة تحميل مكتبة Font Awesome هنا.
+          // الاعتماد على الأيقونات الاحتياطية (SVG) بدلاً من ذلك.
         }
       }
     })();
@@ -198,18 +194,18 @@
   /* ===== تهيئة القواعد العامة للعناصر ===== | قواعد أساسية لكل العناصر */
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
     a{color:var(--text);text-decoration:none}
   /* ===== تخطيط الحاوية الرئيسية ===== | ضبط عرض الحاوية الرئيسية */
     .wrap{max-width:1080px;margin:0 auto;padding:24px}
   /* ===== رأس الصفحة والتنقل ===== | تنسيق رأس الصفحة والقوائم */
     .top{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(11,15,25,.95), rgba(11,15,25,.6) 65%, rgba(11,15,25,0));backdrop-filter:saturate(140%) blur(6px)}
-    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line); padding-bottom: 10px;}
     .brand{display:flex;align-items:center;gap:14px;padding:10px 0}
     .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1f2333,#0f172a);border:1px solid var(--line)}
     .brand .name{font-weight:800;letter-spacing:.5px}
     .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .chip{border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .chip{border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted); white-space: nowrap;}
     .menu{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
     .menu a{padding:12px 8px;color:var(--muted)}
     .menu a.active{color:#fff}
@@ -223,8 +219,12 @@
     .roles-tags{display:flex;flex-wrap:wrap;gap:8px}
     .role-tag{padding:8px 14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:0.5px}
   /* ===== منطقة التعريف والمؤثر البصري ===== | تعريف المستخدم والمؤثرات */
-    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 0;max-width:800px;margin:0 auto}
-    .hero-content{width:100%;max-width:600px}
+    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 0;max-width:900px;margin:0 auto;gap:14px}
+    .hero-content{width:100%;max-width:680px}
+    /* تحسين تخطيط معلومات التواصل داخل قسم التعريف */
+    #about .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 12px;margin:14px 0;justify-items:center}
+    #about .meta a{width:100%;justify-content:center}
+    .roles-note{margin:0 0 8px;color:var(--muted);font-size:13px}
     @media (max-width:900px){.hero{padding:20px 0}}
   /* ===== بنية عرض الأقسام على الموبايل ===== | تصميم عرض الأقسام للموبايل */
     @media (max-width:768px){
@@ -295,6 +295,10 @@
         padding: 24px;
         animation: slideInUp 0.6s ease-out;
       }
+      /* إزالة تأثير الـ glitch من العنوان في الموبايل */
+      .mobile-headline .glitch::before, .mobile-headline .glitch::after {
+        display: none !important;
+      }
       
       @keyframes slideInUp{
         from{
@@ -314,14 +318,14 @@
       
     }
     
-    .tagline{color:var(--muted);font-size:14px}
+    .tagline{color:var(--muted);font-size:14px;letter-spacing:.3px;margin-bottom:6px}
     .title{font-size:34px;font-weight:800;line-height:1.15;margin:6px 0 6px}
     .glitch{position:relative;display:inline-block}
     .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;clip-path:inset(0 0 0 0)}
     .glitch::before{transform:translate(2px,-1px);color:var(--accent);mix-blend-mode:screen;animation:gl1 2.5s infinite linear alternate}
     .glitch::after{transform:translate(-2px,1px);color:var(--accent-2);mix-blend-mode:screen;animation:gl2 2.8s infinite linear alternate}
     @keyframes gl1{0%{clip-path:inset(0 0 85% 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(60% 0 0 0)}}
-    @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}}
+    @keyframes gl2{0%{clip-path:inset(40% 0 0 0)}50%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 70% 0)}} /* Keep this for desktop */
     .cursor{animation:blink 1s infinite;color:var(--accent)}
     @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
     .meta{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
@@ -383,7 +387,7 @@
     .card:hover{transform:translateY(-2px);border-color:var(--accent); /* Keep or lighten it */}
     .card h4{margin:0 0 8px;color:#e5e7eb}
     .card h4 i{color:var(--accent);margin-right:8px}
-    .card p{margin:0 0 12px;color:#cbd5e1;line-height:1.5}
+    .card p{margin:0 0 12px;color:#cbd5e1;line-height:1.6}
     .project-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
     .project-tech .tag{font-size:11px;padding:4px 8px}
 
@@ -404,7 +408,7 @@
   /* 1. قسم الهولوجرام الرئيسي */
   .holo-hero {
     position: relative;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     min-height: 500px;
     height: 60vh;
@@ -422,6 +426,7 @@
     .holo-hero {
       min-height: 600px; /* ارتفاع أكبر على الشاشات الكبيرة */
       height: 55vh;
+      border-radius: 16px;
     }
   }
 
@@ -437,7 +442,7 @@
     transform: translateZ(0) scale(1.1);
     will-change: transform;
     transition: transform 0.5s ease-out;
-    border-radius: 20px;
+    border-radius: inherit;
   }
   
   /* نسخة أصغر من الصورة للموبايل لتحسين الأداء */
@@ -512,6 +517,49 @@
     transform: rotate(var(--a)) translate(calc(var(--radius) + 2px)) rotate(calc(var(--a)*-1)) scale(.99); 
   }
 
+  /* 4. الحلقة المركزية (holo-ring) */
+  .holo-hero .holo-ring {
+    --size: clamp(240px, 40vw, 320px);
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border: 3px solid rgba(34, 211, 238, 0.5); /* أزرق فاتح وشفاف */
+    border-radius: 50%;
+    translate: -50% -50%;
+    left: 50%;
+    top: 50%;
+    animation: ringSpin 20s linear infinite;
+    z-index: 1; /* يجب أن يكون خلف الـ chips */
+    box-shadow: 
+        0 0 16px rgba(34, 211, 238, 0.4), 
+        0 0 40px rgba(124, 58, 237, 0.2);
+    opacity: 0.15;
+    transition: opacity 1s ease;
+  }
+
+  /* زيادة البريق في أحد الأجزاء للحصول على تأثير حركي متوهج */
+  .holo-hero .holo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    border: 3px solid transparent;
+    border-top-color: rgba(34, 211, 238, 0.8);
+    filter: blur(2px);
+    animation: ringSpin 15s linear reverse infinite, glowPulse 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowPulse {
+    from { box-shadow: 0 0 10px rgba(34, 211, 238, 0.6); }
+    to { box-shadow: 0 0 20px rgba(34, 211, 238, 0.8); }
+  }
+
+  @keyframes ringSpin { 
+    to { 
+        transform: rotate(360deg); 
+    } 
+  }
+  
   /* حالات ظهور/اختفاء الأزرار الدائرية */
   .holo-hero:not(.ready) .holo-chip {
     transform: rotate(var(--a)) translate(0px) rotate(calc(var(--a)*-1)) scale(.72);
@@ -627,8 +675,8 @@
     @media (max-width:768px){
       .mobile-headline{ display:block; padding:8px 12px 2px; text-align:center; }
       .mobile-headline .title{ font-size:22px; line-height:1.25; margin:4px auto 6px; letter-spacing:.3px; }
-      .meta-icons{ 
-        display: flex; 
+      .mobile-headline .meta-icons{ 
+        display: flex !important; 
         justify-content: center; 
         gap: 16px; /* زيادة المسافة بين الأيقونات */
         margin: 15px 0 20px; /* زيادة الهوامش فوق وتحت */
@@ -665,7 +713,7 @@
   html body .icon-btn i, 
   html body .footer-icons .icon-btn i, 
   html body .meta .icon-btn i, 
-  html body .meta a i,
+  html body .meta a i, /* This rule is too broad and causes issues */
   body .icon-btn i, 
   body .footer-icons .icon-btn i, 
   body .meta .icon-btn i, 
@@ -677,7 +725,6 @@
     color: var(--accent);
     background: none;
     vertical-align: middle;
-    /* Fix for Font Awesome icons */
     font-style: normal;
     font-variant: normal;
     /* تم إزالة font-weight: 400 لتجنب التعارض مع Font Awesome */
@@ -705,16 +752,16 @@
   .icon-btn:hover i {
     color: var(--accent-2);
   }
-  
+
   /* محددات أكثر تخصصًا لأيقونات Font Awesome */
   .fa, .fab, .far, .fal, 
   h1 .fa, h1 .fab, h1 .far, h1 .fal,
   h2 .fa, h2 .fab, h2 .far, h2 .fal,
   h3 .fa, h3 .fab, h3 .far, h3 .fal,
   button .fa, button .fab, button .far, button .fal,
-  a .fa, a .fab, a .far, a .fal {
+  a .fa, a .fab, a .far, a .fal { /* This rule is too broad and causes issues */
     font-style: normal;
-    font-variant: normal;
+    font-variant: normal; /* Ensure this is not overridden by other rules */
     line-height: 1;
   }
   
@@ -734,6 +781,165 @@
     margin-bottom: 10px;
   }
   
+  /* أيقونات التواصل لسطح المكتب */
+  .desktop-social-icons {
+    display: none;
+    margin: 20px auto;
+    max-width: 1080px;
+    padding: 0 24px;
+  }
+  
+  @media (min-width: 769px) {
+    .desktop-social-icons {
+      display: block;
+    }
+  }
+  
+  .social-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .social-icon {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(34,211,238,0.08));
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(124,58,237,0.35);
+    border-color: var(--accent);
+  }
+  
+  .social-icon:hover::before {
+    opacity: 0.2;
+  }
+  
+  .social-icon i {
+    font-size: 22px;
+    color: var(--text);
+    z-index: 1;
+  }
+  
+  .social-icon:hover i {
+    color: var(--accent);
+  }
+  
+  /* ألوان مخصصة لكل منصة عند التمرير */
+  .social-icon[aria-label="GitHub"]:hover {
+    background: linear-gradient(135deg, rgba(33,33,33,0.25), rgba(33,33,33,0.15));
+    box-shadow: 0 12px 32px rgba(33,33,33,0.5);
+  }
+  
+  .social-icon[aria-label="LinkedIn"]:hover {
+    background: linear-gradient(135deg, rgba(0,119,181,0.25), rgba(0,119,181,0.15));
+    box-shadow: 0 12px 32px rgba(0,119,181,0.4);
+  }
+  
+  .social-icon[aria-label="WhatsApp"]:hover {
+    background: linear-gradient(135deg, rgba(37,211,102,0.25), rgba(37,211,102,0.15));
+    box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+  }
+  
+  .social-icon[aria-label="Email"]:hover {
+    background: linear-gradient(135deg, rgba(234,67,53,0.25), rgba(234,67,53,0.15));
+    box-shadow: 0 12px 32px rgba(234,67,53,0.4);
+  }
+  
+  .social-icon[aria-label="Download CV"]:hover {
+    background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(34,211,238,0.15));
+    box-shadow: 0 12px 32px rgba(124,58,237,0.4);
+  }
+  
+  /* تحسين أيقونات التواصل الاجتماعي للموبايل */
+  .meta-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .meta-icons .icon-btn {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(34,211,238,0.08));
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .meta-icons .icon-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .meta-icons .icon-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+    border-color: var(--accent);
+  }
+  
+  .meta-icons .icon-btn:hover::before {
+    opacity: 0.15;
+  }
+  
+  .meta-icons .icon-btn i {
+    font-size: 20px;
+    color: var(--text);
+    z-index: 1;
+  }
+  
+  .meta-icons .icon-btn:hover i {
+    color: var(--accent);
+  }
+  
+  /* ألوان مخصصة لكل منصة */
+  .meta-icons .icon-btn[aria-label="GitHub"]:hover {
+    background: linear-gradient(135deg, rgba(33,33,33,0.2), rgba(33,33,33,0.1));
+  }
+  
+  .meta-icons .icon-btn[aria-label="LinkedIn"]:hover {
+    background: linear-gradient(135deg, rgba(0,119,181,0.2), rgba(0,119,181,0.1));
+  }
+  
+  .meta-icons .icon-btn[aria-label="WhatsApp"]:hover {
+    background: linear-gradient(135deg, rgba(37,211,102,0.2), rgba(37,211,102,0.1));
+  }
+  
+  .meta-icons .icon-btn[aria-label="Email"]:hover {
+    background: linear-gradient(135deg, rgba(234,67,53,0.2), rgba(234,67,53,0.1));
+  }
+  
   /* Mobile specific styles */
   @media (max-width:768px) {
     /* Make sure mobile icon styling is applied */
@@ -747,6 +953,10 @@
     /* Hide footer text on mobile */
     footer .footer-text {
       display: none;
+    }
+    /* إزالة الـ glitch من العنوان في الموبايل */
+    .mobile-headline .glitch::before, .mobile-headline .glitch::after {
+      display: none !important;
     }
   }
   /* ===== طبقة الحركة والمؤثرات البصرية ===== | مؤثرات الحركة والأنيميشن */
@@ -952,7 +1162,7 @@
   <style>
   /* ===== CSS: تنسيقات الهولوغرام ===== */
   /* — Clean Hero — */
-  .holo-hero{min-height:500px;height:60vh;margin-top:14px;background:#000000;}
+  .holo-hero{min-height:500px;height:60vh;margin-top:14px;background:#000000;border-radius:16px}
   .holo-hero .holo-bg{
     filter: brightness(.68) saturate(1.05) contrast(1.05);
   }
@@ -966,10 +1176,10 @@
   .holo-chip{
     padding: 8px 10px; 
     border-radius: 12px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.22);
-    background: linear-gradient(180deg, rgba(37, 129, 143, 0.15), rgba(124,58,237,.12));
-    display: flex !important; /* ضمان ظهور الأزرار على سطح المكتب */
-    opacity: 1 !important; /* ضمان ظهور الأزرار على سطح المكتب */
+    box-shadow: 0 6px 18px rgba(0,0,0,.2); /* Softer shadow */
+    background: linear-gradient(180deg, rgba(37, 129, 143, 0.1), rgba(124,58,237,.08)); /* Softer gradient */
+    display: flex !important; /* Ensure visibility */
+    opacity: 1 !important; /* Ensure visibility */
     visibility: visible !important; /* ضمان ظهور الأزرار على سطح المكتب */
     position: absolute !important; /* ضمان ظهور الأزرار على سطح المكتب */
     z-index: 10 !important; /* ضمان ظهور الأزرار على سطح المكتب */
@@ -977,19 +1187,10 @@
   }
   .holo-chip:hover{
     box-shadow: 0 10px 26px rgba(34,211,238,.25);
-    background: linear-gradient(180deg, rgba(37, 129, 143, 0.25), rgba(124,58,237,.18));
-    border: 1px solid rgba(255,255,255,.35) !important;
-  }
+    background: linear-gradient(180deg, rgba(37, 129, 143, 0.15), rgba(124,58,237,.12)); /* Slightly more pronounced on hover */
+    border: 1px solid rgba(255,255,255,.3) !important; /* Slightly more pronounced on hover */
+  } /* Keep these specific rules */
 
-  /* اظهار كل الأزرار على سطح المكتب */
-  @media (min-width: 901px){
-    /* عرض كل الأزرار */
-    .holo-chip {
-      display: flex !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
-  }
 
   /* امنع أي تأثير hover ترجيع-سحب يزيد العك مع الـtilt */
   .card:hover{ transform: none; }
@@ -1003,18 +1204,18 @@
   /* تحسين ظهور الأيقونات - إصلاح مشكلة عدم ظهور الأيقونات في بعض المتصفحات */
   [class^="fa-"], 
   [class*=" fa-"],
-  .fa, .fas, .fab, .far {
+  .fa, .fas, .fab, .far { /* This rule is too broad and causes issues */
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
     font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
-    font-weight: 400 !important;
+    font-weight: normal !important; /* Use 'normal' instead of 400 to avoid conflicts */
     text-align: center !important;
     vertical-align: middle !important;
     line-height: normal !important;
   }
   
-  /* تصحيح وزن الخط للأيقونات الصلبة */
+  /* تصحيح وزن الخط للأيقونات الصلبة (Solid) */
   .fa-solid, .fas {
     font-weight: 900 !important;
   }
@@ -1029,7 +1230,7 @@
     display: inline-block !important;
     visibility: visible !important;
     width: 18px !important; 
-    height: 18px !important;
+    height: 18px !important; /* Ensure consistent sizing */
     font-weight: 400 !important;
     text-align: center !important;
     vertical-align: middle !important;
@@ -1038,7 +1239,7 @@
     font-size: 18px !important; 
     width: 18px !important; 
     height: 18px !important;
-    display: inline-block !important;
+    display: inline-block !important; /* Ensure consistent sizing */
     font-weight: 400 !important;
   }
   
@@ -1047,7 +1248,7 @@
     .icon-btn i{ 
       font-size:18px !important; 
       width:18px !important; 
-      height:18px !important;
+      height:18px !important; /* Ensure consistent sizing */
       display: inline-block !important;
     }
     
@@ -1060,7 +1261,7 @@
     
     /* Fix for Font Awesome icons in mobile */
     .fab, .fas, .fa, .far, .fa-brands, .fa-solid {
-      font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important; /* Keep this for mobile */
       display: inline-block !important;
     }
   }
@@ -1114,7 +1315,8 @@
     <section class="holo-hero hero" id="hero">
       <div class="holo-bg" aria-hidden="true"></div>
       <div class="holo-overlay" aria-hidden="true"></div>
-
+      
+      <div class="holo-ring" aria-hidden="true"></div>
 
       <!-- الأزرار الدائرية المنبعثة من الصورة -->
       <button class="holo-chip" data-section="about" style="--a:0deg" aria-controls="about-view" aria-expanded="false">
@@ -1155,6 +1357,27 @@
       </div>
     </section>
 
+    <!-- أيقونات التواصل لسطح المكتب -->
+    <div class="desktop-social-icons" aria-label="Social Links">
+      <div class="social-container">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="social-icon" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="pdf.pdf" download class="social-icon" aria-label="Download CV">
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+    </div>
+
     <!-- العنوان المختصر وأيقونات الوصول السريع للموبايل -->
     <div class="mobile-headline" aria-hidden="false">
       <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk & Facilities Technology Specialist |">
@@ -1164,18 +1387,23 @@
       <div class="meta-icons" role="navigation" aria-label="Quick actions">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="icon-btn" aria-label="Email">
           <i class="fas fa-envelope"></i>
+          <svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
         </a>
         <a href="https://github.com/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
-          <i class="fab fa-github" style="display: inline-block !important; color: var(--accent) !important;"></i>
+          <i class="fab fa-github"></i>
+          <svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
         </a>
         <a href="https://www.linkedin.com/in/tarekabuozaid/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in" style="display: inline-block !important; color: var(--accent) !important;"></i>
+          <i class="fab fa-linkedin-in"></i>
+          <svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
         </a>
         <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="WhatsApp">
           <i class="fab fa-whatsapp"></i>
+          <svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         </a>
         <a href="pdf.pdf" download class="icon-btn" aria-label="Download CV (PDF)" type="application/pdf" fetchpriority="low">
           <i class="fas fa-download"></i>
+          <svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
         </a>
       </div>
     </div>
@@ -1201,7 +1429,7 @@
           
           <div class="target-roles">
             <h4>Target Roles</h4>
-            <p style="margin:0 0 8px;color:var(--muted);font-size:13px">
+            <p class="roles-note">
               CAFM Admin • CMMS Analyst • Help Desk (FM) • Facilities Data & Reporting
             </p>
             <div class="roles-tags">
@@ -1417,10 +1645,10 @@
       </div>
 
       <div class="footer-text">
-        <a href="https://tarekabuozaid.github.io/my-cv/">tarekabuozaid.github.io/my-cv</a> • 
-        <a href="mailto:Tarekabuzaidcafm@outlook.com">Tarekabuzaidcafm@outlook.com</a> • 
-        <a href="https://linkedin.com/in/tarekabuozaid">linkedin.com/in/tarekabuozaid</a> • 
-        <a href="https://github.com/tarekabuozaid">github.com/tarekabuozaid</a> • 
+        <a href="https://tarekabuozaid.github.io/my-cv/" style="line-height: 1.8; font-size: 15px;">tarekabuozaid.github.io/my-cv</a> • <br>
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" style="line-height: 1.8; font-size: 15px;">Tarekabuzaidcafm@outlook.com</a> • <br>
+        <a href="https://linkedin.com/in/tarekabuozaid" style="line-height: 1.8; font-size: 15px;">linkedin.com/in/tarekabuozaid</a> • <br>
+        <a href="https://github.com/tarekabuozaid" style="line-height: 1.8; font-size: 15px;">github.com/tarekabuozaid</a> • <br>
         Last updated: September 2025
       </div>
     </footer>
@@ -2258,7 +2486,11 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     if(!bg) return;
     const rx = clamp((x - innerWidth/2)/innerWidth, -0.5, 0.5);
     const ry = clamp((y - innerHeight/2)/innerHeight,-0.5, 0.5);
-    bg.style.transform = `translate3d(${rx*10}px, ${ry*8}px, 0) scale(1.02)`;
+    bg.style.transform = `translate3d(${rx*18}px, ${ry*12}px, 0) scale(1.04)`;
+    const ring = hero?.querySelector('.holo-ring');
+    if (ring) {
+        ring.style.transform = `translate(-50%, -50%) translate3d(${-rx*15}px, ${-ry*10}px, 0)`;
+    }
   };
   window.addEventListener('pointermove', e=> parallax(e.clientX,e.clientY), {passive:true});
 
@@ -2571,54 +2803,7 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
     document.body.appendChild(backToTopBtn);
     
     // التحقق من تحميل Font Awesome وإظهار البديل المناسب
-    setTimeout(() => {
-      const icon = backToTopBtn.querySelector('.fas');
-      const svg = backToTopBtn.querySelector('.fa-icon-fallback');
-      const textFallback = backToTopBtn.querySelector('.text-fallback');
-      
-      // التحقق من وجود Font Awesome
-      const isFontAwesomeLoaded = icon && 
-        getComputedStyle(icon).fontFamily.includes('Font Awesome') &&
-        icon.offsetWidth > 0;
-      
-      if (!isFontAwesomeLoaded) {
-        // إخفاء أيقونة Font Awesome
-        if (icon) icon.style.display = 'none';
-        
-        // محاولة إظهار SVG أولاً
-        if (svg) {
-          svg.style.display = 'inline-block';
-          svg.style.width = '24px';
-          svg.style.height = '24px';
-          svg.style.fill = 'currentColor';
-        } else if (textFallback) {
-          // إذا لم يعمل SVG، إظهار النص
-          textFallback.style.display = 'inline-block';
-        }
-      }
-    }, 1000);
-    
-    // التحقق من تحميل Font Awesome لجميع الأيقونات في الموقع
-    setTimeout(() => {
-      const allIcons = document.querySelectorAll('.fas, .fab');
-      allIcons.forEach(icon => {
-        const isFontAwesomeLoaded = icon && 
-          getComputedStyle(icon).fontFamily.includes('Font Awesome') &&
-          icon.offsetWidth > 0;
-        
-        if (!isFontAwesomeLoaded) {
-          icon.style.display = 'none';
-          const fallback = icon.nextElementSibling;
-          if (fallback && fallback.classList.contains('icon-fallback')) {
-            fallback.style.display = 'inline-block';
-            fallback.style.width = '16px';
-            fallback.style.height = '16px';
-            fallback.style.fill = 'currentColor';
-          }
-        }
-      });
-    }, 1500);
-    
+    // تم إزالة الفحص المتأخر لأيقونات Font Awesome هنا، الاعتماد على آلية detectFontAwesomeFailure في <head>
     // تحسين إظهار/إخفاء الزر عند التمرير
     let scrollTimeout;
     const handleScroll = () => {
@@ -2694,3 +2879,4 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
 </body>
 <!-- ======= نهاية HTML ======= -->
 </html>
+    .tag:hover{background:rgba(124,58,237,0.1);border-color:var(--accent-
