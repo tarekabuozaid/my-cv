@@ -13,6 +13,8 @@
   <link rel="canonical" href="https://tarekabuozaid.github.io/my-cv/" />
   <meta name="author" content="Tarek Abouzaid" />
   <meta name="theme-color" content="#0b0f19" />
+  <meta name="msapplication-navbutton-color" content="#0b0f19" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <!-- كلمات مفتاحية إضافية لتحسين SEO -->
   <meta name="keywords" content="CAFM, CMMS, Facilities Management, Auberon, Abu Dhabi, SEHA, Help Desk, Python Automation, Power BI, Asset Management, CV, Resume, Maintenance Management" />
@@ -221,8 +223,9 @@
     .roles-tags{display:flex;flex-wrap:wrap;gap:8px}
     .role-tag{padding:8px 14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:0.5px}
   /* ===== منطقة التعريف والمؤثر البصري ===== | تعريف المستخدم والمؤثرات */
-    .hero{display:grid;grid-template-columns:1.1fr 2fr;gap:28px;align-items:center;padding:28px 0}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 0;max-width:800px;margin:0 auto}
+    .hero-content{width:100%;max-width:600px}
+    @media (max-width:900px){.hero{padding:20px 0}}
   /* ===== بنية عرض الأقسام على الموبايل ===== | تصميم عرض الأقسام للموبايل */
     @media (max-width:768px){
       .wrap{padding:8px}
@@ -403,18 +406,22 @@
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    min-height: 540px;
-    height: 75vh;
+    min-height: 500px;
+    height: 60vh;
     margin: 14px 0 18px;
     isolation: isolate;
     box-shadow: 0 25px 80px rgba(0,0,0,.35);
     background: #000000; /* خلفية سوداء */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
     
   /* ضبط الهولوجرام على أحجام الشاشات المختلفة */
   @media (min-width: 1200px) {
     .holo-hero {
-      min-height: 620px; /* ارتفاع أكبر على الشاشات الكبيرة */
+      min-height: 600px; /* ارتفاع أكبر على الشاشات الكبيرة */
+      height: 55vh;
     }
   }
 
@@ -424,18 +431,23 @@
     inset: 0;
     background-image: url("BIG.png");
     background-repeat: no-repeat;
-    background-size: auto 135%;
+    background-size: cover;
     background-position: center center;
-    filter: saturate(1.35) contrast(1.2) brightness(1.25);
-    transform: translateZ(0) scale(1.05);
+    filter: saturate(1.4) contrast(1.3) brightness(1.3);
+    transform: translateZ(0) scale(1.1);
     will-change: transform;
     transition: transform 0.5s ease-out;
+    border-radius: 20px;
   }
   
   /* نسخة أصغر من الصورة للموبايل لتحسين الأداء */
   @media (max-width: 768px) {
     .holo-hero .holo-bg {
       background-image: url("BIG.png");
+      background-size: cover;
+      background-position: center center;
+      filter: saturate(1.4) contrast(1.3) brightness(1.3);
+      transform: translateZ(0) scale(1.1);
     }
   }
 
@@ -451,42 +463,6 @@
     opacity: 0.85;
   }
 
-  /* 4. الحلقة المركزية */
-  .holo-ring {
-    position: absolute; 
-    left: 50%; 
-    top: 50%; 
-    translate: -50% -50%;
-    width: min(70vw, 550px);
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: inset 0 0 120px rgba(34,211,238,.2);
-    backdrop-filter: blur(2px);
-    animation: ringSpin 18s linear infinite;
-    z-index: 1;
-  }
-  
-  .holo-ring::after {
-    content: ""; 
-    position: absolute; 
-    inset: 10%;
-    border-radius: 50%;
-    border: 1px dashed rgba(34,211,238,.35);
-    filter: drop-shadow(0 0 8px rgba(34,211,238,.35));
-  }
-  
-  .ring-core {
-    position: absolute; 
-    left: 50%; 
-    top: 50%; 
-    translate: -50% -50%;
-    width: 28%; 
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 45%, rgba(34,211,238,.55), transparent 60%);
-    box-shadow: 0 0 24px rgba(34,211,238,.45), inset 0 0 24px rgba(124,58,237,.35);
-  }
 
   @keyframes ringSpin { 
     to { 
@@ -508,16 +484,19 @@
     display: flex; 
     align-items: center; 
     gap: 8px;
-    padding: 10px 12px;
-    border-radius: 14px;
+    padding: 12px 16px;
+    border-radius: 16px;
     color: #e8f7ff;
-    background: linear-gradient(180deg, rgba(34,211,238,.16), rgba(124,58,237,.14));
-    border: 1px solid rgba(255,255,255,.18);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    background: linear-gradient(180deg, rgba(34,211,238,.2), rgba(124,58,237,.18));
+    border: 1px solid rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 36px rgba(0,0,0,.3);
     transition: transform .45s cubic-bezier(.22,.61,.36,1),
                box-shadow .3s ease, background .3s ease;
     will-change: transform;
+    min-width: 90px;
+    font-size: 14px;
+    font-weight: 600;
   }
   
   .holo-chip i { 
@@ -565,7 +544,8 @@
     body .holo-hero, 
     :root .holo-hero { 
       display: block;
-      min-height: 360px; /* ارتفاع أقل للموبايل */
+      min-height: 400px; /* ارتفاع أكبر للموبايل */
+      height: 50vh;
       margin-bottom: 30px; /* زيادة المسافة في الأسفل */
     }
     /* استثناء الهولوجرام من قاعدة إخفاء أقسام main على الموبايل */
@@ -574,11 +554,6 @@
       display: block; 
     }
     
-    /* إعادة ضبط عرض الحلقة على الموبايل */
-    html body .holo-ring, 
-    body .holo-ring {
-      width: min(80vw, 300px);
-    }
     
     /* توزيع أفضل للمساحات على الموبايل */
     html body .wrap, 
@@ -681,7 +656,7 @@
         vertical-align: middle;
       }
       /* Comfortable space below holo on mobile */
-      .holo-hero{ margin-bottom:6px; min-height:360px; }
+      .holo-hero{ margin-bottom:6px; min-height:400px; height:50vh; }
       .holo-hint{ top:8px; }
       .holo-chip{ font-size:14px; }
     }
@@ -829,8 +804,8 @@
       z-index: 100;
       border: none;
       outline: none;
-      backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
     
     /* ضمان ظهور السهم */
@@ -845,6 +820,24 @@
       width: 24px;
       height: 24px;
       fill: currentColor;
+    }
+    
+    /* Icon fallback styles for all icons */
+    .icon-fallback {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      display: none;
+    }
+    
+    .fas + .icon-fallback,
+    .fab + .icon-fallback {
+      display: none;
+    }
+    
+    .fas:not([style*="display: none"]) + .icon-fallback,
+    .fab:not([style*="display: none"]) + .icon-fallback {
+      display: none;
     }
     
     .back-to-top.visible {
@@ -886,6 +879,33 @@
         transform: scale(2);
         opacity: 0;
       }
+    }
+    
+    /* CSS classes للأنماط المدمجة */
+    .mobile-contact-layout {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+    
+    .mobile-contact-btn {
+      justify-content: center;
+    }
+    
+    .mobile-contact-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+    }
+    
+    .mobile-separator {
+      margin: 24px 0;
+    }
+    
+    .mobile-icon-styles {
+      display: inline-block !important;
+      color: var(--accent) !important;
     }
 
   /* العناصر المسموح لها بتأثير الميلان الثلاثي الأبعاد | عناصر تدعم الميلان 3D */
@@ -932,7 +952,7 @@
   <style>
   /* ===== CSS: تنسيقات الهولوغرام ===== */
   /* — Clean Hero — */
-  .holo-hero{min-height:260px;margin-top:14px;background:#000000;}
+  .holo-hero{min-height:500px;height:60vh;margin-top:14px;background:#000000;}
   .holo-hero .holo-bg{
     filter: brightness(.68) saturate(1.05) contrast(1.05);
   }
@@ -1095,9 +1115,6 @@
       <div class="holo-bg" aria-hidden="true"></div>
       <div class="holo-overlay" aria-hidden="true"></div>
 
-      <div class="holo-ring">
-        <div class="ring-core"></div>
-      </div>
 
       <!-- الأزرار الدائرية المنبعثة من الصورة -->
       <button class="holo-chip" data-section="about" style="--a:0deg" aria-controls="about-view" aria-expanded="false">
@@ -1168,7 +1185,7 @@
     <!-- قسم التعريف -->
     <section id="about">
       <div class="hero">
-        <div>
+        <div class="hero-content">
           <div class="tagline">Al Dhafra Region, Abu Dhabi</div>
           <h1 class="title glitch" data-text="CAFM ADMIN | Help Desk &amp; Facilities Technology Specialist |">
             <span id="typewriter"></span><span class="cursor">|</span>
@@ -1195,7 +1212,6 @@
             </div>
           </div>
         </div>
-        <div><img src="./BIG.png" alt="Tarek Abouzaid - CAFM Administrator and Help Desk Specialist with expertise in Auberon CMMS system, asset management, and facility maintenance automation in Abu Dhabi healthcare sector" width="1200" height="900" onerror="this.onerror=null; this.src='https://placehold.co/1200x900/0f172a/22d3ee?text=TAREK+ABOUZAID'" style="width: 100%; border-radius: 16px; border: 1px solid var(--line); aspect-ratio: 4/3; object-fit: cover;"></div>
       </div>
     </section>
     
@@ -1240,7 +1256,7 @@
       <h3><i class="fas fa-tools"></i> Technical Skills</h3>
       
       <div class="skill-category">
-        <h4><i class="fas fa-building"></i> Core CAFM</h4>
+        <h4><i class="fas fa-building"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h32c35.3 0 64 28.7 64 64v48c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H96V32c0-17.7 14.3-32 32-32zM416 192c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V192zM144 256c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V240zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H304zM144 320c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V304zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H304z"/></svg> Core CAFM</h4>
         <div class="skills">
           <span class="tag">Asset Register</span>
           <span class="tag">PPM Scheduling</span>
@@ -1253,35 +1269,35 @@
       </div>
 
       <div class="skill-category">
-        <h4><i class="fas fa-cogs"></i> Tools</h4>
+        <h4><i class="fas fa-cogs"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/></svg> Tools</h4>
         <div class="skills">
           <span class="tag">SEHA (Auberon)</span>
-          <span class="tag">Maximo</span>
+            <span class="tag">Maximo</span>
           <span class="tag">Concept Evolution</span>
-          <span class="tag">Archibus</span>
-          <span class="tag">SAP PM</span>
-          <span class="tag">Power BI</span>
+            <span class="tag">Archibus</span>
+            <span class="tag">SAP PM</span>
+            <span class="tag">Power BI</span>
           <span class="tag">Excel (Power Query/Pivot)</span>
           <span class="tag">SharePoint/Teams</span>
+          </div>
         </div>
-      </div>
 
       <div class="skill-category">
-        <h4><i class="fas fa-robot"></i> Automation/Dev</h4>
+        <h4><i class="fas fa-robot"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H480c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg> Automation/Dev</h4>
         <div class="skills">
           <span class="tag">Python (Playwright, Selenium, Pandas)</span>
           <span class="tag">Google Apps Script</span>
+          </div>
         </div>
-      </div>
 
       <div class="skill-category optional">
-        <h4><i class="fas fa-server"></i> Infrastructure</h4>
+        <h4><i class="fas fa-server"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm448 96c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32H448c17.7 0 32 14.3 32 32v32zM64 192c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H64zm0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm384 0c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zM64 320c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V384c0-35.3-28.7-64-64-64H64zm0 32c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V384c0-17.7 14.3-32 32-32zm384 0c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V384c0-17.7 14.3-32 32-32z"/></svg> Infrastructure</h4>
         <div class="skills">
           <span class="tag">pfSense • Debian • FreeRADIUS • VMware/Proxmox</span>
         </div>
       </div>
     </section>
-    
+
     <!-- ======= قسم التعليم واللغات (Education) ======= -->
     <!-- صيانة: أضف الشهادات الجديدة في بداية القائمة للحفاظ على الترتيب الزمني من الأحدث للأقدم -->
     <!-- قسم التعليم واللغات -->
@@ -1290,7 +1306,7 @@
       <p><strong>BSc in Computer &amp; Management Information Systems</strong><br/>Higher Institute of Computers &amp; IT, Tanta, Egypt | 2012</p>
 
       <div class="sep"></div>
-      <h3><i class="fas fa-language"></i> Languages</h3>
+      <h3><i class="fas fa-language"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M0 128C0 92.7 28.7 64 64 64H576c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM192 192H448c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32zM0 320c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320zm192 32H448c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg> Languages</h3>
       <ul>
         <li><strong>Arabic:</strong> Native</li>
         <li><strong>English:</strong> Professional Proficiency</li>
@@ -1301,7 +1317,7 @@
     <!-- صيانة: أضف الشهادات الجديدة في بداية القائمة مع مراعاة الترتيب الزمني من الأحدث للأقدم -->
     <!-- الشهادات الاحترافية -->
     <section id="certifications">
-      <h3><i class="fas fa-certificate"></i> Professional Certifications</h3>
+      <h3><i class="fas fa-certificate"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h32c35.3 0 64 28.7 64 64v48c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H96V32c0-17.7 14.3-32 32-32zM416 192c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V192zM144 256c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V240zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H304zM144 320c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V304zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H304z"/></svg> Professional Certifications</h3>
       <div class="timeline">
         <div class="item">
           <div class="when">2023</div>
@@ -1327,22 +1343,22 @@
     <!-- صيانة: احرص على تحديث الإنجازات بأرقام وإحصائيات محددة وتأثيرات ملموسة -->
     <!-- قسم الإنجازات -->
     <section id="achievements">
-      <h3><i class="fas fa-trophy"></i> Key Achievements</h3>
+      <h3><i class="fas fa-trophy"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M400 0H176c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h16V352c0 35.3 28.7 64 64 64h64c35.3 0 64-28.7 64-64V128h16c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM192 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16zm128 0c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H336c-8.8 0-16-7.2-16-16zM0 176c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16zM0 240c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16zM0 304c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16z"/></svg> Key Achievements</h3>
       <div class="cards">
         <div class="card">
-          <h4><i class="fas fa-chart-line"></i> SLA Compliance Improvement</h4>
+          <h4><i class="fas fa-chart-line"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 173.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg> SLA Compliance Improvement</h4>
           <p>Improved SLA compliance from 85% to 98% through systematic process optimization and automated monitoring systems.</p>
-        </div>
+          </div>
         <div class="card">
-          <h4><i class="fas fa-save"></i> Cost Reduction</h4>
+          <h4><i class="fas fa-save"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L333.3 18.7C321.3 6.7 305 0 288 0H64zM224 352a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg> Cost Reduction</h4>
           <p>Reduced maintenance costs by 30% through implementation of predictive maintenance strategies and efficient resource allocation.</p>
         </div>
         <div class="card">
-          <h4><i class="fas fa-users"></i> Team Training</h4>
+          <h4><i class="fas fa-users"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 256a80 80 0 1 1 0-160 80 80 0 1 1 0 160zM106.7 416C47.8 416 0 463.8 0 522.7c0 11.8 9.6 21.3 21.3 21.3H362.7c11.8 0 21.3-9.5 21.3-21.3c0-58.9-47.8-106.7-106.7-106.7H106.7zM405.3 320a80 80 0 1 1 0-160 80 80 0 1 1 0 160zM533.3 416c-58.9 0-106.7 47.8-106.7 106.7c0 11.8 9.6 21.3 21.3 21.3H618.7c11.8 0 21.3-9.5 21.3-21.3c0-58.9-47.8-106.7-106.7-106.7H533.3z"/></svg> Team Training</h4>
           <p>Successfully trained 50+ technicians and supervisors on CAFM system usage, resulting in 40% reduction in system-related errors.</p>
-        </div>
+          </div>
         <div class="card">
-          <h4><i class="fas fa-robot"></i> Process Automation</h4>
+          <h4><i class="fas fa-robot"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H480c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg> Process Automation</h4>
           <p>Automated 80% of routine reporting tasks using Python scripts, saving 20+ hours per week of manual work.</p>
         </div>
       </div>
@@ -1351,10 +1367,10 @@
     <!-- ======= قسم المشاريع (Projects) ======= -->
     <!-- صيانة: أضف مشاريع جديدة في بداية القسم مع التركيز على التقنيات المستخدمة والنتائج -->
     <section id="projects">
-      <h3><i class="fas fa-project-diagram"></i> Key Projects</h3>
+      <h3><i class="fas fa-project-diagram"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80zM64 96v64h64V96H64zM0 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336zm64 16v64h64V352H64zM304 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H304c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm80 64H320v64h64V96zM256 304c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s7.2-16 16-16s16 7.2 16 16v96c0 8.8-7.2 16-16 16H384c-8.8 0-16-7.2-16-16V352c0-8.8-7.2-16-16-16s-16 7.2-16 16v48c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V304zM576 80c0 26.5-21.5 48-48 48H432V96h96V80c0-26.5 21.5-48 48-48s48 21.5 48 48z"/></svg> Key Projects</h3>
       <div class="cards">
         <div class="card">
-          <h4><i class="fas fa-robot"></i> FixFlowBot (Telegram-based CMMS Alternative)</h4>
+          <h4><i class="fas fa-robot"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H480c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg> FixFlowBot (Telegram-based CMMS Alternative)</h4>
           <p>Built and deployed a comprehensive reporting system integrated with Google Sheets & Drive. Features automated work order tracking, maintenance scheduling, and real-time notifications.</p>
           <div class="project-tech">
             <span class="tag">Python</span>
@@ -1364,7 +1380,7 @@
           </div>
         </div>
         <div class="card">
-          <h4><i class="fas fa-cogs"></i> CAFM Data Automation Suite</h4>
+          <h4><i class="fas fa-cogs"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/></svg> CAFM Data Automation Suite</h4>
           <p>Developed Python scripts for automated data processing, SLA monitoring, and KPI report generation. Reduced manual work by 80% and improved data accuracy.</p>
           <div class="project-tech">
             <span class="tag">Python</span>
@@ -1375,12 +1391,12 @@
         </div>
       </div>
     </section>
-    
+
     <!-- ======= قسم التواصل (Contact) ======= -->
     <!-- صيانة: تأكد من تحديث معلومات التواصل عند تغييرها، وتحقق من عمل الروابط بشكل صحيح -->
     <!-- البيانات الشخصية وطرق التواصل -->
     <section id="contact">
-      <h3><i class="fas fa-address-card"></i> Personal &amp; Contact</h3>
+      <h3><i class="fas fa-address-card"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm-32 80c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32v16c0 17.7-14.3 32-32 32H144c-17.7 0-32-14.3-32-32V304zM512 304c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16zm0-64c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16zm0-64c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16z"/></svg> Personal &amp; Contact</h3>
       <p><strong>Date of Birth:</strong> 13 March 1991<br/><strong>Nationality:</strong> Egyptian<br/><strong>Location:</strong> Al Dhafra Region, Abu Dhabi, UAE</p>
       <div class="meta">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
@@ -1409,7 +1425,7 @@
       </div>
     </footer>
   </main>
-  
+
   <!-- العروض المنبثقة للأقسام على الموبايل -->
   <div class="section-view" id="about-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="about-title">
     <div class="section-header">
@@ -1421,19 +1437,19 @@
         <img src="./BIG.png" alt="Tarek Abouzaid - Professional CAFM Administrator specializing in Facilities Management systems with over 8 years of experience in healthcare and commercial sectors" width="1200" height="900" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/200x200/0f172a/22d3ee?text=TA'" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 16px;">
         <h3>TAREK ABOUZAID</h3>
         <p style="color: var(--muted);">Al Dhafra Region, Abu Dhabi</p>
-      </div>
-      
+          </div>
+          
       <p>Experienced CAFM Administrator and Help Desk Specialist with comprehensive expertise in CAFM/CMMS systems including SEHA FM (Auberon Technology), IBM Maximo, Archibus, Concept Evolution, and SAP PM.</p>
       
       <div class="target-roles" style="margin: 20px 0;">
-        <h4>Target Roles</h4>
-        <div class="roles-tags">
-          <span class="role-tag">CAFM Admin</span>
-          <span class="role-tag">CMMS Analyst</span>
-          <span class="role-tag">Help Desk (FM)</span>
-          <span class="role-tag">Facilities Data & Reporting</span>
-        </div>
-      </div>
+            <h4>Target Roles</h4>
+            <div class="roles-tags">
+              <span class="role-tag">CAFM Admin</span>
+              <span class="role-tag">CMMS Analyst</span>
+              <span class="role-tag">Help Desk (FM)</span>
+              <span class="role-tag">Facilities Data & Reporting</span>
+            </div>
+          </div>
       
       <div class="meta" style="justify-content: center; margin: 24px 0;">
         <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
@@ -1441,7 +1457,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="section-view" id="experience-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="experience-title">
     <div class="section-header">
       <h2 id="experience-title"><i class="fas fa-briefcase"></i> Experience</h2>
@@ -1474,7 +1490,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="section-view" id="skills-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="skills-title">
     <div class="section-header">
       <h2 id="skills-title"><i class="fas fa-tools"></i> Technical Skills</h2>
@@ -1482,7 +1498,7 @@
     </div>
     <div class="section-content">
       <div class="skill-category">
-        <h4><i class="fas fa-building"></i> Core CAFM</h4>
+        <h4><i class="fas fa-building"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h32c35.3 0 64 28.7 64 64v48c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H96V32c0-17.7 14.3-32 32-32zM416 192c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V192zM144 256c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V240zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H304zM144 320c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V304zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H304z"/></svg> Core CAFM</h4>
         <div class="skills">
           <span class="tag">Asset Register</span>
           <span class="tag">PPM Scheduling</span>
@@ -1495,21 +1511,21 @@
       </div>
 
       <div class="skill-category">
-        <h4><i class="fas fa-cogs"></i> Tools</h4>
+        <h4><i class="fas fa-cogs"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/></svg> Tools</h4>
         <div class="skills">
           <span class="tag">SEHA (Auberon)</span>
-          <span class="tag">Maximo</span>
+            <span class="tag">Maximo</span>
           <span class="tag">Concept Evolution</span>
-          <span class="tag">Archibus</span>
-          <span class="tag">SAP PM</span>
-          <span class="tag">Power BI</span>
+            <span class="tag">Archibus</span>
+            <span class="tag">SAP PM</span>
+            <span class="tag">Power BI</span>
           <span class="tag">Excel (Power Query/Pivot)</span>
           <span class="tag">SharePoint/Teams</span>
+          </div>
         </div>
-      </div>
 
       <div class="skill-category">
-        <h4><i class="fas fa-robot"></i> Automation/Dev</h4>
+        <h4><i class="fas fa-robot"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H480c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg> Automation/Dev</h4>
         <div class="skills">
           <span class="tag">Python (Playwright, Selenium, Pandas)</span>
           <span class="tag">Google Apps Script</span>
@@ -1517,7 +1533,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="section-view" id="education-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="education-title">
     <div class="section-header">
       <h2 id="education-title"><i class="fas fa-graduation-cap"></i> Education</h2>
@@ -1529,13 +1545,13 @@
       
       <div class="sep"></div>
       
-      <h3><i class="fas fa-certificate"></i> Professional Certifications</h3>
+      <h3><i class="fas fa-certificate"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h32c35.3 0 64 28.7 64 64v48c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H96V32c0-17.7 14.3-32 32-32zM416 192c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H384c17.7 0 32-14.3 32-32V192zM144 256c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V240zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H304zM144 320c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H144zm80-16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H240c-8.8 0-16-7.2-16-16V304zm80 16c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H304z"/></svg> Professional Certifications</h3>
       <div class="timeline">
         <div class="item">
           <div class="when">2023</div>
           <div class="role">CAFM/CMMS Systems Training</div>
           <div class="place">SEHA FM – Auberon Technology</div>
-        </div>
+          </div>
         <div class="item">
           <div class="when">2022</div>
           <div class="role">Preventive Maintenance & Facilities Operations</div>
@@ -1543,19 +1559,19 @@
         <div class="item">
           <div class="when">2021</div>
           <div class="role">Python for Automation Projects</div>
+          </div>
         </div>
-      </div>
       
       <div class="sep"></div>
       
-      <h3><i class="fas fa-language"></i> Languages</h3>
+      <h3><i class="fas fa-language"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M0 128C0 92.7 28.7 64 64 64H576c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM192 192H448c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32zM0 320c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320zm192 32H448c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg> Languages</h3>
       <ul>
         <li><strong>Arabic:</strong> Native</li>
         <li><strong>English:</strong> Professional Proficiency</li>
       </ul>
     </div>
   </div>
-  
+
   <div class="section-view" id="projects-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projects-heading">
     <div class="section-header">
       <h2 id="projects-heading"><i class="fas fa-project-diagram"></i> Projects</h2>
@@ -1563,76 +1579,76 @@
     </div>
     <div class="section-content">
       <div class="card" style="margin-bottom: 20px;">
-        <h4><i class="fas fa-robot"></i> FixFlowBot (Telegram-based CMMS)</h4>
+        <h4><i class="fas fa-robot"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H480c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg> FixFlowBot (Telegram-based CMMS)</h4>
         <p>Comprehensive reporting system integrated with Google Sheets & Drive. Features automated work order tracking and real-time notifications.</p>
-        <div class="project-tech">
+          <div class="project-tech">
           <span class="tag">Python</span>
           <span class="tag">Telegram Bot API</span>
           <span class="tag">Google Sheets API</span>
+          </div>
         </div>
-      </div>
       
-      <div class="card">
-        <h4><i class="fas fa-cogs"></i> CAFM Data Automation Suite</h4>
+        <div class="card">
+        <h4><i class="fas fa-cogs"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/></svg> CAFM Data Automation Suite</h4>
         <p>Python scripts for automated data processing, SLA monitoring, and KPI report generation. Reduced manual work by 80%.</p>
-        <div class="project-tech">
-          <span class="tag">Python</span>
+          <div class="project-tech">
+            <span class="tag">Python</span>
           <span class="tag">Pandas</span>
           <span class="tag">Selenium</span>
+          </div>
         </div>
-      </div>
       
       <div class="sep" style="margin: 24px 0;"></div>
       
-      <h3><i class="fas fa-trophy"></i> Key Achievements</h3>
+      <h3><i class="fas fa-trophy"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M400 0H176c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h16V352c0 35.3 28.7 64 64 64h64c35.3 0 64-28.7 64-64V128h16c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM192 80c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16zm128 0c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H336c-8.8 0-16-7.2-16-16zM0 176c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16zM0 240c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16zM0 304c0-8.8 7.2-16 16-16H80c8.8 0 16 7.2 16 16s-7.2 16-16 16H16c-8.8 0-16-7.2-16-16zm480 0c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H496c-8.8 0-16-7.2-16-16z"/></svg> Key Achievements</h3>
       <div class="card" style="margin-bottom: 16px;">
-        <h4><i class="fas fa-chart-line"></i> SLA Compliance Improvement</h4>
+        <h4><i class="fas fa-chart-line"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 173.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg> SLA Compliance Improvement</h4>
         <p>Improved SLA compliance from 85% to 98% through systematic process optimization.</p>
-      </div>
+          </div>
       
-      <div class="card">
-        <h4><i class="fas fa-users"></i> Team Training</h4>
+        <div class="card">
+        <h4><i class="fas fa-users"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 256a80 80 0 1 1 0-160 80 80 0 1 1 0 160zM106.7 416C47.8 416 0 463.8 0 522.7c0 11.8 9.6 21.3 21.3 21.3H362.7c11.8 0 21.3-9.5 21.3-21.3c0-58.9-47.8-106.7-106.7-106.7H106.7zM405.3 320a80 80 0 1 1 0-160 80 80 0 1 1 0 160zM533.3 416c-58.9 0-106.7 47.8-106.7 106.7c0 11.8 9.6 21.3 21.3 21.3H618.7c11.8 0 21.3-9.5 21.3-21.3c0-58.9-47.8-106.7-106.7-106.7H533.3z"/></svg> Team Training</h4>
         <p>Successfully trained 50+ technicians on CAFM system usage, reducing errors by 40%.</p>
       </div>
     </div>
   </div>
-  
+
   <div class="section-view" id="contact-view" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contact-heading">
     <div class="section-header">
-      <h2 id="contact-heading"><i class="fas fa-address-card"></i> Contact</h2>
+      <h2 id="contact-heading"><i class="fas fa-address-card"></i><svg class="icon-fallback" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm-32 80c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32v16c0 17.7-14.3 32-32 32H144c-17.7 0-32-14.3-32-32V304zM512 304c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16zm0-64c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16zm0-64c0 8.8-7.2 16-16 16H304c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16z"/></svg> Contact</h2>
       <button class="close-btn" onclick="closeSection()" aria-label="Close section">&times;</button>
     </div>
     <div class="section-content">
       <div style="text-align: center; margin-bottom: 24px;">
         <img src="SMALL.png" alt="Tarek Abouzaid - Contact Professional" width="200" height="200" loading="lazy" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent);">
-      </div>
+        </div>
       
-      <div class="meta" style="flex-direction: column; gap: 16px; align-items: stretch;">
-        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn" style="justify-content: center;">
+      <div class="meta mobile-contact-layout">
+        <a href="mailto:Tarekabuzaidcafm@outlook.com" class="btn mobile-contact-btn">
           <i class="fas fa-envelope"></i> Tarekabuzaidcafm@outlook.com
         </a>
-        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/971545527141?text=Hello%20Tarek%2C%20we%20viewed%20your%20CAFM%20profile" class="btn secondary mobile-contact-btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> +971 54 552 7141
         </a>
-        <a href="https://github.com/tarekabuozaid/" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/tarekabuozaid/" class="btn secondary mobile-contact-btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github"></i> GitHub Profile
         </a>
-        <a href="https://www.linkedin.com/in/tarekabuozaid/" class="btn secondary" style="justify-content: center;" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/tarekabuozaid/" class="btn secondary mobile-contact-btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-linkedin"></i> LinkedIn Profile
         </a>
-        <a href="pdf.pdf" class="btn" download style="justify-content: center;" type="application/pdf" fetchpriority="low">
+        <a href="pdf.pdf" class="btn mobile-contact-btn" download type="application/pdf" fetchpriority="low">
           <i class="fas fa-download"></i> Download CV (PDF)
         </a>
-      </div>
+        </div>
       
-      <div class="sep" style="margin: 24px 0;"></div>
+      <div class="sep mobile-separator"></div>
       
       <p><strong>Date of Birth:</strong> 13 March 1991</p>
       <p><strong>Nationality:</strong> Egyptian</p>
       <p><strong>Location:</strong> Al Dhafra Region, Abu Dhabi, UAE</p>
     </div>
   </div>
-  
+
   
   
   <!-- زر الإجراءات العائم -->
@@ -2581,6 +2597,27 @@ document.documentElement.classList.toggle('prefers-reduced', prefersReduced);
         }
       }
     }, 1000);
+    
+    // التحقق من تحميل Font Awesome لجميع الأيقونات في الموقع
+    setTimeout(() => {
+      const allIcons = document.querySelectorAll('.fas, .fab');
+      allIcons.forEach(icon => {
+        const isFontAwesomeLoaded = icon && 
+          getComputedStyle(icon).fontFamily.includes('Font Awesome') &&
+          icon.offsetWidth > 0;
+        
+        if (!isFontAwesomeLoaded) {
+          icon.style.display = 'none';
+          const fallback = icon.nextElementSibling;
+          if (fallback && fallback.classList.contains('icon-fallback')) {
+            fallback.style.display = 'inline-block';
+            fallback.style.width = '16px';
+            fallback.style.height = '16px';
+            fallback.style.fill = 'currentColor';
+          }
+        }
+      });
+    }, 1500);
     
     // تحسين إظهار/إخفاء الزر عند التمرير
     let scrollTimeout;
