@@ -1256,6 +1256,73 @@
         scroll-behavior: auto !important;
       }
     }
+
+  /* ===== CSS Layout Refinements ===== */
+  /* Header Menu Refinements */
+  .menu {
+    gap: 12px;
+  }
+  .menu a.btn {
+    margin-left: 8px;
+  }
+
+  /* About Section Contact Links Layout */
+  @media (min-width: 600px) {
+    #about .meta {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* Section Bottom Margins */
+  section {
+    margin-bottom: 40px;
+  }
+
+  /* Skill Tags Breathing Room */
+  .tag {
+    margin-bottom: 4px;
+  }
+
+  /* Contact Section Line Height */
+  #contact p {
+    line-height: 1.7;
+  }
+
+  /* Specific Icon Spacing */
+  .meta a > i,
+  .btn > i,
+  .holo-chip > i,
+  section h3 > i,
+  .card h4 > i {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* Mobile Headline Spacing */
+  .mobile-headline {
+    padding-bottom: 10px;
+  }
+  .mobile-headline .meta-icons {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  /* Consistent Border Radius */
+  .chip, .tag, .role-tag {
+    border-radius: 16px;
+  }
+  .btn, .meta a {
+    border-radius: 8px;
+  }
+  .card {
+    border-radius: 12px;
+  }
+  .skill-category {
+    border-radius: 10px;
+  }
   </style>
   <!-- ======= نهاية CSS الرئيسي ======= -->
   
